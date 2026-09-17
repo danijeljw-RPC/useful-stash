@@ -236,38 +236,74 @@ def svg_text_line(line, x, y, size, weight=800, letter_spacing="-2"):
     )
 
 def shape_svg(kind: str) -> str:
-    common = (
-        f'fill="{SOFT_ORANGE}" fill-opacity="0.085" '
-        f'stroke="{SOFT_ORANGE}" stroke-opacity="0.46" stroke-width="13"'
-    )
-    halo = (
-        f'fill="none" stroke="{SOFT_ORANGE}" '
-        f'stroke-opacity="0.10" stroke-width="22"'
-    )
+    OUTER = "#15181D"   # Surface
+    INNER = "#1D2127"   # Raised
+    W = 22              # same thickness for both rings
 
     if kind == "circle":
-        return f'<circle cx="1240" cy="388" r="276" {halo}/><circle cx="1240" cy="388" r="252" {common}/>'
+        r_outer = 266
+        r_inner = r_outer - W
+        return (
+            f'<circle cx="1240" cy="388" r="{r_outer}" fill="none" '
+            f'stroke="{OUTER}" stroke-width="{W}"/>'
+            f'<circle cx="1240" cy="388" r="{r_inner}" fill="none" '
+            f'stroke="{INNER}" stroke-width="{W}"/>'
+        )
 
     if kind == "square":
-        return f'<rect x="1028" y="178" width="454" height="454" rx="42" {halo}/><rect x="1050" y="200" width="410" height="410" rx="30" {common}/>'
+        size_outer = 432
+        size_inner = size_outer - (2 * W)
+        x_outer = 1038
+        y_outer = 186
+        x_inner = x_outer + W
+        y_inner = y_outer + W
+        rx_outer = 34
+        rx_inner = max(0, rx_outer - W)
+        return (
+            f'<rect x="{x_outer}" y="{y_outer}" width="{size_outer}" height="{size_outer}" '
+            f'rx="{rx_outer}" fill="none" stroke="{OUTER}" stroke-width="{W}"/>'
+            f'<rect x="{x_inner}" y="{y_inner}" width="{size_inner}" height="{size_inner}" '
+            f'rx="{rx_inner}" fill="none" stroke="{INNER}" stroke-width="{W}"/>'
+        )
 
     if kind == "diamond":
+        size_outer = 412
+        size_inner = size_outer - (2 * W)
+        x_outer = 1048
+        y_outer = 196
+        x_inner = x_outer + W
+        y_inner = y_outer + W
+        rx_outer = 24
+        rx_inner = max(0, rx_outer - W)
         return (
-            f'<rect x="1038" y="186" width="434" height="434" rx="36" '
-            f'transform="rotate(45 1255 403)" {halo}/>'
-            f'<rect x="1060" y="208" width="390" height="390" rx="24" '
-            f'transform="rotate(45 1255 403)" {common}/>'
+            f'<rect x="{x_outer}" y="{y_outer}" width="{size_outer}" height="{size_outer}" '
+            f'rx="{rx_outer}" fill="none" stroke="{OUTER}" stroke-width="{W}" '
+            f'transform="rotate(45 1254 402)"/>'
+            f'<rect x="{x_inner}" y="{y_inner}" width="{size_inner}" height="{size_inner}" '
+            f'rx="{rx_inner}" fill="none" stroke="{INNER}" stroke-width="{W}" '
+            f'transform="rotate(45 1254 402)"/>'
         )
 
     if kind == "hexagon":
-        cx, cy, r = 1245, 388, 255
-        points = []
+        cx, cy = 1245, 388
+        r_outer = 255
+        r_inner = r_outer - W
+        outer = []
+        inner = []
         for i in range(6):
             angle = math.radians(60 * i - 30)
-            points.append(
-                f"{cx + r * math.cos(angle):.1f},{cy + r * math.sin(angle):.1f}"
+            outer.append(
+                f"{cx + r_outer * math.cos(angle):.1f},{cy + r_outer * math.sin(angle):.1f}"
             )
-        return f'<polygon points="{" ".join(points)}" {common}/>'
+            inner.append(
+                f"{cx + r_inner * math.cos(angle):.1f},{cy + r_inner * math.sin(angle):.1f}"
+            )
+        return (
+            f'<polygon points="{" ".join(outer)}" fill="none" '
+            f'stroke="{OUTER}" stroke-width="{W}" stroke-linejoin="round"/>'
+            f'<polygon points="{" ".join(inner)}" fill="none" '
+            f'stroke="{INNER}" stroke-width="{W}" stroke-linejoin="round"/>'
+        )
 
     return ""
 
