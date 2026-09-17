@@ -237,18 +237,24 @@ def svg_text_line(line, x, y, size, weight=800, letter_spacing="-2"):
 
 def shape_svg(kind: str) -> str:
     common = (
-        f'fill="{SOFT_ORANGE}" fill-opacity="0.055" '
-        f'stroke="{SOFT_ORANGE}" stroke-opacity="0.28" stroke-width="10"'
+        f'fill="{SOFT_ORANGE}" fill-opacity="0.085" '
+        f'stroke="{SOFT_ORANGE}" stroke-opacity="0.46" stroke-width="13"'
+    )
+    halo = (
+        f'fill="none" stroke="{SOFT_ORANGE}" '
+        f'stroke-opacity="0.10" stroke-width="22"'
     )
 
     if kind == "circle":
-        return f'<circle cx="1240" cy="388" r="252" {common}/>'
+        return f'<circle cx="1240" cy="388" r="276" {halo}/><circle cx="1240" cy="388" r="252" {common}/>'
 
     if kind == "square":
-        return f'<rect x="1050" y="200" width="410" height="410" rx="30" {common}/>'
+        return f'<rect x="1028" y="178" width="454" height="454" rx="42" {halo}/><rect x="1050" y="200" width="410" height="410" rx="30" {common}/>'
 
     if kind == "diamond":
         return (
+            f'<rect x="1038" y="186" width="434" height="434" rx="36" '
+            f'transform="rotate(45 1255 403)" {halo}/>'
             f'<rect x="1060" y="208" width="390" height="390" rx="24" '
             f'transform="rotate(45 1255 403)" {common}/>'
         )
@@ -299,7 +305,7 @@ for raw in tags:
 
     tag_x += tag_width
 
-title_start_y = 278 + ((tag_rows - 1) * 22)
+title_start_y = 310 + ((tag_rows - 1) * 22)
 line_gap = int(title_size * 1.02)
 
 title_fragments = []
@@ -339,7 +345,7 @@ svg = f'''<svg xmlns="http://www.w3.org/2000/svg"
 
   <text x="96" y="82" xml:space="preserve"
         font-family="Courier New, monospace"
-        font-size="25" font-weight="700" letter-spacing="1.5"><tspan fill="{ORANGE}">[+]</tspan><tspan fill="{TEXT}"> USEFUL</tspan><tspan fill="{ORANGE}">/</tspan><tspan fill="{TEXT}">STASH</tspan></text>
+        font-size="25" font-weight="700" letter-spacing="1.5"><tspan fill="{ORANGE}">[+]</tspan><tspan fill="{TEXT}" dx="6">USEFUL</tspan><tspan fill="{ORANGE}">/</tspan><tspan fill="{TEXT}">STASH</tspan></text>
 
   {"".join(tag_fragments)}
 
