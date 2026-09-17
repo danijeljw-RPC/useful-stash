@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from '../../components/ArticleCard.astro';
+import ContentTag from '../../components/ContentTag.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const tags = [...new Set(articles.flatMap((article) => article.data.tags))]
+  .sort((a, b) => a.localeCompare(b));
+---
+
+<BaseLayout title="Browse the stash" description="Browse practical guides, tools, experiments, and other useful things worth keeping.">
+  <header class="stash-header container">
+    <p class="kicker">The archive</p>
+    <h1>Browse the stash.</h1>
+    <p>Practical notes, guides, tools, and experiments. These first entries are clearly marked samples for reviewing the publication system.</p>
+    <div class="stash-header__tags" aria-label="Topics in the stash">
+      {tags.map((tag) => <ContentTag value={tag} />)}
+    </div>
+  </header>
+
+  <section class="stash-list container" aria-labelledby="articles-heading">
+    <h2 id="articles-heading" class="visually-hidden">Articles</h2>
+    <div class="article-list">
+      {articles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .stash-header {
+    padding-block: clamp(4.5rem, 11vw, 8.5rem);
+  }
+
+  .stash-header h1 {
+    max-width: 12ch;
+    margin: 1.2rem 0 0;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+  }
+
+  .stash-header > p:not(.kicker) {
+    max-width: 44rem;
+    margin: 1.6rem 0 0;
+    color: var(--color-muted);
+    font-size: clamp(1.12rem, 2.3vw, 1.4rem);
+  }
+
+  .stash-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.25rem;
+    margin-top: 2.2rem;
+  }
+
+  .stash-list {
+    padding-bottom: clamp(5rem, 10vw, 8rem);
+  }
+
+  .stash-list .article-list {
+    margin-top: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

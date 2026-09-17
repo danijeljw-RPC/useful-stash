@@ -1,0 +1,74 @@
+<button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+  <span class="theme-toggle__icon" aria-hidden="true"></span>
+  <span class="theme-toggle__label">Theme</span>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+
+  const updateButton = (theme: 'dark' | 'light') => {
+    if (!button) return;
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    button.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+    button.setAttribute('aria-pressed', String(theme === 'light'));
+  };
+
+  if (button) {
+    const initialTheme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+    updateButton(initialTheme);
+
+    button.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      updateButton(next);
+
+      try {
+        localStorage.setItem('useful-stash-theme', next);
+      } catch {
+        // The selected theme still applies for this page view.
+      }
+    });
+  }
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.5rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-muted);
+    cursor: pointer;
+    font: 700 0.76rem var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .theme-toggle__icon {
+    width: 0.9rem;
+    aspect-ratio: 1;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+  }
+
+  @media (max-width: 30rem) {
+    .theme-toggle__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+</style>

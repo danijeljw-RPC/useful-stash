@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleCard from '../components/ArticleCard.astro';
+import BrandMark from '../components/BrandMark.astro';
+import Takeaway from '../components/Takeaway.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout description="Practical guides, tools, experiments, and useful discoveries worth keeping.">
+  <section class="hero container">
+    <div class="hero__main">
+      <p class="kicker">A practical publication</p>
+      <h1>Useful?<br /><span>Stash it.</span></h1>
+      <p class="hero__intro">Tools, workflows, experiments, and clear explanations for people who want technology to be genuinely useful.</p>
+      <a class="button-link" href="/stash/">Browse the stash</a>
+    </div>
+    <aside class="hero__note" aria-label="The Useful Stash editorial rule">
+      <BrandMark stacked compact />
+      <p>Keep the things that save time, explain something clearly, or make the next attempt better.</p>
+    </aside>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="kicker">Recently stashed</p>
+      <h2 class="section-title">Things worth keeping.</h2>
+      <p class="section-intro">A small starting set of sample articles shows how practical guides and useful discoveries will live here.</p>
+      <div class="article-list">
+        {articles.map((article) => <ArticleCard article={article} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container editorial-rule">
+      <div>
+        <p class="kicker">The editorial rule</p>
+        <h2 class="section-title">One thing to take with you.</h2>
+      </div>
+      <Takeaway text="A useful article should leave you with one clear idea, decision, or action worth keeping." />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(17rem, 0.65fr);
+    gap: clamp(3rem, 9vw, 8rem);
+    align-items: end;
+    min-height: calc(100svh - 5rem);
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+
+  .hero h1 {
+    margin: 1.25rem 0 0;
+    font-size: clamp(4.7rem, 13vw, 10.5rem);
+    letter-spacing: -0.08em;
+    line-height: 0.8;
+  }
+
+  .hero h1 span {
+    color: var(--color-accent);
+  }
+
+  .hero__intro {
+    max-width: 42rem;
+    margin: 2.2rem 0;
+    color: var(--color-muted);
+    font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  }
+
+  .hero__note {
+    padding: 1.5rem 0 0 1.5rem;
+    border-top: 5px solid var(--color-accent);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .hero__note p {
+    margin: 2.5rem 0 0;
+    color: var(--color-muted);
+  }
+
+  .editorial-rule {
+    display: grid;
+    grid-template-columns: 1fr minmax(20rem, 0.8fr);
+    gap: clamp(2rem, 7vw, 6rem);
+    align-items: center;
+  }
+
+  .editorial-rule :global(.takeaway) {
+    margin-block: 0;
+  }
+
+  @media (max-width: 48rem) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+
+    .hero__note {
+      max-width: 28rem;
+    }
+
+    .editorial-rule {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .hero h1 {
+      font-size: clamp(4.1rem, 24vw, 6.5rem);
+    }
+  }
+</style>

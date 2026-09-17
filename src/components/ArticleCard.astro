@@ -1,0 +1,96 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ContentTag from './ContentTag.astro';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+}
+
+const { article } = Astro.props;
+const date = article.data.publishedAt.toLocaleDateString('en-AU', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<article class="article-card">
+  <div class="article-card__meta">
+    <ContentTag value={article.data.tags[0]} />
+    <time datetime={article.data.publishedAt.toISOString()}>{date}</time>
+    {article.data.fixture && <span>Sample article</span>}
+  </div>
+  <div class="article-card__copy">
+    <h2><a href={`/stash/${article.id}/`}>{article.data.title}</a></h2>
+    <p>{article.data.description}</p>
+  </div>
+  <a class="article-card__action" href={`/stash/${article.id}/`} aria-label={`Read ${article.data.title}`}>
+    <span aria-hidden="true">Read</span>
+  </a>
+</article>
+
+<style>
+  .article-card {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr) auto;
+    gap: clamp(1.25rem, 4vw, 3rem);
+    align-items: start;
+    padding-block: clamp(1.75rem, 4vw, 2.75rem);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-card__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    color: var(--color-muted);
+    font: 0.72rem var(--font-mono);
+  }
+
+  .article-card__copy h2 {
+    max-width: 29ch;
+    margin: 0;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+  }
+
+  .article-card__copy h2 a {
+    text-decoration: none;
+  }
+
+  .article-card__copy p {
+    max-width: 58ch;
+    margin: 0.8rem 0 0;
+    color: var(--color-muted);
+  }
+
+  .article-card__action {
+    padding: 0.4rem 0;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .article-card__action::after {
+    content: ' ↗';
+  }
+
+  @media (max-width: 44rem) {
+    .article-card {
+      grid-template-columns: 1fr auto;
+    }
+
+    .article-card__meta {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem 0.9rem;
+    }
+  }
+</style>

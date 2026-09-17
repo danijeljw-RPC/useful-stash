@@ -1,0 +1,125 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ContentTag from '../components/ContentTag.astro';
+import Takeaway from '../components/Takeaway.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+}
+
+const { article } = Astro.props;
+const { title, description, publishedAt, updatedAt, tags, takeaway, fixture } = article.data;
+const canonical = new URL(`/stash/${article.id}/`, Astro.site);
+const dateFormat = new Intl.DateTimeFormat('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: publishedAt.toISOString(),
+  ...(updatedAt ? { dateModified: updatedAt.toISOString() } : {}),
+  mainEntityOfPage: canonical.href,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Useful Stash',
+    url: 'https://usefulstash.com/',
+  },
+}).replaceAll('<', '\\u003c');
+---
+
+<BaseLayout title={title} description={description} type="article">
+  <script slot="head" type="application/ld+json" set:html={jsonLd}></script>
+  <article>
+    <header class="article-header container">
+      <div class="article-header__tags">
+        {tags.map((tag) => <ContentTag value={tag} />)}
+      </div>
+      {fixture && <p class="article-header__fixture">Sample article</p>}
+      <h1>{title}</h1>
+      <p class="article-header__description">{description}</p>
+      <div class="article-header__dates">
+        <span>Published <time datetime={publishedAt.toISOString()}>{dateFormat.format(publishedAt)}</time></span>
+        {updatedAt && <span>Updated <time datetime={updatedAt.toISOString()}>{dateFormat.format(updatedAt)}</time></span>}
+      </div>
+    </header>
+
+    <div class="reading-shell article-body">
+      <div class="prose">
+        <slot />
+      </div>
+      {takeaway && <Takeaway text={takeaway} />}
+      <nav class="article-next" aria-label="Continue browsing">
+        <p class="meta-label">Keep looking</p>
+        <a href="/stash/">Browse the stash</a>
+      </nav>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article-header {
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+
+  .article-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+  }
+
+  .article-header__fixture {
+    margin: 1.2rem 0 0;
+    color: var(--color-muted);
+    font: 0.75rem var(--font-mono);
+  }
+
+  h1 {
+    max-width: 18ch;
+    margin: 1.7rem 0 0;
+    font-size: clamp(3rem, 9vw, 7rem);
+    letter-spacing: -0.065em;
+    line-height: 0.92;
+  }
+
+  .article-header__description {
+    max-width: 46rem;
+    margin: 1.75rem 0 0;
+    color: var(--color-muted);
+    font-size: clamp(1.18rem, 2.6vw, 1.55rem);
+    line-height: 1.5;
+  }
+
+  .article-header__dates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1.5rem;
+    margin-top: 2rem;
+    color: var(--color-muted);
+    font: 0.76rem var(--font-mono);
+  }
+
+  .article-body {
+    padding-bottom: clamp(5rem, 10vw, 8rem);
+  }
+
+  .article-next {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article-next p {
+    margin: 0 0 0.45rem;
+  }
+
+  .article-next a {
+    font-size: 1.2rem;
+    font-weight: 750;
+  }
+</style>

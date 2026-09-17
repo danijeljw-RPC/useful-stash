@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Astro and build output
+.astro/
+dist/
+
+# Cloudflare local state
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local generated covers
+youtube-cover.svg
+youtube-cover.png
+
+# Personal test renders
+/output/

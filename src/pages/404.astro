@@ -1,0 +1,53 @@
+---
+import BrandMark from '../components/BrandMark.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Not found" description="This page is not in the stash." noindex>
+  <section class="not-found container">
+    <div class="not-found__code" aria-hidden="true">404</div>
+    <div>
+      <BrandMark compact />
+      <h1>Not in the stash.</h1>
+      <p>The page may have moved, or it was never useful enough to keep.</p>
+      <a class="button-link" href="/stash/">Browse the stash</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.7fr) minmax(0, 1fr);
+    gap: clamp(2rem, 8vw, 7rem);
+    align-items: center;
+    min-height: 70svh;
+    padding-block: 4rem;
+  }
+
+  .not-found__code {
+    color: var(--color-accent);
+    font: 850 clamp(6rem, 20vw, 15rem) / 0.75 var(--font-sans);
+    letter-spacing: -0.08em;
+  }
+
+  h1 {
+    margin: 2rem 0 0;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+  }
+
+  p {
+    max-width: 34rem;
+    margin: 1.4rem 0 2rem;
+    color: var(--color-muted);
+    font-size: 1.15rem;
+  }
+
+  @media (max-width: 43rem) {
+    .not-found {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

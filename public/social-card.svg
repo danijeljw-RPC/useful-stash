@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Useful Stash</title>
+  <desc id="desc">Useful? Stash it. Practical things worth keeping.</desc>
+  <rect width="1200" height="630" fill="#0D0F12"/>
+  <path d="M80 166h92" stroke="#FF6B35" stroke-width="6"/>
+  <text x="80" y="90" font-family="Courier New, monospace" font-size="24" font-weight="700" letter-spacing="2"><tspan fill="#FF6B35">[+]</tspan><tspan fill="#F3F1EC" dx="9">USEFUL</tspan><tspan fill="#FF6B35">/</tspan><tspan fill="#F3F1EC">STASH</tspan></text>
+  <text x="74" y="330" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="800" letter-spacing="-6" fill="#F3F1EC">Useful?</text>
+  <text x="74" y="442" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="800" letter-spacing="-6" fill="#FF6B35">Stash it.</text>
+  <text x="80" y="548" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#969CA6">Practical things worth keeping.</text>
+  <circle cx="1162" cy="324" r="232" fill="none" stroke="#15181D" stroke-width="24"/>
+  <circle cx="1162" cy="324" r="208" fill="none" stroke="#1D2127" stroke-width="24"/>
+</svg>

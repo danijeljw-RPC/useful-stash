@@ -1,0 +1,45 @@
+---
+import Takeaway from '../components/Takeaway.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="Useful Stash is a practical publication for useful things worth keeping.">
+  <article class="about container">
+    <header>
+      <p class="kicker">About Useful Stash</p>
+      <h1>Useful things, kept within reach.</h1>
+    </header>
+    <div class="about__copy prose">
+      <p>Useful Stash is a practical publication about tools, technology, workflows, experiments, and discoveries that earn a place in your notes.</p>
+      <p>It is written for technically curious people, not only developers. The test is simple: does this make something clearer, faster, safer, or easier to do?</p>
+      <Takeaway text="If it is genuinely useful, stash it where you can find it again." />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.75fr);
+    gap: clamp(3rem, 10vw, 9rem);
+    padding-block: clamp(5rem, 12vw, 10rem);
+  }
+
+  h1 {
+    max-width: 12ch;
+    margin: 1.2rem 0 0;
+    font-size: clamp(3.4rem, 9vw, 7.5rem);
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+  }
+
+  .about__copy {
+    align-self: end;
+  }
+
+  @media (max-width: 48rem) {
+    .about {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

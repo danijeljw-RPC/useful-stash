@@ -1,0 +1,39 @@
+---
+interface Props {
+  compact?: boolean;
+  stacked?: boolean;
+}
+
+const { compact = false, stacked = false } = Astro.props;
+---
+
+<span class:list={['brand-mark', { 'brand-mark--stacked': stacked }]} aria-label={compact ? 'Useful Stash' : 'Add to Useful Stash'}>
+  {!compact && <span class="brand-mark__accent" aria-hidden="true">[+]</span>}
+  {stacked ? (
+    <span class="brand-mark__words" aria-hidden="true">USEFUL<br />STASH<span class="brand-mark__accent">_</span></span>
+  ) : (
+    <span class="brand-mark__words" aria-hidden="true">USEFUL<span class="brand-mark__accent">/</span>STASH</span>
+  )}
+</span>
+
+<style>
+  .brand-mark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4em;
+    font-weight: 850;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .brand-mark__accent {
+    color: var(--color-accent);
+  }
+
+  .brand-mark--stacked {
+    font-size: 3rem;
+    line-height: 0.84;
+    white-space: normal;
+  }
+</style>

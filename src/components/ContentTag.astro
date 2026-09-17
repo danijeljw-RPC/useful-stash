@@ -1,0 +1,20 @@
+---
+interface Props {
+  value: string;
+}
+
+const { value } = Astro.props;
+---
+
+<span class="content-tag">[ {value.toLocaleUpperCase('en')} ]</span>
+
+<style>
+  .content-tag {
+    color: var(--color-tag);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 750;
+    letter-spacing: 0.045em;
+    white-space: nowrap;
+  }
+</style>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Useful Stash</title>
+  <rect width="64" height="64" rx="10" fill="#0D0F12"/>
+  <path d="M17 16h-6v32h6M47 16h6v32h-6" fill="none" stroke="#F3F1EC" stroke-width="5" stroke-linecap="square"/>
+  <path d="M32 21v22M21 32h22" stroke="#FF6B35" stroke-width="6" stroke-linecap="square"/>
+</svg>

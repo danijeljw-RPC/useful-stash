@@ -1,0 +1,82 @@
+---
+import BrandMark from './BrandMark.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+const pathname = Astro.url.pathname;
+const links = [
+  { href: '/stash/', label: 'Stash' },
+  { href: '/about/', label: 'About' },
+];
+---
+
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-header__brand" href="/" aria-label="Useful Stash home">
+      <BrandMark />
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      {links.map((link) => (
+        <a href={link.href} aria-current={pathname.startsWith(link.href) ? 'page' : undefined}>{link.label}</a>
+      ))}
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: clamp(0.8rem, 3vw, 2rem);
+    min-height: 5rem;
+  }
+
+  .site-header__brand {
+    width: max-content;
+    color: var(--color-text);
+    font-size: clamp(0.83rem, 2vw, 1rem);
+    text-decoration: none;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: clamp(0.9rem, 3vw, 1.8rem);
+  }
+
+  .site-nav a {
+    color: var(--color-muted);
+    font-size: 0.87rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current='page'] {
+    color: var(--color-text);
+  }
+
+  .site-nav a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 0.15em;
+    text-underline-offset: 0.45em;
+  }
+
+  @media (max-width: 35rem) {
+    .site-header__inner {
+      grid-template-columns: 1fr auto;
+      padding-block: 0.85rem;
+    }
+
+    .site-nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      order: 3;
+    }
+  }
+</style>
