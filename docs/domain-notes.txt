@@ -1,5 +1,0 @@
-Brand:        Useful Stash
-Main:         usefulstash.com
-Code:         trythis.sh
-Short URL:    ust.sh
-Dev/docs:     usefulstash.dev
