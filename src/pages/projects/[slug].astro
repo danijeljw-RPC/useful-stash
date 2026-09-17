@@ -1,0 +1,10 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { isProjectVisible } from '../../utils/content';
+export async function getStaticPaths() { return (await getCollection('projects')).filter(({ data }) => isProjectVisible(data, import.meta.env.PROD)).map((project) => ({ params: { slug: project.data.slug }, props: { project } })); }
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+<ProjectLayout project={project}><Content /></ProjectLayout>

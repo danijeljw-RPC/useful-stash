@@ -1,21 +1,10 @@
-import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { isArticleVisible, sortArticles, sortProjects } from '../utils/content';
+import { rssResponse, serializeSiteFeed } from '../utils/feed-xml';
 
-export async function GET(context: { site: URL }) {
-  const articles = (await getCollection('articles', ({ data }) => !data.draft))
-    .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
-
-  return rss({
-    title: 'Useful Stash',
-    description: 'Practical guides, tools, experiments, and useful discoveries worth keeping.',
-    site: context.site,
-    items: articles.map((article) => ({
-      title: article.data.title,
-      description: article.data.description,
-      pubDate: article.data.publishedAt,
-      link: `/stash/${article.id}/`,
-      categories: article.data.tags,
-    })),
-    customData: '<language>en-au</language>',
-  });
+export const prerender = true;
+export async function GET() {
+  const articles = sortArticles(await getCollection('articles')).filter(({ data }) => isArticleVisible(data, true));
+  const projects = sortProjects(await getCollection('projects')).filter(({ data }) => !data.draft);
+  return rssResponse(serializeSiteFeed(articles.map(({ data }) => data), projects.map(({ data }) => data)));
 }

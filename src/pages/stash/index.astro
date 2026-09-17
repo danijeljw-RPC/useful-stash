@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content';
 import ArticleCard from '../../components/ArticleCard.astro';
 import ContentTag from '../../components/ContentTag.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isArticleVisible, sortArticles } from '../../utils/content';
 
-const articles = (await getCollection('articles', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const articles = sortArticles(await getCollection('articles')).filter(({ data }) => isArticleVisible(data, import.meta.env.PROD));
 const tags = [...new Set(articles.flatMap((article) => article.data.tags))]
   .sort((a, b) => a.localeCompare(b));
 ---
@@ -14,7 +14,7 @@ const tags = [...new Set(articles.flatMap((article) => article.data.tags))]
   <header class="stash-header container">
     <p class="kicker">The archive</p>
     <h1>Browse the stash.</h1>
-    <p>Practical notes, guides, tools, and experiments. These first entries are clearly marked samples for reviewing the publication system.</p>
+    <p>Practical notes, guides, tools, and experiments worth returning to.</p>
     <div class="stash-header__tags" aria-label="Topics in the stash">
       {tags.map((tag) => <ContentTag value={tag} />)}
     </div>

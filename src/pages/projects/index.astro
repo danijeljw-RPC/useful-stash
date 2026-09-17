@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isProjectVisible, sortProjects } from '../../utils/content';
+const projects = sortProjects(await getCollection('projects')).filter(({ data }) => isProjectVisible(data, import.meta.env.PROD));
+---
+<BaseLayout title="Projects" description="Long-running Useful Stash projects, documented as they develop."><header class="container projects-header"><p class="kicker">Long-running work</p><h1>Projects.</h1><p>Detailed work that changes over time, with dates that show when each project was published and updated.</p></header><section class="container projects-list">{projects.length ? projects.map((project) => <article><p>{project.data.draft ? 'Draft project' : 'Project'}</p><h2><a href={`/projects/${project.data.slug}/`}>{project.data.title}</a></h2><p>{project.data.description}</p></article>) : <p>No published projects yet.</p>}</section></BaseLayout>
+<style>.projects-header{padding-block:clamp(4rem,10vw,8rem)}h1{margin:1rem 0;font-size:clamp(4rem,11vw,8rem);letter-spacing:-.07em;line-height:.9}.projects-header>p:last-child{max-width:45rem;color:var(--color-muted);font-size:1.25rem}.projects-list{padding-bottom:7rem}.projects-list article{padding:2rem 0;border-top:1px solid var(--color-border)}.projects-list article>p{color:var(--color-muted)}h2{margin:.35rem 0;font-size:2rem}</style>
+

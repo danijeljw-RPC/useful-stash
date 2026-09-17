@@ -1,23 +1,26 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { assertContentIntegrity, isArticleRoutable } from '../../utils/content';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  const [articles, authors] = await Promise.all([getCollection('articles'), getCollection('authors')]);
+  assertContentIntegrity(articles, authors.map((author) => author.id));
   return articles.map((article) => ({
-    params: { slug: article.id },
-    props: { article },
-  }));
+    params: { slug: article.data.slug },
+    props: { article, authors: authors.filter((author) => article.data.authors.includes(author.id)) },
+  })).filter(({ props }) => isArticleRoutable(props.article.data, import.meta.env.PROD));
 }
 
 interface Props {
   article: CollectionEntry<'articles'>;
+  authors: CollectionEntry<'authors'>[];
 }
 
-const { article } = Astro.props;
+const { article, authors } = Astro.props;
 const { Content } = await render(article);
 ---
 
-<ArticleLayout article={article}>
+<ArticleLayout article={article} authors={authors}>
   <Content />
 </ArticleLayout>

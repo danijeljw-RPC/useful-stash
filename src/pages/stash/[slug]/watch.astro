@@ -1,0 +1,34 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import HostedVideoPlayer from '../../../components/media/HostedVideoPlayer.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { isArticleRoutable } from '../../../utils/content';
+import { buildBreadcrumbs, buildVideoObject } from '../../../utils/structured-data';
+
+export async function getStaticPaths() {
+  return (await getCollection('articles'))
+    .filter(({ data }) => Boolean(data.video?.hosted) && isArticleRoutable(data, import.meta.env.PROD))
+    .map((article) => ({ params: { slug: article.data.slug }, props: { article } }));
+}
+interface Props { article: CollectionEntry<'articles'> }
+const { article } = Astro.props;
+const { title, description, slug, heroImage, publishedAt, seo, video, transcript, fixture } = article.data;
+if (!video?.hosted || !video.mimeType || !heroImage) throw new Error('Watch pages require hosted video metadata and a hero image.');
+const watchTitle = `Watch ${title}`;
+const jsonLd = [
+  buildVideoObject({ title, description, slug, publishedAt, heroImage, contentUrl: video.hosted }),
+  buildBreadcrumbs([{ name: 'Home', path: '/' }, { name: 'Stash', path: '/stash/' }, { name: title, path: `/stash/${slug}/` }, { name: 'Watch', path: `/stash/${slug}/watch/` }]),
+];
+---
+
+<BaseLayout title={watchTitle} description={`Watch ${title} on Useful Stash. ${description}`} image={heroImage} type="article" noindex={fixture || seo.noindex} jsonLd={jsonLd}>
+  <article class="container watch-page"><p class="kicker">Useful Stash video</p><h1>{title}</h1><p>{description}</p><HostedVideoPlayer src={video.hosted} mimeType={video.mimeType} poster={heroImage} transcript={transcript} /><p><a href={`/stash/${slug}/`}>Read the full post</a></p></article>
+</BaseLayout>
+
+<style>
+  .watch-page { max-width: 64rem; padding-block: clamp(4rem, 9vw, 7rem); }
+  h1 { margin: 1rem 0; font-size: clamp(2.8rem, 8vw, 6rem); letter-spacing: -.055em; line-height: .95; }
+  .watch-page > p:not(.kicker) { max-width: 48rem; color: var(--color-muted); font-size: 1.15rem; }
+  .watch-page :global(.hosted-video) { margin-top: 2rem; }
+</style>
+

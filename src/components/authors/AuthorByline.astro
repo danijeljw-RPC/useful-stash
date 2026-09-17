@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { authors: CollectionEntry<'authors'>[] }
+const { authors } = Astro.props;
+---
+
+<p class="author-byline">
+  <span>By</span>
+  {authors.map((author, index) => (
+    <>
+      {index > 0 && <span aria-hidden="true">{index === authors.length - 1 ? ' and ' : ', '}</span>}
+      <a href={`/authors/${author.data.slug}/`}>{author.data.name}</a>
+    </>
+  ))}
+</p>
+
+<style>
+  .author-byline { margin: 1rem 0 0; color: var(--color-muted); }
+  .author-byline a { color: var(--color-text); font-weight: 750; }
+</style>
+

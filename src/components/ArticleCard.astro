@@ -22,10 +22,10 @@ const date = article.data.publishedAt.toLocaleDateString('en-AU', {
     {article.data.fixture && <span>Sample article</span>}
   </div>
   <div class="article-card__copy">
-    <h2><a href={`/stash/${article.id}/`}>{article.data.title}</a></h2>
+    <h2><a href={`/stash/${article.data.slug}/`}>{article.data.title}</a></h2>
     <p>{article.data.description}</p>
   </div>
-  <a class="article-card__action" href={`/stash/${article.id}/`} aria-label={`Read ${article.data.title}`}>
+  <a class="article-card__action" href={`/stash/${article.data.slug}/`} aria-label={`Read ${article.data.title}`}>
     <span aria-hidden="true">Read</span>
   </a>
 </article>

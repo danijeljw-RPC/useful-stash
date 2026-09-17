@@ -1,13 +1,21 @@
 ---
 title: Ask AI for a decision, not a performance
+slug: ask-ai-for-a-decision-not-a-performance
 description: A practical way to get clearer help from an AI tool without writing an elaborate prompt ritual.
 publishedAt: 2026-09-10
 draft: false
+authors:
+  - dj
 tags:
   - AI
   - Workflow
 takeaway: Give the model the decision, the constraints, and the evidence it can inspect; skip the theatrical role-play.
 fixture: true
+heroImage: /social-card.png
+heroImageAlt: Useful Stash title card
+seo:
+  canonical: null
+  noindex: false
 ---
 
 Long prompts are not automatically good prompts. The useful detail is usually the decision you need to make and the evidence the answer should use.

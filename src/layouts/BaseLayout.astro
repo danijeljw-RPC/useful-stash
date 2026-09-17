@@ -9,6 +9,10 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
+  canonical?: string | null;
+  publishedAt?: Date;
+  updatedAt?: Date;
+  jsonLd?: unknown | unknown[];
 }
 
 const {
@@ -17,11 +21,18 @@ const {
   image = '/social-card.png',
   type = 'website',
   noindex = false,
+  canonical: canonicalOverride = null,
+  publishedAt,
+  updatedAt,
+  jsonLd,
 } = Astro.props;
 
 const pageTitle = title ? `${title} | Useful Stash` : 'Useful Stash | Useful things worth keeping';
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = canonicalOverride ? new URL(canonicalOverride) : new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+const serializedJsonLd = jsonLd
+  ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd]).replaceAll('<', '\\u003c')
+  : null;
 ---
 
 <!doctype html>
@@ -31,22 +42,28 @@ const socialImage = new URL(image, Astro.site);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="robots" content={noindex ? 'noindex' : 'max-image-preview:large'} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="Useful Stash" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Useful Stash Podcast" href="/podcast.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Useful Stash Videocast" href="/videocast.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="Useful Stash" />
+    <meta property="og:locale" content="en_AU" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    {publishedAt && <meta property="article:published_time" content={publishedAt.toISOString()} />}
+    {updatedAt && <meta property="article:modified_time" content={updatedAt.toISOString()} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     <title>{pageTitle}</title>
+    {serializedJsonLd && <script type="application/ld+json" set:html={serializedJsonLd}></script>}
     <script is:inline>
       (() => {
         let storedTheme = null;

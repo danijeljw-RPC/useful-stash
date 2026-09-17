@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import AudioPlayer from './AudioPlayer.astro';
+
+interface Props { article: CollectionEntry<'articles'> }
+const { article } = Astro.props;
+const { articleAudio, audio, video, podcast } = article.data;
+const hasMedia = articleAudio || audio || video?.hosted || video?.youtube || video?.spotify || podcast?.spotify || podcast?.applePodcasts;
+const externalLinks = [
+  ['Watch on YouTube', video?.youtube],
+  ['Watch on Spotify', video?.spotify],
+  ['Listen on Spotify', podcast?.spotify],
+  ['Listen on Apple Podcasts', podcast?.applePodcasts],
+].filter((entry): entry is [string, string] => Boolean(entry[1]));
+---
+
+{hasMedia && (
+  <aside class="post-media" aria-label="Listen and watch">
+    {articleAudio && <AudioPlayer label="Listen to this article" src={articleAudio.url} mimeType={articleAudio.mimeType} />}
+    {audio && <AudioPlayer label="Listen to the podcast" src={audio.url} mimeType={audio.mimeType} />}
+    {video?.hosted && <a class="button-link" href={`/stash/${article.data.slug}/watch/`}>Watch video</a>}
+    {externalLinks.length > 0 && <div class="post-media__links">
+      {externalLinks.map(([label, url]) => <a href={url} target="_blank" rel="noopener noreferrer">{label}</a>)}
+    </div>}
+  </aside>
+)}
+
+<style>
+  .post-media { display: grid; gap: 1.25rem; margin: 0 0 3rem; padding: 1.5rem; border: 1px solid var(--color-border); background: var(--color-surface); }
+  .post-media__links { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; }
+</style>

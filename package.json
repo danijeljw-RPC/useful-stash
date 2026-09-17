@@ -12,9 +12,13 @@
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^14.3.2",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.3.3"
+    "astro": "^7.3.3",
+    "fast-xml-parser": "^5.11.1",
+    "jose": "^6.2.12",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
@@ -27,7 +31,7 @@
   "allowScripts": {
     "esbuild@0.28.2": true,
     "esbuild@0.28.1": true,
-    "workerd@1.20260916.1": true,
-    "fsevents@2.3.3": true
+    "fsevents@2.3.3": true,
+    "workerd@1.20260917.1": true
   }
 }

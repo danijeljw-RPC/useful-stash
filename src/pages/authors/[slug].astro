@@ -1,0 +1,36 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ArticleCard from '../../components/ArticleCard.astro';
+import AuthorSocialLinks from '../../components/authors/AuthorSocialLinks.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { isArticleVisible, sortArticles } from '../../utils/content';
+import { buildPerson } from '../../utils/structured-data';
+
+export async function getStaticPaths() {
+  return (await getCollection('authors')).map((author) => ({ params: { slug: author.data.slug }, props: { author } }));
+}
+interface Props { author: CollectionEntry<'authors'> }
+const { author } = Astro.props;
+const { Content } = await render(author);
+const articles = sortArticles(await getCollection('articles')).filter(({ data }) => data.authors.includes(author.id) && isArticleVisible(data, import.meta.env.PROD));
+---
+
+<BaseLayout title={author.data.name} description={author.data.bio ?? `${author.data.name}, ${author.data.role} at Useful Stash.`} image={author.data.avatar ?? undefined} noindex={author.data.seo.noindex} canonical={author.data.seo.canonical} jsonLd={buildPerson(author.data)}>
+  <article class="container author-profile">
+    {author.data.avatar && <img src={author.data.avatar} alt={author.data.avatarAlt} />}
+    <p class="kicker">{author.data.role}</p><h1>{author.data.name}</h1>
+    {author.data.bio && <p class="author-profile__bio">{author.data.bio}</p>}
+    <AuthorSocialLinks author={author} />
+    <div class="prose"><Content /></div>
+  </article>
+  <section class="container authored"><h2>Published work</h2>{articles.length ? <div class="article-list">{articles.map((article) => <ArticleCard article={article} />)}</div> : <p>No published articles yet.</p>}</section>
+</BaseLayout>
+
+<style>
+  .author-profile { padding-block: clamp(4rem, 10vw, 8rem); }
+  .author-profile > img { width: 9rem; aspect-ratio: 1; object-fit: cover; margin-bottom: 2rem; border-radius: 50%; }
+  h1 { margin: .8rem 0 0; font-size: clamp(3rem, 9vw, 7rem); letter-spacing: -.06em; line-height: .95; }
+  .author-profile__bio { max-width: 48rem; color: var(--color-muted); font-size: 1.25rem; }
+  .authored { padding-bottom: 6rem; }
+</style>
+

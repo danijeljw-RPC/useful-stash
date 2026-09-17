@@ -1,19 +1,20 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { z } from 'astro/zod';
+import { articleSchema, authorSchema, projectSchema } from './schemas/content';
 
 const articles = defineCollection({
   loader: glob({ base: './src/content/articles', pattern: '**/*.{md,mdx}' }),
-  schema: z.object({
-    title: z.string().min(1),
-    description: z.string().min(1),
-    publishedAt: z.coerce.date(),
-    updatedAt: z.coerce.date().optional(),
-    draft: z.boolean().default(false),
-    tags: z.array(z.string().min(1)).min(1),
-    takeaway: z.string().min(1).optional(),
-    fixture: z.boolean().default(false),
-  }),
+  schema: articleSchema,
 });
 
-export const collections = { articles };
+const authors = defineCollection({
+  loader: glob({ base: './src/content/authors', pattern: '**/*.{md,mdx}' }),
+  schema: authorSchema,
+});
+
+const projects = defineCollection({
+  loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
+  schema: projectSchema,
+});
+
+export const collections = { articles, authors, projects };

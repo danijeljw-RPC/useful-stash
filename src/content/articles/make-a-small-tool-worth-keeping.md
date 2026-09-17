@@ -1,14 +1,22 @@
 ---
 title: Make a small tool worth keeping
+slug: make-a-small-tool-worth-keeping
 description: A short checklist for turning a one-off script into something your future self can use with confidence.
 publishedAt: 2026-09-15
 updatedAt: 2026-09-16
 draft: false
+authors:
+  - dj
 tags:
   - Tools
   - Workflow
 takeaway: A useful tool is not finished when it runs once; it is finished when the next person can run it safely.
 fixture: true
+heroImage: /social-card.png
+heroImageAlt: Useful Stash title card
+seo:
+  canonical: null
+  noindex: false
 ---
 
 A quick script can save an afternoon. A small, dependable tool can keep saving afternoons long after you have forgotten how it works.

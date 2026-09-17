@@ -4,13 +4,13 @@ import ArticleCard from '../components/ArticleCard.astro';
 import BrandMark from '../components/BrandMark.astro';
 import Takeaway from '../components/Takeaway.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { isArticleVisible, sortArticles } from '../utils/content';
+import { buildOrganization, buildWebsite } from '../utils/structured-data';
 
-const articles = (await getCollection('articles', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
-  .slice(0, 3);
+const articles = sortArticles(await getCollection('articles')).filter(({ data }) => isArticleVisible(data, import.meta.env.PROD)).slice(0, 3);
 ---
 
-<BaseLayout description="Practical guides, tools, experiments, and useful discoveries worth keeping.">
+<BaseLayout description="Practical guides, tools, experiments, and useful discoveries worth keeping." jsonLd={[buildWebsite(), buildOrganization()]}>
   <section class="hero container">
     <div class="hero__main">
       <p class="kicker">A practical publication</p>
@@ -28,7 +28,7 @@ const articles = (await getCollection('articles', ({ data }) => !data.draft))
     <div class="container">
       <p class="kicker">Recently stashed</p>
       <h2 class="section-title">Things worth keeping.</h2>
-      <p class="section-intro">A small starting set of sample articles shows how practical guides and useful discoveries will live here.</p>
+      <p class="section-intro">Practical guides and useful discoveries, published when they are worth keeping.</p>
       <div class="article-list">
         {articles.map((article) => <ArticleCard article={article} />)}
       </div>

@@ -1,0 +1,19 @@
+---
+interface Props { label: string; src: string; mimeType: 'audio/mpeg' }
+const { label, src, mimeType } = Astro.props;
+const headingId = `audio-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+
+<section class="audio-player" aria-labelledby={headingId}>
+  <h2 id={headingId}>{label}</h2>
+  <audio controls preload="metadata">
+    <source src={src} type={mimeType} />
+    <a href={src}>Open the audio file</a>
+  </audio>
+</section>
+
+<style>
+  .audio-player h2 { margin: 0 0 .65rem; font-size: 1rem; }
+  audio { width: 100%; }
+</style>
+

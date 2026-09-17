@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import AuthorSocialLinks from '../../components/authors/AuthorSocialLinks.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const authors = (await getCollection('authors')).filter(({ data }) => !data.seo.noindex).sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout title="Authors" description="Meet the people who write and create Useful Stash.">
+  <header class="container page-header"><p class="kicker">People</p><h1>Useful Stash authors.</h1></header>
+  <section class="container author-list">
+    {authors.map((author) => <article><h2><a href={`/authors/${author.data.slug}/`}>{author.data.name}</a></h2><p>{author.data.role}</p><AuthorSocialLinks author={author} /></article>)}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header { padding-block: clamp(4rem, 10vw, 8rem); }
+  h1 { margin: 1rem 0 0; font-size: clamp(3rem, 9vw, 7rem); letter-spacing: -.06em; line-height: .95; }
+  .author-list { padding-bottom: 6rem; }
+  article { padding: 2rem 0; border-top: 1px solid var(--color-border); }
+  h2, p { margin: 0; } p { color: var(--color-muted); }
+</style>
+

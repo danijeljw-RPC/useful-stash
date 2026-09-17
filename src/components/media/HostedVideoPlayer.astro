@@ -1,0 +1,19 @@
+---
+interface Props { src: string; mimeType: 'video/mp4'; poster?: string; transcript?: string }
+const { src, mimeType, poster, transcript } = Astro.props;
+---
+
+<div class="hosted-video">
+  <video controls preload="metadata" playsinline poster={poster}>
+    <source src={src} type={mimeType} />
+    {transcript && <track kind="captions" src={transcript} srclang="en-AU" label="English" default />}
+    <a href={src}>Open the video file</a>
+  </video>
+  {transcript && <p><a href={transcript} target="_blank" rel="noopener noreferrer">Read transcript</a></p>}
+</div>
+
+<style>
+  video { display: block; width: 100%; background: #000; }
+  p { margin: .75rem 0 0; }
+</style>
+

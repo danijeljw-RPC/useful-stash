@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { buildBreadcrumbs, buildProject } from '../utils/structured-data';
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
+const { title, description, slug, publishedAt, lastUpdated, draft } = project.data;
+const format = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<BaseLayout title={title} description={description} noindex={draft} type="article" jsonLd={[buildProject(project.data), buildBreadcrumbs([{ name: 'Home', path: '/' }, { name: 'Projects', path: '/projects/' }, { name: title, path: `/projects/${slug}/` }])]}>
+  <article><header class="container project-header">{draft && <p class="draft">Draft project · local development only</p>}<p class="kicker">Project</p><h1>{title}</h1><p class="description">{description}</p><div class="dates"><span>Published <time datetime={publishedAt.toISOString()}>{format.format(publishedAt)}</time></span><span>Last updated <time datetime={lastUpdated.toISOString()}>{format.format(lastUpdated)}</time></span></div></header><div class="reading-shell prose project-body"><slot /></div></article>
+</BaseLayout>
+
+<style>
+  .project-header { padding-block: clamp(4rem, 10vw, 8rem); } h1 { margin: 1rem 0; font-size: clamp(3rem, 9vw, 7rem); letter-spacing: -.06em; line-height: .95; }
+  .description { max-width: 48rem; color: var(--color-muted); font-size: 1.3rem; } .dates { display: flex; flex-wrap: wrap; gap: 1rem 2rem; color: var(--color-muted); font: .76rem var(--font-mono); }
+  .draft { color: var(--color-accent); font-weight: 750; } .project-body { padding-bottom: 7rem; }
+</style>
+

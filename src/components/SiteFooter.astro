@@ -10,7 +10,12 @@ import BrandMark from './BrandMark.astro';
     </div>
     <div class="site-footer__links">
       <a href="/stash/">Browse the stash</a>
-      <a href="/rss.xml">RSS</a>
+      <a href="/projects/">Projects</a>
+      <a href="/authors/">Authors</a>
+      <a href="/contact/">Contact</a>
+      <a href="/rss.xml">Website RSS</a>
+      <a href="/podcast.xml">Podcast RSS</a>
+      <a href="/videocast.xml">Videocast RSS</a>
     </div>
     <p class="site-footer__note">© {new Date().getFullYear()} Useful Stash</p>
   </div>
@@ -36,6 +41,7 @@ import BrandMark from './BrandMark.astro';
 
   .site-footer__links {
     display: flex;
+    flex-wrap: wrap;
     gap: 1.4rem;
   }
 
