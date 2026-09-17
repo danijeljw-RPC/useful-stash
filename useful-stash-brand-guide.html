@@ -43,7 +43,7 @@ h2{font-size:clamp(30px,5vw,58px);letter-spacing:-.046em;line-height:1}h3{font-s
 .takeaway{margin-top:35px;padding:25px;border-left:4px solid var(--orange);background:var(--surface)}
 .takeaway strong{font:700 12px monospace;letter-spacing:.12em;color:var(--soft)}
 .youtube{aspect-ratio:16/9;background:#111419;border:1px solid var(--border);border-radius:16px;padding:5%;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.yt-shape{position:absolute;width:38%;aspect-ratio:1;border:12px solid rgba(255,154,114,.46);background:rgba(255,154,114,.085);box-shadow:0 0 0 22px rgba(255,154,114,.10);right:-16%;top:15%;transform:rotate(30deg);clip-path:polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0 50%)}
+.yt-shape{position:absolute;width:38%;aspect-ratio:1;right:-16%;top:15%;transform:rotate(30deg);border:22px solid #15181D;background:transparent;clip-path:polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0 50%)}.yt-shape:before{content:"";position:absolute;inset:22px;border:22px solid #1D2127;background:transparent;clip-path:polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0 50%)}
 .yt-brand{font:750 14px monospace;letter-spacing:.1em;z-index:1}.yt-brand .hot{color:var(--orange)}
 .yt-tags{z-index:1;display:flex;gap:16px;flex-wrap:wrap}.yt-copy{z-index:1;max-width:72%}
 .yt-copy h3{font-size:clamp(34px,6vw,76px);line-height:.88;margin:12px 0;text-transform:uppercase}
@@ -99,7 +99,7 @@ footer{padding:60px 0;color:var(--muted)}
   </div>
   <div class="rules" style="margin-top:22px">
     <div class="rule-card"><strong class="orange">Useful Orange</strong><p class="muted">Use for `[+]`, the `/`, CTA emphasis, active states and selected words in headlines.</p></div>
-    <div class="rule-card"><strong class="soft">Soft Orange</strong><p class="muted">Use for `[ TAGS ]`, secondary metadata and decorative geometry. It should not compete with headline emphasis.</p></div>
+    <div class="rule-card"><strong class="soft">Soft Orange</strong><p class="muted">Use for `[ TAGS ]` and secondary metadata. It should not compete with headline emphasis.</p></div>
   </div>
 </div></section>
 
@@ -115,7 +115,7 @@ footer{padding:60px 0;color:var(--muted)}
     <div class="rule-card"><div class="label">Brand</div><p>`[+] USEFUL/STASH` appears once. `[+]` and `/` use Useful Orange.</p></div>
     <div class="rule-card"><div class="label">Tags</div><p>Tags use Soft Orange: `[ DOCKER ] [ .NET ]`. They are metadata, not the headline.</p></div>
     <div class="rule-card"><div class="label">Headline</div><p>Large, uppercase, 3–10 words where possible. Only the selected phrase uses strong orange.</p></div>
-    <div class="rule-card"><div class="label">Geometry</div><p>One simple shape may cross the right edge. Keep it low-contrast so it adds identity without becoming content.</p></div>
+    <div class="rule-card"><div class="label">Geometry</div><p>Use two touching rings only: outer `#15181D` (Surface), inner `#1D2127` (Raised), same thickness, with a transparent centre.</p></div>
   </div>
 </div></section>
 
