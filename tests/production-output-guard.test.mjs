@@ -45,6 +45,11 @@ test('admin and API routes are never prerendered as static files (server-only, p
   await assert.rejects(() => access(join(dist, 'api', 'submissions', 'media.html')));
 });
 
+test('dynamic admin and API routes run the Worker before static 404 handling', async () => {
+  const config = JSON.parse(await readFile(join(root, 'wrangler.jsonc'), 'utf8'));
+  assert.deepEqual(config.assets.run_worker_first, ['/admin/*', '/api/*']);
+});
+
 test('the sitemap never lists an admin, API, or fixture-slug URL', async () => {
   const sitemapFiles = (await walk(dist)).filter((path) => path.endsWith('.xml'));
   for (const file of sitemapFiles) {
