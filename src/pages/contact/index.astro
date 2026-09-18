@@ -1,0 +1,92 @@
+---
+export const prerender = true;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const paths = [
+  { href: '/contact/media/', title: 'Media enquiry', description: 'Press, outlets, and journalists asking about coverage or comment.' },
+  { href: '/contact/be-a-guest/', title: 'Be a guest', description: 'Propose yourself as a guest on the Useful Stash podcast or videocast.' },
+  { href: '/contact/share/', title: 'Share a story or ask a question', description: 'Send a story, tip, or question — anonymously if you prefer.' },
+];
+---
+
+<BaseLayout title="Contact" description="Get in touch with Useful Stash: media enquiries, guest requests, or share a story.">
+  <article class="contact container">
+    <header>
+      <p class="kicker">Contact</p>
+      <h1>Say hello.</h1>
+      <p class="contact__intro">Pick the option that matches what you need. Each one goes straight to the team.</p>
+    </header>
+
+    <div class="contact__paths">
+      {paths.map((path) => (
+        <a class="contact__path" href={path.href}>
+          <h2>{path.title}</h2>
+          <p>{path.description}</p>
+          <span class="contact__path-cta" aria-hidden="true">Continue &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding-block: clamp(5rem, 12vw, 10rem);
+  }
+
+  h1 {
+    max-width: 12ch;
+    margin: 1.2rem 0 0;
+    font-size: clamp(3.4rem, 9vw, 7.5rem);
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+  }
+
+  .contact__intro {
+    max-width: 40rem;
+    margin: 1.6rem 0 0;
+    color: var(--color-muted);
+    font-size: clamp(1.1rem, 2.3vw, 1.35rem);
+  }
+
+  .contact__paths {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.5rem;
+    margin-top: clamp(3rem, 8vw, 5rem);
+  }
+
+  .contact__path {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.75rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .contact__path:hover {
+    border-color: var(--color-accent);
+  }
+
+  .contact__path h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .contact__path p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+  }
+
+  .contact__path-cta {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    color: var(--color-accent);
+    font: 700 0.8rem var(--font-mono);
+  }
+</style>

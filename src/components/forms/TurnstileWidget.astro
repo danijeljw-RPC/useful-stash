@@ -1,0 +1,33 @@
+---
+interface Props {
+  siteKey: string;
+  action: string;
+}
+
+const { siteKey, action } = Astro.props;
+---
+
+<div class="turnstile-widget" data-turnstile data-sitekey={siteKey} data-action={action}></div>
+<p class="form-field__error" data-error-for="turnstile" role="alert"></p>
+
+<script>
+  // Cloudflare Turnstile loads its own script per-page (see ContactForm.astro)
+  // and renders into any element with [data-turnstile].
+</script>
+
+<style>
+  .turnstile-widget {
+    min-height: 65px;
+  }
+
+  .form-field__error {
+    margin: 0.4rem 0 0;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .form-field__error:empty {
+    display: none;
+  }
+</style>

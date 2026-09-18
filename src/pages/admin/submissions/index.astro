@@ -1,0 +1,150 @@
+---
+export const prerender = false;
+import { env } from 'cloudflare:workers';
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { listSubmissions } from '../../../lib/submissions/repository.ts';
+import type { SubmissionKind, SubmissionStatus } from '../../../lib/submissions/types.ts';
+
+const url = Astro.url;
+const page = Math.max(1, Number(url.searchParams.get('page') ?? '1') || 1);
+const kindParam = url.searchParams.get('kind');
+const statusParam = url.searchParams.get('status');
+
+const kindFilters: Record<string, { kind?: SubmissionKind; subtype?: 'story' | 'question' }> = {
+  all: {},
+  media: { kind: 'media' },
+  guest: { kind: 'guest' },
+  story: { kind: 'story', subtype: 'story' },
+  question: { kind: 'story', subtype: 'question' },
+};
+
+const filterKey = kindFilters[kindParam ?? 'all'] ? (kindParam ?? 'all') : 'all';
+const { kind, subtype } = kindFilters[filterKey];
+
+const statusFilters: SubmissionStatus[] = ['new', 'reviewing', 'contacted', 'shortlisted', 'scheduled', 'declined', 'used', 'archived'];
+const status = statusParam && statusFilters.includes(statusParam as SubmissionStatus) ? (statusParam as SubmissionStatus) : undefined;
+
+const result = await listSubmissions(env.SUBMISSIONS_DB, { kind, subtype, status, page, pageSize: 20 });
+
+const kindTabs = [
+  { key: 'all', label: 'All' },
+  { key: 'media', label: 'Media' },
+  { key: 'guest', label: 'Guest Requests' },
+  { key: 'story', label: 'Stories' },
+  { key: 'question', label: 'Questions' },
+];
+
+const statusTabs = ['contacted', 'scheduled', 'used', 'archived'];
+
+function buildQuery(overrides: Record<string, string | undefined>) {
+  const params = new URLSearchParams(url.search);
+  for (const [key, value] of Object.entries(overrides)) {
+    if (value === undefined) params.delete(key);
+    else params.set(key, value);
+  }
+  params.delete('page');
+  const query = params.toString();
+  return query ? `?${query}` : '';
+}
+---
+
+<AdminLayout title="Submissions">
+  <h1>Submissions</h1>
+
+  <nav class="admin-filters" aria-label="Filter by kind">
+    {kindTabs.map((tab) => (
+      <a href={`/admin/submissions/${buildQuery({ kind: tab.key === 'all' ? undefined : tab.key })}`} aria-current={filterKey === tab.key ? 'page' : undefined}>{tab.label}</a>
+    ))}
+  </nav>
+
+  <nav class="admin-filters" aria-label="Filter by status">
+    <a href={`/admin/submissions/${buildQuery({ status: undefined })}`} aria-current={!status ? 'page' : undefined}>Any status</a>
+    {statusTabs.map((value) => (
+      <a href={`/admin/submissions/${buildQuery({ status: value })}`} aria-current={status === value ? 'page' : undefined}>{value}</a>
+    ))}
+  </nav>
+
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Reference</th>
+        <th>Kind</th>
+        <th>Status</th>
+        <th>Received</th>
+      </tr>
+    </thead>
+    <tbody>
+      {result.items.map((item) => (
+        <tr>
+          <td><a href={`/admin/submissions/${item.publicReference}/`}>{item.publicReference}</a></td>
+          <td>{item.kind}{item.subtype ? ` / ${item.subtype}` : ''}</td>
+          <td>{item.status}</td>
+          <td>{item.createdAt}</td>
+        </tr>
+      ))}
+      {result.items.length === 0 && (
+        <tr><td colspan="4">No submissions match these filters.</td></tr>
+      )}
+    </tbody>
+  </table>
+
+  <nav class="admin-pagination" aria-label="Pagination">
+    {page > 1 && <a href={`/admin/submissions/${buildQuery({ page: String(page - 1) })}`}>Previous</a>}
+    <span>Page {result.page} of {result.pages}</span>
+    {page < result.pages && <a href={`/admin/submissions/${buildQuery({ page: String(page + 1) })}`}>Next</a>}
+  </nav>
+</AdminLayout>
+
+<style>
+  h1 {
+    margin: 0 0 1.5rem;
+  }
+
+  .admin-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .admin-filters a {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+
+  .admin-filters a[aria-current='page'] {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .admin-table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .admin-table a {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .admin-pagination {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+  }
+</style>

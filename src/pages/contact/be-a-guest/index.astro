@@ -1,0 +1,56 @@
+---
+export const prerender = true;
+import ContactForm from '../../../components/forms/ContactForm.astro';
+import CheckboxField from '../../../components/forms/CheckboxField.astro';
+import FormField from '../../../components/forms/FormField.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTurnstileSiteKey } from '../../../config/turnstile';
+
+const siteKey = getTurnstileSiteKey();
+---
+
+<BaseLayout title="Be a guest" description="Propose yourself as a guest on the Useful Stash podcast or videocast." noindex>
+  <article class="contact-page container">
+    <header>
+      <p class="kicker">Contact &rsaquo; Be a guest</p>
+      <h1>Be a guest.</h1>
+      <p class="contact-page__intro">Tell us who you are and what you'd bring to a conversation on the show.</p>
+    </header>
+
+    <ContactForm endpoint="/api/submissions/guest/" turnstileSiteKey={siteKey} turnstileAction="be-a-guest" submitLabel="Send request">
+      <FormField name="name" label="Your name" required maxlength={100} autocomplete="name" />
+      <FormField name="preferredName" label="Preferred name" maxlength={100} hint="If different from your legal name." />
+      <FormField name="email" label="Email" type="email" required maxlength={254} autocomplete="email" />
+      <FormField name="locationTimezone" label="Location / timezone" maxlength={100} />
+      <FormField name="website" label="Website" type="url" maxlength={2000} />
+      <FormField name="socialLinks" label="Social links" type="textarea" maxlength={2000} rows={3} />
+      <FormField name="biography" label="Short biography" type="textarea" required maxlength={2000} rows={5} />
+      <FormField name="proposedSubject" label="Proposed subject" required maxlength={300} />
+      <FormField name="suitability" label="Why this suits Useful Stash" type="textarea" required maxlength={3000} rows={6} />
+      <FormField name="previousAppearances" label="Previous appearances" type="textarea" maxlength={2000} rows={3} />
+      <FormField name="supportingNotes" label="Supporting notes" type="textarea" maxlength={3000} rows={4} />
+      <CheckboxField name="recordingPermission" label="I understand an accepted conversation may be recorded and published." required />
+    </ContactForm>
+  </article>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+
+  h1 {
+    max-width: 14ch;
+    margin: 1.2rem 0 0;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+  }
+
+  .contact-page__intro {
+    max-width: 38rem;
+    margin: 1.4rem 0 2.5rem;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+  }
+</style>

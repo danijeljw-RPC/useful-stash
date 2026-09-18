@@ -1,0 +1,80 @@
+---
+export const prerender = true;
+import ContactForm from '../../../components/forms/ContactForm.astro';
+import FormField from '../../../components/forms/FormField.astro';
+import RadioGroup from '../../../components/forms/RadioGroup.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTurnstileSiteKey } from '../../../config/turnstile';
+
+const siteKey = getTurnstileSiteKey();
+---
+
+<BaseLayout title="Share a story or ask a question" description="Share a story or ask a question — anonymously if you prefer." noindex>
+  <article class="contact-page container">
+    <header>
+      <p class="kicker">Contact &rsaquo; Share</p>
+      <h1>Share a story or ask a question.</h1>
+      <p class="contact-page__intro">You choose how you're identified and how your words may be used.</p>
+    </header>
+
+    <ContactForm endpoint="/api/submissions/story/" turnstileSiteKey={siteKey} turnstileAction="share-story-question" submitLabel="Submit">
+      <RadioGroup
+        name="subtype"
+        label="What is this?"
+        required
+        options={[{ value: 'story', label: 'A story' }, { value: 'question', label: 'A question' }]}
+      />
+      <FormField name="content" label="Your story or question" type="textarea" required maxlength={10000} rows={8} />
+      <RadioGroup
+        name="identityChoice"
+        label="How should we identify you?"
+        required
+        options={[
+          { value: 'real-name', label: 'Real name' },
+          { value: 'pseudonym', label: 'Pseudonym' },
+          { value: 'anonymous', label: 'Anonymous' },
+        ]}
+      />
+      <FormField name="name" label="Real name" maxlength={100} hint="Required only if you chose real name above." />
+      <FormField name="pseudonym" label="Pseudonym" maxlength={100} hint="Required only if you chose pseudonym above." />
+      <RadioGroup
+        name="publicationPermission"
+        label="How may we use this if published?"
+        required
+        options={[
+          { value: 'quote', label: 'Quote or read it aloud' },
+          { value: 'paraphrase', label: 'Paraphrase only' },
+          { value: 'private', label: 'Keep it private' },
+        ]}
+      />
+      <RadioGroup
+        name="contactPermission"
+        label="May we contact you about this?"
+        required
+        options={[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }]}
+      />
+      <FormField name="email" label="Email" type="email" maxlength={254} hint="Required only if you said yes above." autocomplete="email" />
+    </ContactForm>
+  </article>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+
+  h1 {
+    max-width: 16ch;
+    margin: 1.2rem 0 0;
+    font-size: clamp(2.6rem, 6.5vw, 4.5rem);
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+  }
+
+  .contact-page__intro {
+    max-width: 38rem;
+    margin: 1.4rem 0 2.5rem;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+  }
+</style>

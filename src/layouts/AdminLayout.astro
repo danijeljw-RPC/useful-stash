@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title} | Useful Stash Admin</title>
+  </head>
+  <body class="admin-body">
+    <header class="admin-header">
+      <a href="/admin/submissions/">Useful Stash Admin</a>
+    </header>
+    <main class="admin-main">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  .admin-body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+
+  .admin-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .admin-header a {
+    color: var(--color-text);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .admin-main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+</style>

@@ -1,0 +1,180 @@
+---
+import TurnstileWidget from './TurnstileWidget.astro';
+
+interface Props {
+  endpoint: string;
+  turnstileSiteKey: string;
+  turnstileAction: string;
+  submitLabel?: string;
+}
+
+const { endpoint, turnstileSiteKey, turnstileAction, submitLabel = 'Send' } = Astro.props;
+---
+
+<form class="contact-form" method="post" action={endpoint} data-contact-form data-endpoint={endpoint}>
+  <div class="contact-form__honeypot" aria-hidden="true">
+    <label for="hp-field">Leave this field empty</label>
+    <input id="hp-field" type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="contact-form__fields">
+    <slot />
+  </div>
+
+  <TurnstileWidget siteKey={turnstileSiteKey} action={turnstileAction} />
+
+  <p class="contact-form__status" data-form-status role="status" aria-live="polite"></p>
+
+  <button type="submit" class="button-link" data-submit-button>{submitLabel}</button>
+</form>
+
+<div class="contact-form__success" data-form-success hidden>
+  <p class="kicker">Sent</p>
+  <h2>Thanks — that's on its way.</h2>
+  <p>Your reference number is <strong data-reference></strong>. Keep it if you need to mention this submission again.</p>
+</div>
+
+<script>
+  declare global {
+    interface Window {
+      turnstile?: {
+        render: (container: string | HTMLElement, options: Record<string, unknown>) => string;
+      };
+    }
+  }
+
+  function loadTurnstileScript(): Promise<void> {
+    if (window.turnstile) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('Failed to load Turnstile.'));
+      document.head.appendChild(script);
+    });
+  }
+
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach(async (form) => {
+    const widget = form.querySelector<HTMLElement>('[data-turnstile]');
+    let turnstileToken = '';
+
+    if (widget) {
+      try {
+        await loadTurnstileScript();
+        window.turnstile?.render(widget, {
+          sitekey: widget.dataset.sitekey,
+          action: widget.dataset.action,
+          callback: (token: string) => { turnstileToken = token; },
+          'expired-callback': () => { turnstileToken = ''; },
+        });
+      } catch {
+        const status = form.querySelector<HTMLElement>('[data-form-status]');
+        if (status) status.textContent = 'Verification could not load. Please refresh and try again.';
+      }
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      form.querySelectorAll('[data-error-for]').forEach((node) => { node.textContent = ''; });
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const submitButton = form.querySelector<HTMLButtonElement>('[data-submit-button]');
+
+      if (!turnstileToken) {
+        if (status) status.textContent = 'Please complete the verification challenge.';
+        return;
+      }
+
+      const formData = new FormData(form);
+      const payload: Record<string, string> = { turnstileToken };
+      formData.forEach((value, key) => {
+        if (typeof value === 'string') payload[key] = value;
+      });
+
+      if (submitButton) submitButton.disabled = true;
+      if (status) status.textContent = 'Sending…';
+
+      try {
+        const response = await fetch(form.dataset.endpoint ?? form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json() as { ok: boolean; reference?: string; errors?: Record<string, string>; message?: string };
+
+        if (result.ok && result.reference) {
+          form.hidden = true;
+          const success = document.querySelector<HTMLElement>('[data-form-success]');
+          const referenceNode = success?.querySelector('[data-reference]');
+          if (referenceNode) referenceNode.textContent = result.reference;
+          if (success) success.hidden = false;
+          return;
+        }
+
+        if (result.errors) {
+          for (const [field, message] of Object.entries(result.errors)) {
+            const node = form.querySelector(`[data-error-for="${field}"]`);
+            if (node) node.textContent = message;
+          }
+        }
+        if (status) status.textContent = result.message ?? 'Please check the form and try again.';
+      } catch {
+        if (status) status.textContent = 'Something went wrong. Please try again.';
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 38rem;
+  }
+
+  .contact-form__honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .contact-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .contact-form__status {
+    margin: 0;
+    min-height: 1.2rem;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+
+  .contact-form button[type='submit'] {
+    align-self: flex-start;
+    border: none;
+    cursor: pointer;
+  }
+
+  .contact-form__success h2 {
+    max-width: 16ch;
+    margin: 1rem 0 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: -0.06em;
+  }
+
+  .contact-form__success p {
+    max-width: 40rem;
+    margin: 1.2rem 0 0;
+    color: var(--color-muted);
+  }
+</style>

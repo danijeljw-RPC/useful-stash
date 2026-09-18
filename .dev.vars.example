@@ -1,0 +1,25 @@
+# Copy this file to .dev.vars for local development (`npm run dev` /
+# `npm run preview`). .dev.vars is gitignored and must never be committed.
+# See docs/useful-stash-blog-upgrade.md and the deployment setup notes for
+# how to obtain production values.
+
+# Used to hash client IP addresses for rate limiting. Any long random
+# string works locally; production uses a real secret (see setup notes).
+RATE_LIMIT_KEY=local-development-only-change-me
+
+# Cloudflare's documented Turnstile "always passes" test secret. Safe to use
+# for every form locally. Production uses one real secret per form/widget
+# action, created in the Cloudflare dashboard.
+# https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+TURNSTILE_SECRET_MEDIA=1x0000000000000000000000000000000AA
+TURNSTILE_SECRET_GUEST=1x0000000000000000000000000000000AA
+TURNSTILE_SECRET_STORY=1x0000000000000000000000000000000AA
+
+# Cloudflare Access team domain, e.g. your-team.cloudflareaccess.com.
+# Leave as a placeholder locally; /admin/* will fail closed (403) without a
+# real value, which is the correct behaviour.
+ACCESS_TEAM_DOMAIN=your-team.cloudflareaccess.com
+
+# Cloudflare Access application Audience (AUD) tag for the /admin/*
+# self-hosted application, from the Access application's Overview tab.
+ACCESS_AUD=replace-with-access-application-aud-tag

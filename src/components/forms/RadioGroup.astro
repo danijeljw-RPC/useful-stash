@@ -1,0 +1,74 @@
+---
+interface Option { value: string; label: string }
+interface Props {
+  name: string;
+  label: string;
+  options: Option[];
+  required?: boolean;
+  defaultValue?: string;
+}
+
+const { name, label, options, required = false, defaultValue } = Astro.props;
+---
+
+<fieldset class="radio-group">
+  <legend>{label}{required && <span class="radio-group__required" aria-hidden="true"> *</span>}</legend>
+  <div class="radio-group__options">
+    {options.map((option, index) => (
+      <label class="radio-group__option">
+        <input
+          type="radio"
+          name={name}
+          value={option.value}
+          required={required}
+          checked={defaultValue ? defaultValue === option.value : index === 0 && false}
+        />
+        <span>{option.label}</span>
+      </label>
+    ))}
+  </div>
+  <p class="form-field__error" data-error-for={name} role="alert"></p>
+</fieldset>
+
+<style>
+  .radio-group {
+    padding: 0;
+    border: none;
+    margin: 0;
+  }
+
+  legend {
+    padding: 0;
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  .radio-group__required {
+    color: var(--color-accent);
+  }
+
+  .radio-group__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.5rem;
+  }
+
+  .radio-group__option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+  }
+
+  .form-field__error {
+    margin: 0.4rem 0 0;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .form-field__error:empty {
+    display: none;
+  }
+</style>

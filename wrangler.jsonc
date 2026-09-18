@@ -1,22 +1,35 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "useful-stash",
-  "compatibility_date": "2026-09-17",
-  "assets": {
-    "directory": "./dist",
-    "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
-  },
-  "routes": [
-    {
-      "pattern": "usefulstash.com",
-      "custom_domain": true
-    }
-  ],
-  "observability": {
-    "enabled": true,
-    "traces": {
-      "enabled": true
-    }
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ustsh-blog",
+	"compatibility_date": "2026-09-17",
+	"assets": {
+		"directory": "./dist",
+		"html_handling": "auto-trailing-slash",
+		"not_found_handling": "404-page"
+	},
+	"routes": [
+		{
+			"pattern": "usefulstash.com",
+			"custom_domain": true
+		}
+	],
+	"observability": {
+		"enabled": true,
+		"traces": {
+			"enabled": true
+		}
+	},
+	"d1_databases": [
+		{
+			"binding": "SUBMISSIONS_DB",
+			"database_name": "ustsh-blog-submissions",
+			"database_id": "797ed808-a6f3-43a6-9b49-146db37aa8ff",
+			"migrations_dir": "../../migrations"
+		}
+	],
+	"triggers": {
+		"crons": [
+			"0 3 * * *"
+		]
+	}
 }

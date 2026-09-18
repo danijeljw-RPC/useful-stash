@@ -11,23 +11,79 @@ const links = [
 ];
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="site-header__inner container">
     <a class="site-header__brand" href="/" aria-label="Useful Stash home">
       <BrandMark />
     </a>
-    <nav class="site-nav" aria-label="Main navigation">
+
+    <nav class="site-nav" aria-label="Main navigation" id="site-nav">
       {links.map((link) => (
         <a href={link.href} aria-current={pathname.startsWith(link.href) ? 'page' : undefined}>{link.label}</a>
       ))}
     </nav>
-    <ThemeToggle />
+
+    <div class="site-header__actions">
+      <ThemeToggle />
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Open menu"
+        id="nav-toggle"
+      >
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
   </div>
 </header>
 
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+
+  const setOpen = (open: boolean) => {
+    if (!toggle || !nav) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    nav.classList.toggle('site-nav--open', open);
+    document.body.classList.toggle('nav-open', open);
+  };
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    setOpen(!isOpen);
+  });
+
+  nav?.addEventListener('click', (event) => {
+    if ((event.target as HTMLElement).tagName === 'A') setOpen(false);
+  });
+
+  let lastScrolled = false;
+  const updateScrolled = () => {
+    const scrolled = window.scrollY > 12;
+    if (scrolled !== lastScrolled) {
+      header?.classList.toggle('site-header--scrolled', scrolled);
+      lastScrolled = scrolled;
+    }
+  };
+
+  updateScrolled();
+  window.addEventListener('scroll', updateScrolled, { passive: true });
+</script>
+
 <style>
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
     border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+    transition: min-height 0.15s ease;
   }
 
   .site-header__inner {
@@ -36,6 +92,11 @@ const links = [
     align-items: center;
     gap: clamp(0.8rem, 3vw, 2rem);
     min-height: 5rem;
+    transition: min-height 0.15s ease;
+  }
+
+  .site-header--scrolled .site-header__inner {
+    min-height: 3.5rem;
   }
 
   .site-header__brand {
@@ -69,16 +130,67 @@ const links = [
     text-underline-offset: 0.45em;
   }
 
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.28rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .nav-toggle__bar {
+    display: block;
+    width: 1.1rem;
+    height: 2px;
+    margin-inline: auto;
+    background: var(--color-text);
+  }
+
   @media (max-width: 35rem) {
-    .site-header__inner {
-      grid-template-columns: 1fr auto;
-      padding-block: 0.85rem;
+    .site-nav {
+      position: fixed;
+      inset: 3.5rem 0 auto 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-bg);
+      transform: translateY(-0.5rem);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
     }
 
-    .site-nav {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      order: 3;
+    .site-nav a {
+      padding: 0.9rem 1.25rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .site-nav a:first-child {
+      border-top: none;
+    }
+
+    .site-nav--open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .nav-toggle {
+      display: flex;
     }
   }
 </style>

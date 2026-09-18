@@ -4,19 +4,31 @@ import BrandMark from './BrandMark.astro';
 
 <footer class="site-footer">
   <div class="site-footer__inner container">
-    <div>
+    <div class="site-footer__brand">
       <BrandMark compact />
       <p>Useful things worth keeping.</p>
     </div>
-    <div class="site-footer__links">
+
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Explore</p>
       <a href="/stash/">Browse the stash</a>
       <a href="/projects/">Projects</a>
       <a href="/authors/">Authors</a>
-      <a href="/contact/">Contact</a>
+      <a href="/about/">About</a>
+    </div>
+
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Feeds</p>
       <a href="/rss.xml">Website RSS</a>
       <a href="/podcast.xml">Podcast RSS</a>
       <a href="/videocast.xml">Videocast RSS</a>
     </div>
+
+    <div class="site-footer__col">
+      <p class="site-footer__heading">Contact</p>
+      <a href="/contact/">Contact</a>
+    </div>
+
     <p class="site-footer__note">© {new Date().getFullYear()} Useful Stash</p>
   </div>
 </footer>
@@ -30,33 +42,54 @@ import BrandMark from './BrandMark.astro';
 
   .site-footer__inner {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1.5rem 3rem;
+    grid-template-columns: minmax(12rem, 1.4fr) repeat(3, minmax(8rem, 1fr));
+    gap: 2rem;
     align-items: start;
   }
 
-  .site-footer p {
+  .site-footer__brand p {
     margin: 0.65rem 0 0;
   }
 
-  .site-footer__links {
+  .site-footer__col {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.4rem;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .site-footer__heading {
+    margin: 0 0 0.2rem;
+    color: var(--color-text);
+    font: 0.72rem var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .site-footer__col a {
+    color: var(--color-muted);
+  }
+
+  .site-footer__col a:hover {
+    color: var(--color-text);
   }
 
   .site-footer__note {
     grid-column: 1 / -1;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
     font: 0.75rem var(--font-mono);
   }
 
-  @media (max-width: 36rem) {
+  @media (max-width: 48rem) {
+    .site-footer__inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 30rem) {
     .site-footer__inner {
       grid-template-columns: 1fr;
-    }
-
-    .site-footer__note {
-      grid-column: auto;
     }
   }
 </style>

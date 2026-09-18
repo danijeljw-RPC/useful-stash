@@ -1,0 +1,54 @@
+---
+export const prerender = true;
+import ContactForm from '../../../components/forms/ContactForm.astro';
+import CheckboxField from '../../../components/forms/CheckboxField.astro';
+import FormField from '../../../components/forms/FormField.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTurnstileSiteKey } from '../../../config/turnstile';
+
+const siteKey = getTurnstileSiteKey();
+---
+
+<BaseLayout title="Media enquiry" description="Send a media enquiry to Useful Stash." noindex>
+  <article class="contact-page container">
+    <header>
+      <p class="kicker">Contact &rsaquo; Media enquiry</p>
+      <h1>Media enquiry.</h1>
+      <p class="contact-page__intro">Press, outlets, and journalists — tell us what you need and how to reach you.</p>
+    </header>
+
+    <ContactForm endpoint="/api/submissions/media/" turnstileSiteKey={siteKey} turnstileAction="contact-media" submitLabel="Send enquiry">
+      <FormField name="name" label="Your name" required maxlength={100} autocomplete="name" />
+      <FormField name="email" label="Email" type="email" required maxlength={254} autocomplete="email" />
+      <FormField name="organisation" label="Organisation / outlet" required maxlength={150} />
+      <FormField name="role" label="Role" maxlength={100} />
+      <FormField name="phone" label="Phone" type="tel" maxlength={50} autocomplete="tel" />
+      <FormField name="deadline" label="Deadline" maxlength={100} hint="If your enquiry is time-sensitive." />
+      <FormField name="website" label="Website" type="url" maxlength={2000} hint="https://example.com" />
+      <FormField name="details" label="Enquiry details" type="textarea" required maxlength={5000} rows={8} />
+      <FormField name="supportingLinks" label="Supporting links" type="textarea" maxlength={2000} rows={3} hint="One or more links, if useful." />
+      <CheckboxField name="contactPermission" label="You may contact me about this enquiry." required />
+    </ContactForm>
+  </article>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding-block: clamp(4rem, 10vw, 8rem);
+  }
+
+  h1 {
+    max-width: 14ch;
+    margin: 1.2rem 0 0;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+  }
+
+  .contact-page__intro {
+    max-width: 38rem;
+    margin: 1.4rem 0 2.5rem;
+    color: var(--color-muted);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+  }
+</style>

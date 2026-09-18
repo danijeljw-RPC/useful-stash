@@ -6,7 +6,7 @@ const { authors } = Astro.props;
 ---
 
 <p class="author-byline">
-  <span>By</span>
+  <span>By</span>{' '}
   {authors.map((author, index) => (
     <>
       {index > 0 && <span aria-hidden="true">{index === authors.length - 1 ? ' and ' : ', '}</span>}

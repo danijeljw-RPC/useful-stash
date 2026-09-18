@@ -1,17 +1,14 @@
-import sitemap from '@astrojs/sitemap';
+import cloudflare from '@astrojs/cloudflare';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://usefulstash.com',
-  output: 'static',
+  output: 'server',
+  adapter: cloudflare({
+    imageService: 'compile',
+    platformProxy: {
+      enabled: true,
+    },
+  }),
   trailingSlash: 'always',
-  integrations: [
-    sitemap({
-      namespaces: {
-        news: false,
-        video: false,
-        xhtml: false,
-      },
-    }),
-  ],
 });

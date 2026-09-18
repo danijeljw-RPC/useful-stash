@@ -1,0 +1,81 @@
+---
+interface Props {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'url' | 'textarea';
+  required?: boolean;
+  maxlength?: number;
+  hint?: string;
+  rows?: number;
+  autocomplete?: string;
+}
+
+const { name, label, type = 'text', required = false, maxlength, hint, rows = 6, autocomplete } = Astro.props;
+const id = `field-${name}`;
+---
+
+<div class="form-field">
+  <label for={id}>{label}{required && <span class="form-field__required" aria-hidden="true"> *</span>}</label>
+  {type === 'textarea' ? (
+    <textarea id={id} name={name} required={required} maxlength={maxlength} rows={rows}></textarea>
+  ) : (
+    <input id={id} name={name} type={type} required={required} maxlength={maxlength} autocomplete={autocomplete} />
+  )}
+  {hint && <p class="form-field__hint">{hint}</p>}
+  <p class="form-field__error" data-error-for={name} role="alert"></p>
+</div>
+
+<style>
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  .form-field__required {
+    color: var(--color-accent);
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.95rem;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .form-field__hint {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+  }
+
+  .form-field__error {
+    margin: 0;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .form-field__error:empty {
+    display: none;
+  }
+</style>
