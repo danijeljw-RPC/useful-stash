@@ -1,8 +1,9 @@
 # Useful Stash — Author Profile Questionnaire
 
-> Internal working document. Not published, not linked from the site, and
-> excluded from the npm build (Astro only builds `src/` and `public/`; this
-> file is also explicitly gitignored so it never gets committed or bundled).
+> Internal working document. Not published or linked from the site, and
+> excluded from the npm build because Astro builds `src/` and `public/`, not
+> `docs/`. This file is tracked in Git, so treat its contents as internal
+> repository material rather than private or unrecorded information.
 >
 > Purpose: help a new or existing Useful Stash author flesh out a real,
 > technically credible profile — for the `authors` content collection
@@ -29,13 +30,13 @@ living document, not a one-time form.
 1. One-line description of what you do, in your own words — not a job
    title, the actual work (e.g. "I break production Kubernetes clusters on
    purpose so other people don't have to").
-   **Answer:**
+   **Answer:** I build software, platforms and automation that make complicated things behave like useful things—and when they don't, I work out exactly why, fix them, and explain the lesson without pretending it was obvious.
 1. What's the one thing you want a stranger to know about you within five
    seconds of landing on your profile?
-   **Answer:**
+   **Answer:** I am technical enough to go all the way down the rabbit hole, but practical enough to know that nobody came here to admire the rabbit hole. You came here because something is broken, confusing, slow, expensive or taking far too much of your life. Let's sort that out.
 1. If Useful Stash readers only remember one fact about you, what should it
    be?
-   **Answer:**
+   **Answer:** I will tell you what actually worked, what didn't, why I chose it and where it might blow your foot off. I am not here to perform expertise at you. I am here to leave you with something useful enough to steal.
 1. Pronouns (for bylines and any third-person copy about you).
    **Answer:** He/Him/God-Tier
 1. Location / timezone (as specific or vague as you're comfortable with —
@@ -50,17 +51,23 @@ living document, not a one-time form.
 1. What are your 2–4 core technical specialties (the stuff you could talk
    about for an hour without notes)?
 
-   **Answer:** DOTNET framework, database, automation
+   **Answer:** C# and modern .NET; software and platform architecture; automation and delivery; and practical AI, especially local LLMs and fitting them into real systems rather than PowerPoint presentations.
 
 1. What's your current tech stack — languages, frameworks, cloud
    providers, tools you reach for daily?
 
-   **Answer:** C#/dotnet, macOS, Docker, llama.cpp, Python3, Cloudflare, Vultr
+   **Answer:** C# and .NET, macOS, Docker, Python 3, PowerShell, Bash when it behaves, Rust when I feel like arguing with a compiler, `llama.cpp`, Cloudflare, Vultr, GitHub and whatever small tool gets the actual job done.
 
 1. How many years have you worked in this industry, and what's the shape
    of that path (self-taught, formal education, career change, etc.)?
 
-   **Answer:** I have worked in this industry for over 20 years now and had a genuine interest in the field for over 28 years. Quite a long time and probably more years than some of the consumers of this blog and podcast series. I'm old(er). (sic.). I started years ago in my formative years being intersted in the Commodore64 and how the BASIC language worked to do things. I thought this is going to revolutionise the world and we got our first computer after many hours spent in Computer Studies after school in primary school with Windows 95. From there I dove right in, learning from friends, magazines, books at the library and even from the obscure friend who had an earlier version of a Linux headless OS he got from his dad at the national telecommunications provider back in the day - Telecom. Since then a lot of self-paced learning, on the job, attending TAFE and then RMIT to get my PhD in Computer Science and continuining on every opportunity from there. Whilst most people might go out snowboarding, running races, or raising families - I have been always working across low-level programming languages starting with C, graduating to C++ and then finally landing on C# with a lot of languages in between when the flavours of the wind blew something else into the stratosphere. I have worked in small business, large business, enterprise and govt, military with on-prem, cloud-hosted solutions, custom development and solutions - you know it or can name it - I've been there.
+   **Answer:** I have worked in the industry for more than 20 years and been obsessed with it for more than 28, which is probably longer than some Useful Stash readers have been alive. I'm old(er). Deal with it.
+
+   It started with a Commodore 64 and the revelation that BASIC could make a machine do what I told it to do. Then came Computer Studies after school in primary school, our first Windows 95 PC, friends, magazines, library books and an obscure mate with an early headless Linux system his dad brought home from Telecom. There was no clean curriculum. I learned by pulling at threads until the whole jumper came apart.
+
+   From there it was self-directed learning, learning on the job, TAFE and eventually a PhD in Computer Science from RMIT. I started close to the metal with C, graduated to C++, landed on C#, and used plenty of languages in between whenever the wind blew another one into the stratosphere.
+
+   I have worked across small business, large enterprise, government and military environments; on-premises and cloud-hosted systems; custom development, platforms, infrastructure and automation. Name a kind of environment and there is a reasonable chance I've either worked in it, migrated it, fixed it, replaced it or been asked why it caught fire.
 
 1. What's a technical opinion you hold that isn't universally agreed on?
    (Strong, specific opinions make for better bridging content than neutral summaries.)
@@ -190,35 +197,51 @@ living document, not a one-time form.
 1. What's something you used to believe technically that you've since
    changed your mind about? What changed it?
 
-   **Answer:** It ran in DEV so it must work in PROD. How many times have we forgot to run the basic checks in DEV or UAT 
+   **Answer:** I used to give far too much comfort to the phrase, "It ran in DEV." Lovely. Production does not give a shit.
+
+   DEV rarely has the same data, traffic, permissions, network boundaries, regional behaviour, secrets, failure modes or humans doing inventive things at exactly the wrong moment. What changed my mind was repetition: watching perfectly respectable software cross an environment boundary and immediately discover a new and exciting way to fail.
+
+   Now I care about the boring checks—clean builds, realistic configuration, migration paths, permissions, observability, rollback and an actual smoke test in the environment that matters. "It worked on my machine" is evidence about your machine, not a release strategy.
 
 1. What's a mistake, outage, or failure you've learned the most from, that
    you'd be willing to reference publicly (even obliquely)?
 
-   **Answer:**
+   **Answer:** The mistake I've learned the most from is treating a successful deployment as proof that the system worked. The pipeline was green, the service started and everybody was ready to declare victory. Then reality arrived: configuration differed, an integration behaved differently, or the one path nobody exercised was the path a real user needed.
+
+   I don't need to turn that into one heroic outage story because I have made versions of the same mistake more than once. The lesson is permanent: deployment is not validation, a backup is not a backup until you restore it, and a system is not healthy merely because its process is still running. Test the thing people actually depend on. Test how it fails. Then test that you can recover it without prayer.
 
 1. Any certifications, publications, talks, open source projects, or
    notable contributions worth linking to?
 
-   **Answer:** I have my PhD in Computer Science and few other certifications along the way, but nothing really relevant to come back to today and show off in front of anyone. I will have to go do some more work and update my CV.
+   **Answer:** I have a PhD in Computer Science and collected a few certifications along the way. I am not going to arrange them behind me like a hostage video. Most certificates date faster than practical experience does, and if one becomes relevant to the subject I am discussing, I will name it properly. Otherwise I would rather show you the work.
 
 1. What do you deliberately *not* claim expertise in? (Scoping honestly
    builds more trust than implying you know everything.)
 
-   **Answer:** Database, Rust, Kubernetes, bash scripting (I am a legend in PowerShell tho!). Other stuff - not sure. Rust. As often as you'll see me working with and using Database, I am not the person you should be relying on for your Database help. Or Kubernetes. 
+   **Answer:** I work with databases; I am not a database specialist. I use Rust; I am not a Rust expert. I can operate Kubernetes; I am not the person you hire to rescue a deeply cursed cluster at 3 a.m. Bash and I maintain a functional working relationship, whereas I am a fucking legend in PowerShell.
+
+   More importantly, I will tell you when I am outside my depth. Seniority does not turn every opinion into expertise, and using a tool regularly does not make me the final authority on it.
 
 ## 3. Content philosophy & voice
 
 1. Why do you write/record at all — what's the actual motivation behind
    the time cost?
 
-   **Answer:** Two things, being egged on by the people around me and being supported by the people that cross-paths with me in my professional life. I've heard it all too often that I should host my own training course, blog, or do youtube videos on any subject because I've got a natural way to explain it, patience and really enjoy helping people to get to the next level - even from the start. Having just moved to Adelaide, I have more time on my hands so I am starting this blog and podcast and I also have joined another podcast as a co-host. It's just the right time in my life and I'm comfortale with what I do and how to share that knowledge.
+   **Answer:** Two things finally pushed me into it: the people around me kept telling me to start, and the people I've crossed paths with professionally kept telling me I could explain difficult things without making them feel stupid.
+
+   I genuinely enjoy helping somebody get to the next level, including when their current level is "I have absolutely no idea what this button does." There is a particular satisfaction in watching the moment a technical idea stops looking like magic and starts looking like something they can use.
+
+   Having moved to Adelaide, I have more room to make the blog, podcast and videos properly, and I have also joined another podcast as a co-host. More than anything, the timing feels right. I know what I know, I am comfortable saying what I don't know, and I am finally comfortable sharing both without trying to sound like a conference keynote generated by LinkedIn.
 
 1. Who is the one reader/viewer you picture when you're writing or
    recording (a past version of yourself, a specific colleague archetype,
    etc.)?
 
-   **Answer:** There's a youtuber I came across in recent months called Jack Roberts. I think I saw him on Instragram first and found him on YouTube. Probably a Gen Z'er or the generate before that. It's his style of presentation, informality, charisma and his overall style - like who wears a cap inside whilst doing a youtube podcast? He does. And I love that. It's the embodiement of how I've always presented and behaved throughout my career. I've always had a laid back attitude that upon closer inspection warrants my termination without much notice - but my charisma has always kept me sailing through. I'm not a stuffy old professional - I don't know why you need to be stuffy to be a professional - that attitude is expired and was expired over 26 years ago when I entered the corporate workforce. So yeah - I picture being comfortable within my own skin as who I really am like Jake ROberts. Go check out his youtube channel: [Jack Roberts](https://www.youtube.com/@Itssssss_Jack)
+   **Answer:** I picture the capable person who has been handed a real problem and is one unexplained acronym away from throwing the laptop through a window. They might be a beginner, an experienced developer entering unfamiliar territory, a technical manager who wants the truth without the theatre, or a past version of me trying to piece the answer together from five magazines and a library book.
+
+   The presentation style I admire is informal, comfortable and human. I came across [Jack Roberts](https://www.youtube.com/@Itssssss_Jack) on Instagram and then YouTube, and loved the charisma and complete lack of stuffy-professional cosplay. Who wears a cap indoors while recording a YouTube podcast? He does. Good.
+
+   That has always been closer to how I behave anyway: laid-back enough that closer inspection might once have warranted my termination, but capable enough—and apparently charismatic enough—to keep sailing through. Professional does not have to mean beige, humourless or dead behind the eyes. That attitude was expired when I entered the corporate workforce more than two decades ago.
 
 1. What's your content's job: teach a skill, save someone time, change
    someone's mind, entertain, document your own learning — pick the
@@ -297,161 +320,217 @@ living document, not a one-time form.
 1. What tone do you naturally write/speak in — and is that different from
    the tone you *think* you should use? (Useful Stash wants the real one.)
 
-   **Answer:** Very laid back, almost how I talk is how I write when it's unhinged, sometimes I can write almost as fast as I speak which means you get all the unfiltered version of me. I don't like edits, and I don't like cuts. WYSIWYG, bitch (pink nails emoji)
+   **Answer:** Laid-back, direct, occasionally unhinged and very close to how I actually speak. When I hit a rhythm I can write almost as quickly as I talk, which means you get the unfiltered version: opinions, side comments, swearing, sharp turns and all.
+
+   I don't want edits that bleach the personality out of the work or cuts that remove the sentence people will actually remember. Clean up the repetition. Fix the typo. Do not put a blazer on my voice.
+
+   WYSIWYG, bitch. 💅
 
 1. Is there a running theme, recurring segment, or format signature people
    associate with your content?
 
-   **Answer:**
+   **Answer:** Problem first. Technology second. Show the real thing working. Explain the dangerous bit before somebody copies it. Leave behind an artefact.
+
+   The recurring pattern should feel like this:
+
+   > Here's the problem.
+   >
+   > Here's the tempting bullshit.
+   >
+   > Here's what I actually tried.
+   >
+   > Here's what broke.
+   >
+   > Here's the thing that worked.
+   >
+   > Here—steal this.
+
+   Whether the format is an article, a live build, an interview or a 45-minute fight with Docker, people should associate Useful Stash with practical honesty and something they can use after the tab closes.
 
 1. What do you refuse to do in your content (sponsor content you don't
    believe in, clickbait titles, hype without substance, etc.)?
 
-   **Answer:** I refuse to do bullshit that's going to be putting me in the front row to the audience. That's not what I"m about. I'm not Sam Altman who lies out his fucking arse and then can't answer even a basic question when it's put to him. If I don't know an answer - the integrity says _"Tell them, you don't know! And ask what is it?"_ Why? Because who are you to tell me what I am better than myself? <- Quote me on that. It's my personal quote.
+   **Answer:** I refuse to make bullshit that puts me in the front row while the audience gets nothing. This is not a vanity project where I perform intelligence and hope nobody asks a basic follow-up question. If I don't know the answer, integrity says: _"Tell them you don't know—and then ask, what is it?"_
 
-   I'm not against sponsorship, but I don't sponsor something I don't believe in, and I won't sell you a lie (Linus Tech Tips). Also Linus Tech Tips is a dickhead. Just saying.
+   Who are you to tell me what I am better than myself? Quote me on that.
 
-   I'm also completely against clickbait titles - that's weak. I love propaganda - but I don't sell propaganda. I can only sell from my personal experience to you - I can't speak on behalf of other people and I refuse to repeat the latest info without having tested it myself. I have critical thinking - a skill not very strong with people these days since the availability of ChatGPT (god).
+   I am not against sponsorship. I am against sponsoring something I do not believe in, hiding the commercial relationship, or selling you a lie. I will not pretend a product is good because somebody put money in an envelope. And yes, I have opinions about how Linus Tech Tips handles that sort of thing. You can probably guess them.
+
+   I am also against clickbait. That's weak. I love propaganda as an object of study; I do not sell it. I can speak from my experience, show my evidence and tell you what I think. I cannot speak on behalf of everybody else, and I refuse to repeat the latest fashionable claim without testing it myself. Critical thinking did not become optional when ChatGPT arrived—if anything, we need much fucking more of it.
 
 1. What's a topic you're actively building expertise in right now, that
    you plan to write/record about soon?
 
-   **Answer:** Funnily enough, LLM. I'm not going to jump from article to article about LLMs, or what they are and how to use them - I have a book that incorporates that you might want to read - [How To Use AI.com](https://how-to-use-ai.com/) - go check it out. But yes - LLMs in everyday use and how we can move away from the subscription model of big agencies to a more local model that is going to serve the purpose you need. I work for a company called Avanoa Technology and currently part of my role requires me to incorporate an LLM amongst other AI models into the infrastructure of a project we are building. More on that when we launch.
+   **Answer:** Funnily enough: LLMs. Not another parade of "what is ChatGPT?" articles or seventeen breathless tools you apparently need before breakfast. I am interested in LLMs in everyday use: how they actually fit into work, what should stay deterministic, what can run locally, what hardware and quantisation really mean, and how we move away from renting every thought from a giant subscription platform.
+
+   My work at Avanoa Technology includes incorporating an LLM and other AI models into the infrastructure of a platform we are building. I cannot publish the interesting parts of that yet; more when it launches. I also have a book at [How To Use AI.com](https://how-to-use-ai.com/) for people who want the broader foundation.
 
 ## 4. Bridging author and audience
 
 1. What question do people message/comment/email you the most often?
 
-   **Answer:** How do I do this in Git? Why would I use Docker? Can you show me how to xyz.
+   **Answer:** "How do I do this in Git?" "Why would I use Docker?" "Can you show me how to do _xyz_?" Usually the real question beneath all three is: "Can you explain this without assuming I already understand the thing I am asking you to explain?"
 
 1. What's a misconception your audience commonly has about your area of
    expertise that you'd like to correct?
 
-   **Answer:** I am not an expert in what I talk about - I just got on the bandwagon for each technology when they land, scruitinised it and kept up to date and kept trying to incorporate it into many test projects to get familiarity with it so I know how to help someone get their feet wet when they decide to use it later and come asking for help.
+   **Answer:** People sometimes mistake confidence, experience and a strong opinion for a claim that I am the world's leading expert on whatever tool is in front of me. I am not.
+
+   What I am unusually good at is getting onto a technology early, scrutinising it, putting it into test projects, breaking it, comparing it with the thing it claims to replace and staying familiar enough to help somebody else get their feet wet later. I can get you from "what the hell is this?" to a working mental model and a useful first implementation. If the next step needs a narrow specialist, I will say so—and I would rather do that than bluff you into a crater.
 
 1. What level of prior knowledge do you assume your audience has — and
    does that vary by series/format?
 
-   **Answer:** It really varies by what I'm talking about and what you're asking. I assume everyone is new, or an expert, and everything in between. There are some things you'll know better than me and want a second opinion, advice or feedback. It's all relative to the listener/reader really.
+   **Answer:** It varies by subject and format, but I try to make the entry point accessible without making the useful part painfully basic. I assume the audience contains a complete beginner, an experienced person entering unfamiliar territory and somebody who knows more than I do but wants a second opinion.
+
+   That means I should explain the first principle, label the advanced detour and never confuse unexplained jargon with depth. You can skip the bit you know. The person beside you should not have to pretend they know it too.
 
 1. How do you want people to engage with you after reading/watching —
    reply, open an issue, DM, nothing at all?
 
-   **Answer:** You can reply on YouTube videos, go to the blog site and drop me a direct line in our [Say hello.](https://usefulstash.com/contact/) page or ping me on Twitter. If you're going to reach me on Instagram, send me cat memes or videos people hurting themselves. I'm a total schardenfraude :D
+   **Answer:** Reply on YouTube, use the [Say hello](https://usefulstash.com/contact/) page, or ping me on X/Twitter. Tell me what worked, tell me what broke, or ask the question I failed to answer. I would much rather have a useful correction than polite silence.
+
+   If you reach me on Instagram, cat memes and videos of people hurting themselves through entirely avoidable stupidity are also accepted. I am terrible. The word is _Schadenfreude_. I have it. :D
 
 1. What's the best piece of feedback (positive or critical) you've
    received from your audience, and how did it change what you make?
 
-   **Answer:** I was doing a lecture on Docker once and why we should transition the code base to be built and developed in docker, and that will also translate directly into our deployment configuration too. The first thing that came back from the greater audiece was if I'm going to teach them tech they're asking about, and starting from scratch - why am I going so fast and why am I not explaining the fundamentals to help them grasp the concept. That clearly indeicated to me that because of my seniority in roles I've taken in industry people aren't alwasy willing to put their hand up and ask me to either slow down, ensure we understand a concept from teh ground up, or make adjustments for my delivery to the audience I'm targeting.
+   **Answer:** I once gave a Docker session about moving a codebase into containers so the development and build setup would translate cleanly into deployment. I thought I was explaining it from scratch. The audience's response was essentially: "If this is from scratch, why are you going so fast, and why haven't you explained the fundamentals?"
+
+   Fair.
+
+   It taught me that seniority distorts the room. People are not always willing to put their hand up and tell the most senior person to slow down, start again or explain the concept underneath the command. Silence does not mean everybody understands. Now I try to establish the mental model first, show the working thing second, and leave enough space for the question somebody thinks they should already know the answer to.
 
 1. If a reader/viewer is stuck and your content didn't solve their
    problem, where should they go next (your socials, a community, a
    specific resource)?
 
-   **Answer:** Go staight to our blog and go to the [Say hello.](https://usefulstash.com/contact/) page and ask a question. I respond to everything, or if this is on YouTube - leave a comment and I will try to get back to you - but it's much easier to drop me a line through the main site - they come to my inbox.
+   **Answer:** Go straight to the [Say hello](https://usefulstash.com/contact/) page and ask. Those messages reach my inbox, and I respond to everything I reasonably can. If the content is on YouTube, leave a comment there so the answer can help the next person too. If I got something wrong, bring evidence. I will not be offended by being corrected; I will be offended if we knowingly leave the wrong answer sitting there.
 
 1. Is there a call-to-action you want consistently attached to your
    profile/byline (newsletter, GitHub sponsor, Discord, etc.)?
 
-   **Answer:**
+   **Answer:** Try the thing. Tell me where it breaks. Then stash the article, subscribe to the YouTube channel, or send the question that should become the next piece. I do not need a ceremonial "smash that like button" speech attached to every byline.
 
 ## 5. YouTube / video-specific (skip if not applicable)
 
 1. Channel name and URL (if different from your personal brand).
 
-   **Answer:** 
-     - [+]USEFUL/STASH -> https://usefulstash.com
-     - Instagram -> @usefulstash
-     - Twitter -> @usefulstash
-     - YouTube -> https://www.youtube.com/@usefulstash
+   **Answer:**
+     - `[+] USEFUL/STASH` — <https://usefulstash.com>
+     - Instagram — `@usefulstash`
+     - X/Twitter — `@usefulstash`
+     - YouTube — <https://www.youtube.com/@usefulstash>
 
 1. What's your on-camera format — talking head, screen share, edited
    tutorial, live coding, podcast-style?
 
-   **Answer:** I do a screenshare with my face in the corner, live coding, podcasting style, i also invite guests and we record a session to maybe discuss something, edited tutorial (if it's necessary to edit - I try to keep it running through, but like to skip gaps of silence or me getting lost on my desktop or the cat walks across teh camera)
+   **Answer:** Usually a screen share with my face in the corner: live coding, practical demonstrations and podcast-style discussion. I also invite guests when a subject is better as a conversation than a lecture.
+
+   I edit when editing serves the viewer. Dead air can go. Me getting lost on my own desktop can go. A cat walking across the camera is editorially significant and may stay. I do not want to manufacture a flawless performance out of a real technical process; seeing the mistake and the recovery is often the useful part.
 
 1. Roughly how long is a typical video, and why that length?
 
-   **Answer:** Depends, but usually between 30-60 mins.
+   **Answer:** Usually 30–60 minutes. Long enough to explain the problem, build or test something real and show the result; short enough that we do not spend three hours admiring the installation process. A two-minute answer should still be two minutes. The format serves the problem, not an algorithmic stopwatch.
 
 1. What's your upload cadence, and is it public/consistent or ad hoc?
 
-   **Answer:** My upload cadence is currently spontaneious, but I am working to getting to a weekly upload and also getting a backlog of things to be prepared at once to upload on a weekly or twice a week cycle to keep information flowing. I might gatekeep information for a while to ensure it's useful rather than trying to race ahead. Also i don't really focus on shitty news.
+   **Answer:** Currently spontaneous; the goal is a dependable weekly release, with enough finished work in reserve to move towards twice a week when that is sustainable. I would rather hold something until it is useful than race to publish a half-tested opinion because a topic is trending. I also do not care about filling the feed with shitty news. If an announcement does not change what somebody should understand or do, it probably does not need me adding noise to it.
 
 1. Do you script, outline, or improvise? How much editing happens after
    recording?
 
-   **Answer:** I script my intro and outro so I don't lose track of what i'm trying to say, but I usually use an outline or improvise - mostly it's all from the top of my head. I like to keep an outline on hand to ensure i cover off all the topics and stay on track rather than going off in live tangents.
+   **Answer:** I script the intro and outro so the episode starts with a point and ends with one. The middle runs from an outline and is mostly improvised from experience. The outline stops me missing an essential step or disappearing into a live tangent about some unrelated tool that annoyed me in 2017. Editing removes the parts that waste the audience's time, not the parts that prove a human being was there.
 
 1. Is there a channel trailer, pinned video, or "start here" playlist you
    want linked from your Useful Stash profile?
 
-   **Answer:** There will be, I just have to publish it. Make a placeholder, but comment it out for now so when it's ready i can upload it.
+   **Answer:** There will be a channel trailer and a "start here" playlist once enough real work exists to make the recommendation meaningful. Keep the eventual link out of public profile copy until it is actually published. A dead placeholder is not a feature.
 
 1. Any recurring visual/audio signature (intro, sign-off phrase, thumbnail
    style) worth describing so it can be referenced in copy about you?
 
-   **Answer:** Refer to the pages here to work that out: https://github.com/danijeljw-RPC/useful-stash/tree/main/docs
+   **Answer:** The signature is the Useful Stash system already defined in the repository's [`docs`](https://github.com/danijeljw-RPC/useful-stash/tree/main/docs): stark black and white, a sharp orange accent, bracketed tags, oversized plain-spoken headlines and visual proof where it matters—a command, a number, a before-and-after result.
+
+   It should feel technical without looking like generic developer wallpaper. No glowing purple AI brain. No person pointing at a red circle with their mouth open. No visual bullshit. The recognisable pattern is `[+] USEFUL/STASH`, a clear problem and the useful result.
 
 ## 6. Blog / written-content-specific (skip if not applicable)
 
 1. Where else do you publish (personal blog, dev.to, Substack, company
    blog)? Should Useful Stash cross-link or syndicate?
 
-   **Answer:** Useful Stash is it's own blog, I do have a company blog at https://repasscloud.com but I won't really cross-post to there, and I don't like having content republished - but it can be syndicated. The video blogs (youtube) will be published to spotify and audio places to be consumed too, i also have a RSS feed for the website, and separate for the video blogs.
+   **Answer:** Useful Stash is its own publication and the canonical home for this work. RePass Cloud has a company site at <https://repasscloud.com>, but I do not plan to duplicate full posts there. Cross-linking and properly attributed syndication are fine; uncontrolled republication is not.
+
+   Video episodes will also be available through YouTube and appropriate podcast platforms. Useful Stash has a general site RSS feed plus separate podcast and videocast feeds so people can subscribe to the format they actually want instead of being force-fed everything.
 
 1. Roughly how long is a typical post, and what's your usual structure
    (problem → investigation → fix, tutorial steps, opinion essay, etc.)?
 
-   **Answer:** That pretty much sums it up.
+   **Answer:** Length follows the job. A useful post might be a five-line command with one serious warning, a step-by-step tutorial, a problem → investigation → fix write-up, or a gloriously long opinion essay about why an industry fashion has lost its fucking mind.
+
+   The default structure is: name the real problem, establish enough context, show what I tried, explain the decision, provide the working implementation, call out the destructive or surprising edge cases, and finish with the artefact or takeaway. No arbitrary word count. Stop when the reader can do the thing safely.
 
 1. Do you include runnable code/examples as standard? Any repo you
    maintain as companion material?
 
-   **Answer:** Yes, all useful code will be available and linked to in the description or on our blog article related to the video or the blog article that's not tied to a video podcast.
+   **Answer:** Yes. If code, configuration, a command, a diagram, a checklist or a downloadable project makes the piece more useful, it should be included or linked from the article and video description. The artefact is part of the content, not a bonus somebody has to beg for in the comments.
 
 1. How technical do your headlines get — do you optimize for search,
    clarity, or curiosity first?
 
-   **Answer:** I try to get them to be SEO friendly and GEO friendly but don't try to curate them too much - I want the message of what we're discussing to be clear and ensure that information that is being conveyed is accurate and reaches the right audience.
+   **Answer:** Clarity first, search and answer-engine discoverability second, curiosity third. The headline should say what problem we are solving in language the right person would actually search for. I will optimise it enough to be found, but I will not torture it into keyword soup or pretend "This Changes EVERYTHING" when it changes one Dockerfile.
 
 ## 7. Working style & behind-the-scenes
 
 1. What does your actual research/writing/recording process look like,
    start to finish?
 
-   **Answer:**
+   **Answer:** It normally starts with irritation. Something takes too long, fails in a stupid way, is badly documented, costs more than it should, or is being explained online by people who have clearly never tried it.
+
+   I define the real problem first. Then I read the primary documentation, compare other people's approaches, build a small test and keep notes on every assumption, dead end and sharp edge. I want the clean path, but I also want to know why the obvious alternatives failed because that is usually the part that saves somebody else's afternoon.
+
+   Once I can reproduce the result, I reduce it to the smallest example that still tells the truth. I rerun it cleanly, check versions and platform assumptions, verify any destructive step, and make sure the downloadable artefact matches the words. Then I write or record around the evidence.
+
+   For video, I prepare the environment, write the opening and closing, keep an outline beside me and run the middle as honestly as possible. Afterwards I remove dead air and genuinely useless detours, produce the article and links, check the final media and publish. Then I inevitably notice one typo twelve seconds later.
 
 1. What tools do you use to make your content (editors, recording setup,
    diagramming tools, etc.) — worth a "how I make this" reference?
 
-   **Answer:** I use Maono PD200W microphone, a maono box with buttons that my micrphone plugs into, a facecam 4K, vultr server with scripts to start up and run livekit, scripts to setup rooms and recording etc., obs if i'm doing local work, custom build scripts, ffmepg, docker, cloudflare pages, Astro node website, cloudflare R2, github.
+   **Answer:** A Maono PD200W microphone through a Maono audio console with more buttons than strictly necessary, a 4K Facecam, OBS for local recording, and a Vultr server running scripted LiveKit rooms and recording workflows. Behind that: custom build scripts, FFmpeg, Docker, Astro, Cloudflare Workers and R2, GitHub, and whatever automation prevents me doing the same boring step twice.
+
+   Yes, the production stack itself will eventually become Useful Stash content. If I built a ridiculous little system to make the show, we may as well get another article out of it.
 
 1. How do you fact-check or validate technical claims before publishing?
 
-   **Answer:** I research against articles posted, then try things out myself - I am a PhD - so i do a lot of critical thinking. Most of this is personal experience too.
+   **Answer:** I start with primary documentation and source material where it exists, use good secondary sources to find the disagreements, and then try the thing myself. I record the versions, environment and constraints that matter. If a claim is measurable, I measure it. If a command can destroy data, I test it somewhere disposable. If I cannot verify something, I say that instead of upgrading a guess into a fact.
+
+   The PhD taught me how to interrogate a claim; more than 20 years in technology taught me that production will interrogate it much less politely. Personal experience matters, but experience is evidence with a scope—not a universal law.
 
 1. What's something about your production process that would surprise
    your audience?
 
-   **Answer:** I don't have a team - I do this on my own. Lots of reading, opinons, testing and more testing.
+   **Answer:** There is no content team hiding behind the logo. It is me: researching, testing, writing, recording, editing, building the site, operating the infrastructure, producing the artwork and discovering why the audio track is wrong at an hour nobody should be awake.
+
+   The casual delivery sits on top of a lot of reading, strong opinions, testing and then more testing. "Laid-back" is the presentation style, not the quality-control process.
 
 ## 8. Personal touches (optional, but builds the "human" bridge)
 
 1. Outside of tech, what do you spend time on that you're happy to have
    associated with your public profile?
 
-   **Answer:** Married to Johnny my husband, we have 4 cats (2 boys, 1 girl, 1 spynx cat), big brown dog, lots of coffee, Pokemon Go, dinner, date nights, tv, going for walks (for real, we actually do that), travel around the world at least 3-4 weeks of the year (to play pokemon go in other countries too!), cooking at home, coding, developing new solutions.
+   **Answer:** I am married to my husband, Johnny. Our household includes four cats—two boys, one girl and one Sphynx—and a big brown dog, so nobody is really in charge and every clean recording is an improbable victory.
+
+   Outside work: lots of coffee, Pokémon GO, cooking at home, dinner and date nights, television, and going for walks—for real, we actually do that. We try to travel internationally for at least three or four weeks each year, which naturally includes playing Pokémon GO in other countries because apparently seeing the world was not enough of an objective. I also code and invent new solutions outside work, which suggests my understanding of "outside tech" may need professional review.
 
 1. Is there a personal origin story for why you got into this field worth
    a sentence or two?
 
-   **Answer:** My mum said Do what you love, and it won't feel like work. But don't do it if it's going to exhaust you. So i started my Bachelor of Accounting and shifted to Computer Science in the first trimester of uni. Never looked back.
+   **Answer:** My mum told me, "Do what you love and it won't feel like work—but don't do it if it is going to exhaust you." I began a Bachelor of Accounting, realised in the first trimester that I was on the wrong side of that advice, and moved into Computer Science. I never looked back. I have looked sideways at accounting software with suspicion ever since.
 
 1. Anything you want explicitly *kept out* of your public profile (boundary-setting
    is useful information too — note it here so editors know not to ask).
 
-   **Answer:** Not really.
+   **Answer:** Nothing specific at the moment, but "public profile" does not mean the public owns every part of my life. Keep personal details relevant, do not turn Johnny or the animals into content props, and ask before expanding beyond anything I have already chosen to share here.
 
 ## 9. Metadata for the author record
 
@@ -465,34 +544,37 @@ narrative sections above have given you material to draw from.
 
 1. Short `role` line (one phrase, shown under your name).
 
-   **Answer:** `God of Vortexa`
+   **Answer:** `God of Vortexa`—deliberately ridiculous, entirely on-brand, and preferable to another bloodless line like "technology thought leader." If the surrounding context needs a descriptive alternative, use `CTO, founder and practical technologist`.
 
 1. Short `bio` (1–3 sentences, written in third person for byline use).
 
-   **Answer:**
+   **Answer:** DJ Wynyard is a CTO, founder and practical technologist with more than 20 years in software, platforms and automation. He builds complicated systems, breaks fashionable ideas down to their useful parts, and explains what actually worked—with runnable examples, honest caveats and considerably less corporate bullshit.
 
 1. Avatar image (source file/URL) and descriptive `avatarAlt` text.
 
-   **Answer:** root of this repo, is a file i added my_avatar.png << that
+   **Answer:** Source file: `/my_avatar.png` at the repository root. Use the alt text: `Portrait of DJ Wynyard`.
 
 1. Personal/professional `website` URL.
 
    **Answer:**
-     - `https://repasscloud.com` (my company) RePass Cloud
-     - Cinturon360 `https://cinturon360.com` (platform i am working on)
+     - Useful Stash — <https://usefulstash.com> (primary profile website)
+     - RePass Cloud — <https://repasscloud.com> (my company)
+     - Cinturon360 — <https://cinturon360.com> (a platform I am working on)
 
 1. Social links to include: GitHub, X, Bluesky, Mastodon, Twitch, YouTube,
    LinkedIn (leave blank any you don't want listed).
 
    **Answer:**
-     - GitHub > https://github.com/danijeljw
-     - X/Twitter > danijeljw
-     - LinkedIn > danijel.wynyard
+     - GitHub — <https://github.com/danijeljw>
+     - X/Twitter — `@danijeljw`
+     - YouTube — <https://www.youtube.com/@usefulstash>
+     - LinkedIn — `danijel.wynyard`
+     - Bluesky, Mastodon and Twitch — leave blank unless I add verified profile URLs later
 
 1. Any SEO preferences: canonical URL if your profile is mirrored
    elsewhere, and whether the profile should be `noindex`.
 
-   **Answer:** ?
+   **Answer:** Use `https://usefulstash.com/authors/dj/` as the canonical URL and keep `noindex: false`. Useful Stash is the authoritative home for this profile; do not point the canonical URL at RePass Cloud, LinkedIn or another social profile.
 
 ---
 

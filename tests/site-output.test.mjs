@@ -62,3 +62,20 @@ test('RSS excludes fixture articles and drafts from the canonical feed', async (
   assert.doesNotMatch(xml, /ask-ai-for-a-decision-not-a-performance/);
   assert.doesNotMatch(xml, /draft/);
 });
+
+test('DJ author page publishes the full profile and reusable author sections', async () => {
+  const html = await readBuilt('authors/dj/index.html');
+
+  assert.match(html, /<h1[^>]*>DJ Wynyard<\/h1>/);
+  assert.match(html, /God of Vortexa/);
+  assert.match(html, /src="\/images\/authors\/dj\.png"/);
+  assert.match(html, /alt="Portrait of DJ Wynyard"/);
+  assert.match(html, /Adelaide, SA &amp; Sydney, NSW/);
+  assert.match(html, /20\+ years/);
+  assert.match(html, /C# and modern \.NET/);
+  assert.match(html, /I build software, platforms and automation/);
+  assert.match(html, /href="https:\/\/github\.com\/danijeljw"/);
+  assert.match(html, /href="\/contact\/"/);
+  assert.match(html, /<h2[^>]*>Published work<\/h2>/);
+  await access(join(dist, 'images', 'authors', 'dj.png'));
+});

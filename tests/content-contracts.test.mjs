@@ -33,6 +33,37 @@ test('article schema accepts a complete ordinary article and nullable platform l
   }).success, true);
 });
 
+test('author schema accepts a local portrait and reusable profile details', () => {
+  const result = authorSchema.safeParse({
+    name: 'DJ Wynyard',
+    slug: 'dj',
+    role: 'God of Vortexa',
+    bio: 'DJ turns complicated systems into useful things.',
+    avatar: '/images/authors/dj.png',
+    avatarAlt: 'Portrait of DJ Wynyard',
+    website: 'https://usefulstash.com',
+    profile: {
+      location: 'Adelaide, SA & Sydney, NSW',
+      experience: '20+ years',
+      specialties: ['C# and modern .NET', 'Platform architecture'],
+    },
+    socials: {
+      github: 'https://github.com/danijeljw',
+      x: 'https://x.com/danijeljw',
+      bluesky: null,
+      mastodon: null,
+      twitch: null,
+      youtube: 'https://www.youtube.com/@usefulstash',
+      linkedin: 'https://au.linkedin.com/in/djwynyard',
+    },
+    seo: { canonical: 'https://usefulstash.com/authors/dj/', noindex: false },
+  });
+
+  assert.equal(result.success, true);
+  assert.equal(result.data?.avatar, '/images/authors/dj.png');
+  assert.deepEqual(result.data?.profile?.specialties, ['C# and modern .NET', 'Platform architecture']);
+});
+
 test('article schema rejects incomplete media and episode blocks', () => {
   const invalid = [
     { ...validArticle, articleAudio: { url: '/narration.mp3', mimeType: 'audio/mpeg' } },

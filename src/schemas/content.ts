@@ -2,8 +2,10 @@ import { z } from 'zod';
 import { resolveMediaUrl } from '../utils/media-url.ts';
 
 const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Use a lowercase kebab-case slug.');
-const httpsUrl = z.url().refine((value) => new URL(value).protocol === 'https:', 'URL must use HTTPS.');
+const httpsUrl = z.url().refine((value) => value.startsWith('https://'), 'URL must use HTTPS.');
 const nullableHttpsUrl = httpsUrl.nullable().default(null);
+const localImagePath = z.string().regex(/^\/(?!\/)[^\s]+$/, 'Local image paths must start with a single slash.');
+const nullableAuthorImage = z.union([httpsUrl, localImagePath]).nullable().default(null);
 const mediaUrl = z.unknown().transform((value, context) => {
   try {
     return resolveMediaUrl(value);
@@ -81,9 +83,14 @@ export const authorSchema = z.object({
   slug,
   role: z.string().trim().min(1),
   bio: z.string().trim().min(1).nullable().default(null),
-  avatar: nullableHttpsUrl,
+  avatar: nullableAuthorImage,
   avatarAlt: z.string(),
   website: nullableHttpsUrl,
+  profile: z.object({
+    location: z.string().trim().min(1),
+    experience: z.string().trim().min(1),
+    specialties: z.array(z.string().trim().min(1)).min(1).max(6),
+  }).strict().nullable().default(null),
   socials: z.object({
     github: nullableHttpsUrl,
     x: nullableHttpsUrl,
