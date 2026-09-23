@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1152" viewBox="0 0 2048 1152" role="img" aria-labelledby="title desc">
+  <title id="title">Useful Stash YouTube channel banner</title>
+  <desc id="desc">The Useful Stash wordmark and the tagline Things worth keeping on a dark technical background.</desc>
+
+  <defs>
+    <pattern id="grid" width="96" height="96" patternUnits="userSpaceOnUse">
+      <path d="M96 0H0V96" fill="none" stroke="#2A2F37" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="edge-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0D0F12" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#0D0F12" stop-opacity="0.9"/>
+      <stop offset="0.8" stop-color="#0D0F12" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#0D0F12" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="2048" height="1152" fill="#0D0F12"/>
+  <rect width="2048" height="1152" fill="url(#grid)" opacity="0.48"/>
+
+  <!-- Edge geometry remains decorative when YouTube crops the banner. -->
+  <g fill="none" stroke-width="34">
+    <circle cx="116" cy="576" r="378" stroke="#15181D"/>
+    <circle cx="116" cy="576" r="344" stroke="#1D2127"/>
+    <circle cx="1932" cy="576" r="378" stroke="#15181D"/>
+    <circle cx="1932" cy="576" r="344" stroke="#1D2127"/>
+  </g>
+
+  <!-- Calm the grid behind the cross-device safe-area content. -->
+  <rect x="332" y="342" width="1384" height="468" rx="28" fill="url(#edge-fade)"/>
+
+  <g text-anchor="middle">
+    <path d="M976 435h96" stroke="#FF6B35" stroke-width="8"/>
+
+    <text x="1024" y="587" xml:space="preserve"
+      font-family="Courier New, Liberation Mono, monospace"
+      font-size="92" font-weight="700" letter-spacing="3">
+      <tspan fill="#FF6B35">[+]</tspan><tspan fill="#F3F1EC"> USEFUL</tspan><tspan fill="#FF6B35">/</tspan><tspan fill="#F3F1EC">STASH</tspan>
+    </text>
+
+    <text x="1024" y="680"
+      fill="#969CA6"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="38" font-weight="500" letter-spacing="1.2">Things worth keeping.</text>
+  </g>
+</svg>

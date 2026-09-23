@@ -25,7 +25,7 @@ export function buildPerson(author: AuthorIdentity) {
     '@type': 'Person',
     name: author.name,
     url: absolute(`/authors/${author.slug}/`),
-    ...(author.avatar ? { image: author.avatar } : {}),
+    ...(author.avatar ? { image: absolute(author.avatar) } : {}),
     ...(sameAs.length ? { sameAs } : {}),
   };
 }

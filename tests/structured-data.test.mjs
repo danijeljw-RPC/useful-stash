@@ -42,3 +42,9 @@ test('video, project, breadcrumb, person, website, and organization data stay fa
   assert.equal(buildWebsite()['@type'], 'WebSite');
   assert.equal(buildOrganization().name, 'Useful Stash');
 });
+
+test('person data resolves a local portrait to its public canonical URL', () => {
+  const person = buildPerson({ ...author, avatar: '/images/authors/dj.png' });
+
+  assert.equal(person.image, 'https://usefulstash.com/images/authors/dj.png');
+});

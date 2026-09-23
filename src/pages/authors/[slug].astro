@@ -17,21 +17,176 @@ const articles = sortArticles(await getCollection('articles')).filter(({ data })
 ---
 
 <BaseLayout title={author.data.name} description={author.data.bio ?? `${author.data.name}, ${author.data.role} at Useful Stash.`} image={author.data.avatar ?? undefined} noindex={author.data.seo.noindex} canonical={author.data.seo.canonical} jsonLd={buildPerson(author.data)}>
-  <article class="container author-profile">
-    {author.data.avatar && <img src={author.data.avatar} alt={author.data.avatarAlt} />}
-    <p class="kicker">{author.data.role}</p><h1>{author.data.name}</h1>
-    {author.data.bio && <p class="author-profile__bio">{author.data.bio}</p>}
-    <AuthorSocialLinks author={author} />
-    <div class="prose"><Content /></div>
+  <article class="author-profile">
+    <header class="container author-hero">
+      {author.data.avatar && (
+        <div class="author-portrait">
+          <img src={author.data.avatar} alt={author.data.avatarAlt} width="246" height="246" />
+        </div>
+      )}
+      <div class="author-identity">
+        <p class="kicker">{author.data.role}</p>
+        <h1>{author.data.name}</h1>
+        {author.data.bio && <p class="author-profile__bio">{author.data.bio}</p>}
+        <AuthorSocialLinks author={author} />
+      </div>
+    </header>
+
+    {author.data.profile && (
+      <aside class="author-details" aria-label={`${author.data.name} profile details`}>
+        <div class="container author-details__inner">
+          <dl>
+            <div><dt>Based between</dt><dd>{author.data.profile.location}</dd></div>
+            <div><dt>In the field</dt><dd>{author.data.profile.experience}</dd></div>
+          </dl>
+          <ul aria-label="Specialties">
+            {author.data.profile.specialties.map((specialty) => <li>[ {specialty} ]</li>)}
+          </ul>
+        </div>
+      </aside>
+    )}
+
+    <div class="reading-shell prose author-story"><Content /></div>
   </article>
-  <section class="container authored"><h2>Published work</h2>{articles.length ? <div class="article-list">{articles.map((article) => <ArticleCard article={article} />)}</div> : <p>No published articles yet.</p>}</section>
+  <section class="container authored" aria-labelledby="published-work-heading">
+    <h2 id="published-work-heading">Published work</h2>
+    {articles.length ? <div class="article-list">{articles.map((article) => <ArticleCard article={article} />)}</div> : <p>No published articles yet. The useful things are still being tested.</p>}
+  </section>
 </BaseLayout>
 
 <style>
-  .author-profile { padding-block: clamp(4rem, 10vw, 8rem); }
-  .author-profile > img { width: 9rem; aspect-ratio: 1; object-fit: cover; margin-bottom: 2rem; border-radius: 50%; }
-  h1 { margin: .8rem 0 0; font-size: clamp(3rem, 9vw, 7rem); letter-spacing: -.06em; line-height: .95; }
-  .author-profile__bio { max-width: 48rem; color: var(--color-muted); font-size: 1.25rem; }
-  .authored { padding-bottom: 6rem; }
-</style>
+  .author-hero {
+    display: grid;
+    grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: end;
+    padding-block: clamp(4rem, 9vw, 7rem);
+  }
 
+  .author-portrait {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .author-portrait::after {
+    position: absolute;
+    z-index: -1;
+    inset: 1rem -1rem -1rem 1rem;
+    border: 3px solid var(--color-accent);
+    content: '';
+  }
+
+  .author-portrait img {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    object-fit: cover;
+  }
+
+  h1 {
+    max-width: 9ch;
+    margin: .7rem 0 0;
+    font-size: clamp(3.6rem, 9vw, 7.6rem);
+    letter-spacing: -.07em;
+    line-height: .85;
+  }
+
+  .author-profile__bio {
+    max-width: 50rem;
+    margin: 1.75rem 0 0;
+    color: var(--color-muted);
+    font-size: clamp(1.12rem, 2vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  .author-details {
+    border-block: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .author-details__inner {
+    display: grid;
+    grid-template-columns: minmax(18rem, .75fr) minmax(0, 1.25fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    padding-block: 2rem;
+  }
+
+  .author-details dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 0;
+  }
+
+  .author-details dt {
+    color: var(--color-muted);
+    font: .7rem var(--font-mono);
+  }
+
+  .author-details dd {
+    margin: .35rem 0 0;
+    font-weight: 750;
+    line-height: 1.3;
+  }
+
+  .author-details ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: .45rem 1.1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .author-details li {
+    color: var(--color-tag);
+    font: 750 .78rem var(--font-mono);
+  }
+
+  .author-story {
+    padding-block: clamp(4.5rem, 9vw, 8rem);
+  }
+
+  .author-story :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .authored {
+    padding-bottom: clamp(5rem, 10vw, 8rem);
+  }
+
+  .authored > h2 {
+    max-width: 12ch;
+    margin: 0;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    letter-spacing: -.055em;
+    line-height: .96;
+  }
+
+  .authored > p {
+    max-width: 38rem;
+    margin-top: 1.25rem;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 46rem) {
+    .author-hero,
+    .author-details__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .author-portrait {
+      width: min(72vw, 15rem);
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 17vw, 5.5rem);
+    }
+
+    .author-details dl {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
