@@ -70,7 +70,7 @@ test('DJ author page publishes the full profile and reusable author sections', a
   assert.match(html, /God of Vortexa/);
   assert.match(html, /src="\/images\/authors\/dj\.png"/);
   assert.match(html, /alt="Portrait of DJ Wynyard"/);
-  assert.match(html, /Adelaide, SA &amp; Sydney, NSW/);
+  assert.match(html, /ADL\/SYD/);
   assert.match(html, /20\+ years/);
   assert.match(html, /C# and modern \.NET/);
   assert.match(html, /I build software, platforms and automation/);
