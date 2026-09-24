@@ -452,74 +452,196 @@ Better to tell them first.
 
 1. ⭐ Why five books? What's the promise of the series as a whole, in your
    words, not the marketing words?
-   **Answer:**
-1. Who do you picture reading all five? Is that a real person or a
+   **Answer:** Because three books wasn't enough without either skipping shit or cramming too much into each one. I don't want to take somebody who knows absolutely nothing about AI, throw a dictionary of technical terms at them, and then pretend I've educated them. The promise is pretty simple: start at Book 1 knowing fuck all if you want, and by the time you get through Book 5 you should understand enough to design and build real AI systems without there being some mysterious gap where I suddenly assume you learned something somewhere else.
+
+   You don't have to read all five. That's not the point. The point is that there is a path if you want one.
+
+2. Who do you picture reading all five? Is that a real person or a
    hypothetical?
-   **Answer:**
-1. Should someone technical skip Book 1? Be honest.
-   **Answer:**
-1. What's the one thing each later book will do that Book 1 deliberately
+   **Answer:** Someone curious enough to keep pulling the thread. They might start as somebody using ChatGPT to help write an email and eventually think, "Hang on, how does all this shit actually connect together?" Maybe they become more technical. Maybe their job changes. Maybe they start a business. Maybe they just want to understand what their IT department is talking about.
+
+   It's not one particular real person. It's the person I wish more technical material was written for: somebody intelligent who hasn't already spent twenty years learning all the prerequisite bullshit.
+
+3. Should someone technical skip Book 1? Be honest.
+   **Answer:** They can. I'm not their mother.
+
+   But I wouldn't automatically tell them to. Book 1 isn't "here is how to turn on ChatGPT". A technical person might know how a transformer works and still have swallowed a remarkable amount of industry bullshit about what AI means, what it understands, what it can replace and what confidence from a model actually means.
+
+   If you genuinely understand the foundations, limitations, hype and human side already, skip it. That's why there are five fucking books.
+
+4. What's the one thing each later book will do that Book 1 deliberately
    doesn't? (One line each is plenty.)
-   - Book 2 — Practical AI Workflows & Productivity:
-   - Book 3 — AI for Business & Operations:
-   - Book 4 — Building AI Systems & Automation:
-   - Book 5 — AI Engineering & Architecture:
-   **Answer:**
-1. Which later book are you most excited to write, and which one scares you?
-   **Answer:**
-1. AI changes every few months. How do you write books that won't be out of
+
+   * Book 2 — Practical AI Workflows & Productivity: Actually put AI to work in repeatable personal and professional workflows instead of just explaining what it is.
+   * Book 3 — AI for Business & Operations: Move from "how can I use this?" to "how should an organisation actually use this without turning everything into an AI-labelled shitshow?"
+   * Book 4 — Building AI Systems & Automation: Start building the bloody things — integrations, automation, connected tools and actual working systems.
+   * Book 5 — AI Engineering & Architecture: Go properly technical and deal with designing reliable AI systems, infrastructure, architecture, trade-offs and engineering decisions.
+     **Answer:** That's the progression: understand it, use it, operationalise it, build it, engineer it.
+
+5. Which later book are you most excited to write, and which one scares you?
+   **Answer:** Book 5 is probably the one I'm most excited about because that's where I can finally stop deliberately holding the technical depth back and go, "Right, bitches, you made it this far — let's actually build the fucking thing properly."
+
+   Book 3 probably concerns me more, not because I can't write it, but because business AI is where the bullshit density becomes astronomical. Every vendor has an "AI transformation strategy", every executive suddenly discovered automation last Thursday, and half the terminology means whatever somebody needs it to mean in the PowerPoint deck. Getting that book grounded, useful and not turning it into another management consultancy brochure will take work.
+
+6. AI changes every few months. How do you write books that won't be out of
    date by the time they're printed? What's your strategy for staying
    current (revisions, website updates, new editions)?
-   **Answer:**
-1. Rough timeline: when do you *hope* each book lands? (Give yourself a
+   **Answer:** By not writing the fucking book around whatever tool is fashionable this Tuesday.
+
+   The books focus on concepts, ways of thinking, limitations, patterns and approaches that survive product releases. There is a reason Book 1 deliberately doesn't have "The 20 Best AI Tools of 2026" in it. That would be obsolete before the ink dried.
+
+   The website is where the moving material belongs. Tool examples, changes, corrections, supplementary material and things that genuinely need updating can live on how-to-use-ai.com. If enough important things change, the book gets a revision or a new edition. Printed books give the subject structure; the website keeps the edges alive.
+
+7. Rough timeline: when do you *hope* each book lands? (Give yourself a
    generous margin. Readers remember dates.)
-   **Answer:**
-1. How does the book series connect to how-to-use-ai.com, Useful Stash, and
+   **Answer:** I'm deliberately not putting five publication dates into the universe so Future DJ can spend the next three years being abused by Past DJ.
+
+   Book 1 comes first and it comes out when I'm satisfied that it's actually worth somebody paying for. The later books follow in sequence rather than being rushed to hit arbitrary dates. I'd rather say "this is taking longer" than publish five increasingly shit books because I promised somebody a calendar.
+
+8. How does the book series connect to how-to-use-ai.com, Useful Stash, and
    the YouTube channel? Is it one ecosystem or separate things?
-   **Answer:**
+   **Answer:** They're connected, but they're not the same fucking thing wearing different hats.
+
+   **How To Use AI.com** is the home of the book series and the structured learning material around it. That's where updates, companion material, previews and book-specific resources belong.
+
+   **Useful Stash** is broader. That's where I can talk about technology, development, AI, automation, business, tools and whatever else is useful without every article having to fit into a chapter of a book.
+
+   YouTube gives me another format entirely. Some people will read 300 pages. Some people want me to explain the same concept in ten minutes with a diagram and some swearing.
+
+   So yes, it's an ecosystem, but I don't want to turn it into one giant content-recycling machine where you get the exact same shit copied onto five platforms.
 
 ## 8. Doubts, fears and the stakes
 
 People trust an author who admits the scary bits.
 
 1. ⭐ What's your biggest fear about putting this book into the world?
-   **Answer:**
-1. Imposter syndrome — does it show up even with the PhD and 20 years? When?
-   **Answer:**
-1. What happens if nobody buys it? Would you keep going with the series?
-   **Answer:**
-1. What's the most brutal feedback you could imagine getting? What would
+   **Answer:** Being wrong in print.
+
+   Not somebody disagreeing with me — I couldn't give a fuck about that. Disagree away. I mean getting an actual important fact wrong, building an argument on it, printing thousands of words around it and then finding out I've confidently published bullshit in a book specifically telling people to be careful of confidently presented bullshit.
+
+   That would sting.
+
+2. Imposter syndrome — does it show up even with the PhD and 20 years? When?
+   **Answer:** Of course it fucking does.
+
+   It doesn't normally show up as "I don't know anything about AI". I know what I know and I'm perfectly happy saying when I don't know something.
+
+   It shows up when I turn knowledge into something permanent and public. Talking through an idea in a meeting is one thing. Putting my name on the cover and saying, "Here. I have organised this subject and I think this is worth your time and money" is very different.
+
+   The PhD doesn't magically remove that. If anything, knowing how much there is to know occasionally makes it worse.
+
+3. What happens if nobody buys it? Would you keep going with the series?
+   **Answer:** I'd be pissed off.
+
+   Then I'd probably keep going.
+
+   The material is useful to me regardless because it becomes the website, videos, reference material and a structured version of twenty years of shit floating around in my head.
+
+   Obviously I want people to buy the fucking thing. I'm not going through publishing, ISBNs, printing, research and all this other shit because I secretly hope nobody notices.
+
+   But Book 1 selling twelve copies doesn't suddenly make AI stop being interesting or make the rest of the series pointless.
+
+4. What's the most brutal feedback you could imagine getting? What would
    you do with it?
-   **Answer:**
-1. What has this cost you — time, sleep, money, weekends, sanity, date
+   **Answer:** "This is confidently wrong, badly researched and you've written exactly the sort of AI bullshit you claim to hate."
+
+   That's the feedback that would hurt because it attacks the reason the book exists.
+
+   What would I do? Check whether they're fucking right.
+
+   If they are, fix it. If they're partly right, learn from it. If they're talking shit, thank them for their contribution to the internet and continue with my day.
+
+5. What has this cost you — time, sleep, money, weekends, sanity, date
    nights?
-   **Answer:**
-1. What's been the lowest point of the process so far?
-   **Answer:**
-1. What's been the best moment — the day it felt real?
-   **Answer:**
-1. What have you learned about yourself from doing this?
-   **Answer:**
+   **Answer:** Mainly time. An obscene amount of fucking time.
+
+   Researching, writing, rereading, rearranging, arguing with AI systems, checking sources, building the publishing process, designing covers, working out ISBNs, websites, PDFs, print sizes, metadata, legal shit — apparently "write a book" actually means "accidentally start a small publishing company."
+
+   Some money, plenty of evenings and weekends, and probably a measurable amount of sanity.
+
+6. What's been the lowest point of the process so far?
+   **Answer:** Looking at the scattered notes, research, half-written chapters, links, Markdown files and ideas and realising that having enough material to write a book is very fucking different from having written a book.
+
+   The information wasn't the problem. Turning the giant pile of shit into something another human can read from beginning to end without needing access to my brain was the problem.
+
+7. What's been the best moment — the day it felt real?
+   **Answer:** Generating the actual book cover and seeing it as **Book 1** of a five-book series made it substantially more real.
+
+   Before that it was a repository full of Markdown and the occasional declaration of "I'm writing a book."
+
+   Once there was an actual cover, publishing metadata, a proper manuscript structure and a PDF that looked like a book rather than a folder containing my latest mental episode, I went: Oh. Fuck. I'm actually doing this.
+
+8. What have you learned about yourself from doing this?
+   **Answer:** That I massively underestimate how much context is sitting in my own head.
+
+   Something can feel obvious to me because I've been working around technology for decades, and then I try to explain it properly to somebody starting at zero and realise there are six concepts underneath it that I silently assumed everybody knew.
+
+   Writing for beginners is not easier than writing for technical people. In a lot of ways it's harder. You can't hide behind jargon and tell yourself the reader should already know what you mean.
 
 ## 9. What you hope to achieve
 
 1. ⭐ What does success look like — one year after launch? Be specific:
    copies, emails from readers, a particular person reading it, a feeling.
-   **Answer:**
-1. What's the one email or message from a reader that would make the whole
+   **Answer:** I don't have some magical number where 9,999 copies means failure and 10,000 means I've ascended.
+
+   Obviously I want it to sell. Thousands of copies would be fucking lovely.
+
+   But a year after launch, success would also mean people are actually using it. I want emails saying somebody finally understands AI after avoiding it for years. I want somebody to tell me they stopped being terrified of it, or stopped believing everything it tells them, or used something from the book at work and suddenly the whole thing clicked.
+
+   And I'd like to see somebody reading a physical copy somewhere that I didn't personally hand to them. That would be fucking weird and excellent.
+
+2. What's the one email or message from a reader that would make the whole
    thing worth it?
-   **Answer:**
-1. Is there a bigger point to this beyond the books — something you want to
+   **Answer:** "I thought AI wasn't for me. I read your book, understood it, tried it, and now I know enough to make my own decisions about it."
+
+   That's basically the entire fucking mission in four sentences.
+
+3. Is there a bigger point to this beyond the books — something you want to
    change about how people talk about or use AI?
-   **Answer:**
-1. Who do you want to hand this book to personally? (Parents, a
+   **Answer:** Yes. I want people to stop outsourcing their fucking judgement.
+
+   Not just to AI — to CEOs, YouTubers, LinkedIn prophets, vendors, journalists, doom merchants and whichever billionaire got interviewed this morning.
+
+   Understand enough about AI that somebody can't control your opinion merely by sounding confident.
+
+   Use it. Enjoy it. Build shit with it. Let it make parts of your life easier.
+
+   Just don't fucking worship it.
+
+4. Who do you want to hand this book to personally? (Parents, a
    non-tech friend, your old teacher, a CEO who needs a reality check?)
-   **Answer:**
-1. Is this about income, legacy, reputation, teaching, spite, or all of the
+   **Answer:** There are definitely a few executives I'd enjoy handing it to with selected paragraphs highlighted in fluorescent yellow.
+
+   But the more important person is someone who has said, "I don't understand all this AI stuff."
+
+   That person is exactly who Book 1 is for.
+
+5. Is this about income, legacy, reputation, teaching, spite, or all of the
    above? Be honest. The honest version reads better.
-   **Answer:**
-1. What would you want a reader to *stop* doing after reading it?
-   **Answer:**
+   **Answer:** All of the above.
+
+   Of course I want to make money from it. What kind of ridiculous question is that? I've put a shitload of work into this and I'm not running a charity for Amazon customers.
+
+   Teaching is probably the biggest part. Legacy matters too. There is something satisfying about turning what I know into something that exists independently of me.
+
+   Reputation? Sure. I'm hardly publishing it anonymously.
+
+   And spite?
+
+   Absolutely.
+
+   Never underestimate how productive I can become when somebody confidently explains my own field to me incorrectly.
+
+6. What would you want a reader to *stop* doing after reading it?
+   **Answer:** Stop treating AI output as either divine revelation or radioactive waste.
+
+   Stop saying "the AI said..." as though that settles an argument.
+
+   Stop assuming every product with AI written on the box contains revolutionary artificial intelligence.
+
+   Stop panicking.
+
+   And stop letting people who make money from your fear, excitement or confusion be the only people explaining this shit to you.
 
 ## 10. Personal texture
 
@@ -528,22 +650,46 @@ a press release.
 
 1. Where and when do you actually write? (Desk, couch, plane between
    Adelaide and Sydney, 2 a.m. with a cat on the keyboard?)
-   **Answer:**
-1. What's your writing ritual, if any? Coffee order? Music? Silence?
-   **Answer:**
-1. Have the cats or the dog contributed to the manuscript, sabotaged it, or
+   **Answer:** Mostly at my desk, usually at an hour when a sensible person would probably have closed the laptop already.
+
+   There's no romantic oak writing desk overlooking the Swiss Alps. There are monitors, terminals, Markdown files, browser tabs, research, Git, AI tools and an increasingly suspicious number of documents explaining how all the other documents work.
+
+2. What's your writing ritual, if any? Coffee order? Music? Silence?
+   **Answer:** I don't really have a sacred author ritual where I light a candle, rotate three times and summon Hemingway.
+
+   I normally have an idea I want to sort out, open the relevant material and start pulling at it until it makes sense. Sometimes that produces three useful paragraphs. Sometimes I realise I've spent two hours restructuring the entire fucking publishing repository instead.
+
+3. Have the cats or the dog contributed to the manuscript, sabotaged it, or
    both?
-   **Answer:**
-1. What's the funniest thing that's happened during the project?
-   **Answer:**
-1. Is there a real-life story from your own life — yours, Johnny's, family,
+   **Answer:** I'm not giving them co-author credit until they can demonstrate a meaningful Git contribution.
+
+   Beyond that, I don't have a manuscript-worthy animal sabotage story yet. I'm sure they'll arrange one immediately after this gets published.
+
+4. What's the funniest thing that's happened during the project?
+   **Answer:** Probably repeatedly asking AI systems to help me write a book explaining that AI does not understand things, then watching them misunderstand what I've just fucking asked them to do.
+
+   There is something beautifully self-demonstrating about telling an AI, "Do not invent anything here," and watching it immediately think, "You know what this really needs? A completely fictional anecdote."
+
+5. Is there a real-life story from your own life — yours, Johnny's, family,
    friends — where AI either helped hugely or went badly wrong, and that
    shows why this book matters? (Only share what you're comfortable with.)
-   **Answer:**
-1. What would the Commodore 64 kid think of you writing this?
-   **Answer:**
-1. Which books (tech or not) shaped how you want this one to feel?
-   **Answer:**
+   **Answer:** The closest real example is the reason the book exists in the first place: watching otherwise intelligent people in professional environments struggle to explain what AI actually is while other people around them confidently attach the label "AI" to almost anything that moves.
+
+   That matters more to me than manufacturing some convenient story about ChatGPT saving Christmas.
+
+6. What would the Commodore 64 kid think of you writing this?
+   **Answer:** Probably: "You mean the computer can talk back now?"
+
+   Then immediately: "Can I make it do something it's not supposed to do?"
+
+   So fundamentally not much has changed.
+
+7. Which books (tech or not) shaped how you want this one to feel?
+   **Answer:** The two broad influences are already baked into the project: **O'Reilly** books when I want something technically credible enough that I trust the person who wrote it, and the **For Dummies** style when I want somebody to explain something without first demanding that I become an expert.
+
+   I don't want this to read like an academic thesis and I don't want it to read like "10 INSANE ChatGPT Hacks You Won't Believe!!!"
+
+   Somewhere between those two extremes is a fucking book I would actually read.
 
 ## 11. Launch details and the sign-up ask
 
@@ -552,89 +698,167 @@ prices here if you're willing to have them quoted.
 
 1. ⭐ What exactly should readers do at the end of the article? Pick the
    **primary** action (one), and optionally a secondary one:
-   - [ ] Join the launch newsletter / notify list on how-to-use-ai.com
-   - [ ] Download the free chapter preview PDF
-   - [ ] Pre-order / buy (only if checkout is live and not in test mode)
-   - [ ] Subscribe on YouTube / follow on socials
-   - [ ] Reply with their biggest AI question
-   **Answer:**
-1. ⭐ What exactly do subscribers get? Launch notification only? Early
+
+   * [x] Join the launch newsletter / notify list on how-to-use-ai.com
+   * [ ] Download the free chapter preview PDF
+   * [ ] Pre-order / buy (only if checkout is live and not in test mode)
+   * [ ] Subscribe on YouTube / follow on socials
+   * [ ] Reply with their biggest AI question
+     **Answer:** Primary: join the launch list on how-to-use-ai.com so I can tell you when the fucking book exists.
+
+   Secondary: download the free preview. I'm not going to hold the preview hostage and demand your email address before you can read it. If you like what you read and want to know when the full thing launches, then sign up.
+
+2. ⭐ What exactly do subscribers get? Launch notification only? Early
    access, a discount, a launch price, bonus chapters, a checklist, behind-
    the-scenes updates? How often will you email them, realistically?
-   **Answer:**
-1. Launch window for Book 1 — exact date, month, quarter, or "when it's
+   **Answer:** At minimum: notification when the book launches and any genuine launch offer or coupon that exists.
+
+   I may send useful progress updates or early information where there's actually something worth telling people, but I'm not signing anybody up for "DJ's mandatory Tuesday AI Thoughts Newsletter."
+
+   I hate mailing lists that manufacture a reason to email you every 48 hours because some marketing expert told them engagement is important.
+
+   If I email you, there should be a fucking reason.
+
+3. Launch window for Book 1 — exact date, month, quarter, or "when it's
    ready"? Which formats land first (ePUB, PDF, softcover), and are they
    launching together?
-   **Answer:**
-1. Where will it be sold — only how-to-use-ai.com, or also Amazon, Apple
+   **Answer:** When it's ready.
+
+   The intended launch formats are **ePUB, PDF and softcover**. Ideally they land together or close enough together that nobody needs a project plan to understand which version exists.
+
+   I'm not publishing an exact date until I'm prepared to be held to it.
+
+4. Where will it be sold — only how-to-use-ai.com, or also Amazon, Apple
    Books, Google Play, Kobo, bookstores?
-   **Answer:**
-1. Price (or price range), and any launch-week deal?
-   **Answer:**
-1. Hardcover — mentioned in project docs. Is it happening for Book 1, and is
+   **Answer:** Definitely how-to-use-ai.com, and I want normal retail distribution as well rather than pretending my own website is the entire publishing industry.
+
+   Amazon is part of that plan. Other ebook retailers such as Apple Books, Google Play and Kobo make sense where the format and distribution setup supports them. Print distribution can extend beyond direct sales as that side gets finalised.
+
+   The point is: I want people to be able to buy the fucking book wherever they normally buy books, while also being able to buy it directly from me.
+
+5. Price (or price range), and any launch-week deal?
+   **Answer:** Not decided yet, so don't fucking quote one.
+
+   There will be a sensible distinction between the digital and printed versions, and I like the idea of subscribers getting a launch offer, but I'm not inventing a price before printing, retailer margins, fulfilment and the final formats are nailed down.
+
+6. Hardcover — mentioned in project docs. Is it happening for Book 1, and is
    it worth mentioning yet?
-   **Answer:**
-1. Is the free preview chapter ready to promote in this article? Which
+   **Answer:** Possibly, but I wouldn't promote it yet.
+
+   Softcover and the digital editions matter first. If hardcover makes commercial and practical sense once the finished book exists, great. I do not need to create another promise for myself before I've shipped Book 1.
+
+7. Is the free preview chapter ready to promote in this article? Which
    chapter(s) does it contain?
-   **Answer:**
-1. Privacy promise for the list — what will you never do with their email?
+   **Answer:** Yes. The preview publishing process exists and the current preview is built around **Chapters 1–3**.
+
+   The wording around the preview is still being refined because apparently even giving away three free chapters requires its own publishing decisions. Welcome to writing a fucking book.
+
+8. Privacy promise for the list — what will you never do with their email?
    (A one-liner here builds trust with exactly the audience this book is for.)
-   **Answer:**
-1. Is there anything you want readers to *reply* with, to help shape the
+   **Answer:** I will not sell your email address, rent it, hand it to some random marketing parasite, or suddenly decide that signing up for a book notification means you consented to eighteen unrelated newsletters.
+
+9. Is there anything you want readers to *reply* with, to help shape the
    book or the series (questions, fears, use cases)?
-   **Answer:**
+   **Answer:** Yes: tell me the AI question you think you're supposed to already know the answer to.
+
+   Those are usually the useful ones.
+
+   Also tell me what confuses you, what you're sick of hearing about, what you're scared of, or where you've tried AI and thought, "This is fucking useless."
+
+   I don't need more people telling me AI will change everything. Tell me where it doesn't.
 
 ## 12. The article itself
 
 1. ⭐ Where is this being published — Useful Stash, the how-to-use-ai.com
    blog, both (with one canonical URL), LinkedIn, Medium, all of the above?
-   **Answer:**
-1. Swearing level for this piece? (Useful Stash-grade honesty, or
+   **Answer:** Useful Stash and how-to-use-ai.com make the most sense, with **how-to-use-ai.com as the canonical home for the book-specific version**.
+
+   Useful Stash can introduce it to the broader technology audience and point people into the book ecosystem.
+
+   LinkedIn can get an adapted version or excerpt because nobody needs me dumping 3,000 identical words across the entire fucking internet and calling it a content strategy.
+
+2. Swearing level for this piece? (Useful Stash-grade honesty, or
    book-site-grade polish for the "normal people" audience that might
    include your mum?)
-   **Answer:**
-1. Target length — short and punchy (~800 words) or long-form inside story
+   **Answer:** Somewhere between the two.
+
+   It should sound like me. I'm not suddenly becoming a beige corporate brochure because somebody's mum might read it.
+
+   But the swearing should be punctuation, not the entire fucking sentence. Save the nuclear-grade material for where it actually lands.
+
+3. Target length — short and punchy (~800 words) or long-form inside story
    (~2,000–3,000 words)?
-   **Answer:**
-1. First person throughout? Any sections you'd want as Q&A instead of prose?
-   **Answer:**
-1. Title direction — pick a favourite, bin the rest, or write your own:
-   - "I have a PhD in AI. My first book is for people who've never used it."
-   - "Why I'm writing a book about AI for normal people (and rewriting it)"
-   - "AI isn't magic. So I'm writing five books to prove it."
-   - "Writing a book about AI, with AI, without the bullshit"
-   - "The book I kept explaining at barbecues"
-   **Answer:**
-1. Anything off-limits — clients, employers, specific tools or companies you
+   **Answer:** Long-form. Around **2,000–3,000 words**.
+
+   There is an actual story here. Eight hundred words would turn it into "I have written a book, AI is confusing, please join my newsletter." Riveting.
+
+4. First person throughout? Any sections you'd want as Q&A instead of prose?
+   **Answer:** First person throughout.
+
+   Turn the questionnaire into prose rather than publishing the interrogation transcript. Pull quotes are fine, but I want it to read like I'm telling somebody the story, not like I've been detained at the airport.
+
+5. Title direction — pick a favourite, bin the rest, or write your own:
+
+   * "I have a PhD in AI. My first book is for people who've never used it."
+   * "Why I'm writing a book about AI for normal people (and rewriting it)"
+   * "AI isn't magic. So I'm writing five books to prove it."
+   * "Writing a book about AI, with AI, without the bullshit"
+   * "The book I kept explaining at barbecues"
+     **Answer:** **"Writing a book about AI, with AI, without the bullshit"**
+
+   That's the one.
+
+   It explains both the book and the weirdness of how I'm producing it without pretending the fact I have a PhD is some clickbait reveal.
+
+6. Anything off-limits — clients, employers, specific tools or companies you
    don't want named, personal details?
-   **Answer:**
-1. Any visuals: cover reveal (the purple Book 1 cover exists), photo of your
+   **Answer:** Employers and clients should be anonymised where the story doesn't require the name. I can criticise an idea without needlessly creating a corporate fucking incident.
+
+   Public companies and tools are fair game when I'm talking about publicly available claims, advertising, products or documented behaviour.
+
+   Personal stories involving other people stay out unless I'm comfortable publishing them and, where appropriate, they've agreed.
+
+7. Any visuals: cover reveal (the purple Book 1 cover exists), photo of your
    writing setup, a screenshot of the manuscript repo, a diagram from the
    book?
-   **Answer:**
+   **Answer:** Definitely the **purple Book 1 cover**. That's the obvious hero image.
+
+   A manuscript/repository screenshot would also work because the absurdity of treating a book like a software project is part of the story.
+
+   And one diagram from the book would be useful if it demonstrates that this isn't just a giant wall of words about AI.
+
+   A writing setup photo is optional. Nobody needs photographic proof that I own a computer.
 
 ## 13. Lightning round (pull-quote fuel)
 
 Answer fast, don't overthink. These become subheadings and social posts.
 
 1. AI in one sentence, for your nan:
-   **Answer:**
-1. The most overhyped thing in AI right now:
-   **Answer:**
-1. The most underrated thing in AI right now:
-   **Answer:**
-1. One thing everyone should stop being scared of:
-   **Answer:**
-1. One thing everyone should be a bit more careful about:
-   **Answer:**
-1. Finish the sentence — "This book exists because…"
-   **Answer:**
-1. Finish the sentence — "If you only read one chapter, read…"
-   **Answer:**
-1. Finish the sentence — "Normal people deserve…"
-   **Answer:**
-1. Finish the sentence — "Sign up if…"
-   **Answer:**
+   **Answer:** AI looks at patterns in enormous amounts of information and uses those patterns to make a prediction about what should happen next.
+
+2. The most overhyped thing in AI right now:
+   **Answer:** The idea that today's AI systems understand what they're saying just because they can say it convincingly.
+
+3. The most underrated thing in AI right now:
+   **Answer:** Using it for boring little everyday tasks instead of trying to make it become God.
+
+4. One thing everyone should stop being scared of:
+   **Answer:** Pressing the fucking button and trying it.
+
+5. One thing everyone should be a bit more careful about:
+   **Answer:** Believing an answer because it sounds confident.
+
+6. Finish the sentence — "This book exists because…"
+   **Answer:** This book exists because too many people are making decisions about AI based on people who profit from either frightening them or exciting them.
+
+7. Finish the sentence — "If you only read one chapter, read…"
+   **Answer:** If you only read one chapter, read Chapter 4 — **What AI Cannot Do** — because understanding the limits is what stops the rest becoming bullshit.
+
+8. Finish the sentence — "Normal people deserve…"
+   **Answer:** Normal people deserve an explanation of AI that doesn't require a Computer Science degree, a venture-capital portfolio or a fucking YouTube thumbnail with somebody pointing at a robot.
+
+9. Finish the sentence — "Sign up if…"
+   **Answer:** Sign up if you want to understand AI without joining the cult, hiding from it, or being sold seventeen subscriptions before breakfast.
 
 ---
 
@@ -655,6 +879,7 @@ Once the answers are in, the article probably falls out roughly like this
 8. **The scary bit** — fears, cost, what success looks like (§8, §9)
 9. **The ask** — what you get for signing up, when it launches, the privacy
    promise, the link (§11)
+
 
 Leave the tone, final structure and the actual sentences to DJ. This
 appendix is a scaffold, not a script.
