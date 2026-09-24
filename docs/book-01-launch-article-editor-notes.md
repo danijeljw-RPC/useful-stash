@@ -27,10 +27,10 @@ The article is `draft: true`. Flip it to `false` when you're happy.
    Avanoa isn't named; you're "a CTO" and the investor story is about "a
    senior executive I work with". Your day-job employer is unnamed too, and
    so are its CTO and head of product (they'd be identifiable to colleagues).
-2. **Thesis/PhD (resolved 2026-09-25).** The article uses §1.1: your thesis
-   on ML and LLM tooling for structured legal documentation, and a PhD in
-   Computer Science as a separate thing. The PhD topic isn't described.
-   Don't mine §4.5 for published copy.
+2. **Thesis/PhD (resolved 2026-09-25).** One PhD in Computer Science with
+   an AI/ML thesis, which also covered quantum calculation theory. The
+   article mentions the AI/ML thesis and the LLM legal-documentation tooling
+   from §1.1, and nothing more. The thesis isn't discussed in depth here.
 3. **Softened for legal risk, but the point stays:**
    - "The only AI lab lying is OpenAI" / Sam Altman is now "start with the
      companies and executives with the most money riding on it". An
@@ -49,10 +49,9 @@ The article is `draft: true`. Flip it to `false` when you're happy.
    thinks they know more than me" (§2.3), and the thesis deep-dive (§4.5).
    The last one reads as a different voice and makes contested technical
    claims that Book 1 deliberately avoids.
-5. **Canonical URL is `null`.** how-to-use-ai.com is live, but this
-   article has no page of its own there yet (e.g.
-   `https://how-to-use-ai.com/blog/writing-a-book-about-ai-with-ai-without-the-bullshit/`).
-   Once that copy is published, set `seo.canonical` to its URL.
+5. **Canonical URL stays `null` (self).** This Useful Stash article is the
+   original. how-to-use-ai.com will carry a shorter version that links back
+   here, and that version should set its canonical to this article's URL.
 6. **LinkedIn links** (Alexander Braun, Jean Lee): kept. DJ will check them
    before going live.
 7. **Johnny's "Haven't you already written a book anyway?"** is in (the lost-ISBN line was cut)

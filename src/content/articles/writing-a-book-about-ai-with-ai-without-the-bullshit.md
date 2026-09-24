@@ -32,7 +32,7 @@ My day job gives me a front-row seat to the other side of the industry: slapping
 
 Child, sit down.
 
-I did my thesis on machine learning and LLM tooling for producing structured, iron-clad legal documentation, and I hold a PhD in Computer Science on top of that. I know what AI is, and most of what's in the news, the ads and the keynotes isn't it. At its core, AI is a prediction system. A remarkably good one — but a prediction system.
+My PhD thesis was in AI and machine learning, including LLM tooling for producing structured, iron-clad legal documentation. I know what AI is, and most of what's in the news, the ads and the keynotes isn't it. At its core, AI is a prediction system. A remarkably good one — but a prediction system.
 
 The moment it actually tipped over was watching a senior executive I work with field a question about AI in front of an investor. They weren't bad at explaining things. They just didn't have the foundation to steer the conversation away from smoke and mirrors and back to sticks and stones. Nobody's fault — and exactly the problem.
 
