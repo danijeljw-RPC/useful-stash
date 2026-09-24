@@ -27,11 +27,10 @@ The article is `draft: true`. Flip it to `false` when you're happy.
    Avanoa isn't named; you're "a CTO" and the investor story is about "a
    senior executive I work with". Your day-job employer is unnamed too, and
    so are its CTO and head of product (they'd be identifiable to colleagues).
-2. **Your thesis is described as "my PhD in machine learning" only.** Your
-   answers give two different descriptions: §1.1 says ML/LLM tooling for
-   structured legal documentation; §4.5–4.6 say programming languages at
-   the intersection of quantum computing and ML. Pick one and I'll add a
-   line. §4.5 also contains a stray reference token (`[KsXzTz5H2QQ]`).
+2. **Thesis/PhD (resolved 2026-09-25).** The article uses §1.1: your thesis
+   on ML and LLM tooling for structured legal documentation, and a PhD in
+   Computer Science as a separate thing. The PhD topic isn't described.
+   Don't mine §4.5 for published copy.
 3. **Softened for legal risk, but the point stays:**
    - "The only AI lab lying is OpenAI" / Sam Altman is now "start with the
      companies and executives with the most money riding on it". An
@@ -50,12 +49,12 @@ The article is `draft: true`. Flip it to `false` when you're happy.
    thinks they know more than me" (§2.3), and the thesis deep-dive (§4.5).
    The last one reads as a different voice and makes contested technical
    claims that Book 1 deliberately avoids.
-5. **Canonical URL is `null`.** You want how-to-use-ai.com as the canonical
-   home, but that page doesn't exist yet. Pointing canonical at a missing
-   URL hurts SEO. Once the book-site version is live, set
-   `seo.canonical` to its URL.
-6. **LinkedIn links** (Alexander Braun, Jean Lee) are your `lnkd.in` short
-   links, unverified. Click them before publishing.
+5. **Canonical URL is `null`.** how-to-use-ai.com is live, but this
+   article has no page of its own there yet (e.g.
+   `https://how-to-use-ai.com/blog/writing-a-book-about-ai-with-ai-without-the-bullshit/`).
+   Once that copy is published, set `seo.canonical` to its URL.
+6. **LinkedIn links** (Alexander Braun, Jean Lee): kept. DJ will check them
+   before going live.
 7. **Johnny's "Haven't you already written a book anyway?"** is in (the lost-ISBN line was cut)
    because you wrote it. If readers will ask "what first book?", add a
    line or cut it.
