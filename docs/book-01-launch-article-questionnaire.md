@@ -68,107 +68,161 @@ you only need to correct anything that's wrong:
 1. ⭐ When was the exact moment you thought "right, I'm writing a book"?
    Where were you, what had just happened, who had just said something stupid
    to you about AI?
-   **Answer:**
+   **Answer:** So I'm working with a company called Avanoa Technology (redact company name) to develop and deploy their new technology industry travel management platform. And one of the key questions that comes up quite a bit from investors is "how does the AI work" and "where is the AI" or "What are you doing with AI to make it better?" and shit like that. That's where my role as the CTO is to be responsilbe for the education and implementation of artificial intelligence in all capacities that we invoke it for the platform and the underlying infrastructure. Also in my day job, I work for a company that pioneers the wrapper label of "AI" on almost any product they can fob off to their clients in anyway - regardless of whether it's AI, ML or just a workflow. I started to notice a common theme here - a lot of people are getting on the hype train; and trying to educate me on how AI is revolutionary and going to change the name of the game, we can lift-and-shift people's work to AI and using AI is going to make us more efficient and smarter and efficient workers.
+
+   Child...sit down and shut the fuck up.
+
+   I did my thesis on Machine Learning  and LLM (ai) tooling to produce structured iron-clad legal documentation with interpretation from workflows. I know what AI is, and this shit - the crap everyone's talking about - or listening to in the news - is not what AI really is. It's a prediction system. I want to set the record straight. I talk about it enough, present internally at organisation on what this is - and it's not really reaching the wider audience. So why don't I go all in on this subject and get the no bullshit version of this information into people's hands.
+
 1. Was there a specific person — a friend, a family member, a client, someone
    at a barbecue — whose confusion (or confidence) about AI tipped you over
    the edge? What did they say? (Get permission or anonymise them.)
-   **Answer:**
+   **Answer:** Oh yes. Absolutely there was. In front of one our investors, the CEO of the joint venture company I work with wasn't able to frame it right. Not because they weren't able to explain it - but they didn't really have a strong foundation of the relevant information to draw from - and to help steer the conversation from smoke and mirrors to stick and stones. That was when I decided - right! I'm going to write this book, and extend it out to a series so i can cover ALL bases and avoid the youtubers who have a new thing you should drop everything you're doing and start doing X today because yesterday is now out of date. Really bitch? Then why aren't you flying around in a car that uses solar energy because fuel and wheels are sooooo yesterday.
 1. How long has "write a book" been on the someday list? Years? Decades? What
    stopped you before?
-   **Answer:**
+   **Answer:** Time. Time given back to myself first and foremost. I did start writing this as a collection of notes and thoughts and research before I started ot put it together, but it's almost taken me a year to get the first three chapters written, but it's been a 20+ year in the works document in my mind.
 1. Why a *book* and not just more blog posts, videos, or a course? What can a
    book do that the rest can't?
-   **Answer:**
+   **Answer:** Blog articles can be hard to follow, they're snippets and are fragmented. Sure, you can reach out to me and ask a question, follow my youtube videos or listen to my podcast or read my blog - but a book keeps it framed together, concise, referencable and logically at hand to use CTRL+F or CMD+F for my legendary Apple users. You can be swarmed by youtube and blogs and podcasts - but a book takes time to sit down and write and put useful content in a place that any other academic or researcher or average Joe can pick up and scruitinize and bitch about you - and you can't redact that - it's in print an in the national library archives! It's also nice to see my name on a published book that I don't lose the ISBN for this time :D
 1. Why *now*? What about this moment in AI makes it the right time (or the
    last sensible time) to write this?
-   **Answer:**
+   **Answer:** There was a quote I read today when doing my daily spriitual guidance and meditation mantras - it's the same kind of thing we see all the time but this was a divine message from the universe to me - today is the right time; not yesterday or tomorrow.
 1. What did you feel when you first said out loud, "I'm writing a book"?
    Proud? Embarrassed? Like a fraud? Like you'd just volunteered for unpaid
    overtime for the rest of your life?
-   **Answer:**
+   **Answer:** Nervous. Serie is an ancient elven "living grimoire" and the head of the Continental Magic Association in the anime and manga series Frieren: Beyond Journey's End. I am the "living google" of many subjects, and PhD in some! So it's weird to be in a position when i said I'm going to be responsible for my words and put them in writing, but the audience from all my critics and fans has been positive - so there's something!
 1. Who did you tell first, and what was their reaction? (Johnny's reaction
    counts, and is probably funnier.)
-   **Answer:**
+   **Answer:** You know when you say something that is obvious to everyone around you, but you think you just came to the conclusion in your own time at your own pace? That's what happened. Almost the eye-roll when Johnny is like "Yeah, of course you should. Haven't you already written a book anyway?" :-/
 
 ## 2. Why "Normal People"?
 
 1. ⭐ Who is the "normal person" you're writing for? Describe one real-ish
    human — age, job, how they currently feel about AI, what they've tried,
    what scares or annoys them.
-   **Answer:**
+   **Answer:** The "normal person" is anyone who has had their brain washed, or managed to remain unwashed from all the rhetoric from the left, right, up and down (round and round) about AI that has been fed into our heads in the last 5-6 years. They are human, or at least presumed to be. Who knows if they're a reptilian or a small grey pretending to be one of us? The normal person is anyone who wants who wants to know how to use ai.com (see what I did there?).
 1. Is "normal people" a joke, a jab at the tech industry, or dead serious?
    All three? What's the story behind the title?
-   **Answer:**
+   **Answer:** In my day job, our CTO and global head of product are so delusional when it comes to what AI actually is. This is aimed at them. It's aimed at the caregiver of young and old who wants to know a bit more and have grounded information in AI. It's for the person who thinks that watching the latest news article on MSN or their favourite youtuber has sold them the key to the entire indsutry. It's for someone who's avoided the whole thing and gotten themselves confused and really wants to know not only what it is - but how to use it. Also, I will teach you over the course how to incorporate it in a healthy and managable way in your daily life without costing you an arm and a leg in monthly subscriptions.
 1. Who is this book definitely **not** for? (Saying who you're excluding
    usually makes the right reader lean in.)
-   **Answer:**
+   **Answer:** Anyone who thinks they know more than me (sic). I'm not here to try and convince you or take up your time - you can't reclaim from me if I don't offer my time to you to begin with. I'm also not interested in the industry trying to shapre the narrative their own way: you can fuck right off.
 1. What do you think normal people get wrong about AI most often — the
    biggest misunderstanding, not the funniest one?
-   **Answer:**
-1. What do *technical* people get wrong about how normal people experience AI?
-   **Answer:**
-1. What's the most common question you get asked about AI by non-technical
+   **Answer:** I read a variant of these two statements quite often: 
+   - AI is thinking, understanding, and relating to me like a human would
+   - AI is going to take over all our jobs
+
+   Both are no. Electricity is going to take our jobs. The steam train is going to take our jobs. Robots are going to take our jobs. Insects are going to take our jobs.
+
+   I fucking wish.
+
+   If something was going to take our jobs - then I wouldn't be here, I'd be on my spaceshit going to visit the rings of Saturn this weekend.
+
+2. What do *technical* people get wrong about how normal people experience AI?
+   **Answer:** The mightiest assumption that technical (not smart, Judge Judy is smart - we are technical) is that normal people will, interact with AI logically and tread it like a precision-based tool or a prediction search engine (of sorts). The reality is that they are not using it - they are experiencing it like a component in their social stablity or as an emotional support. Like a crutch of sorts. It's weird.
+3. What's the most common question you get asked about AI by non-technical
    people? How do you usually answer it — and how does the book answer it
    better?
-   **Answer:**
-1. "Without the Hype" — what specific hype are you pushing back against?
+   **Answer:** THe most common question I get asked is whether or how AI is taking jobs. It's fucking not. Let me tell you what's really happening from an insiders perspective. Dickheads at the top of the corporate chain are relying on AI to be their buffer between reality and you - if you don't come back to work in the office, they offshore your jobs and say "AI is being used" move you from a position of being complacent to a position of being stuck between a rock and hard place then bring you back in and set the terms of engagement. This is off the back of the Covid-19 pandemic that the tables had turned between employer and employee. What ends up happening tho, is they are investing in AI to be able to be a tool they can hand off to their newly added employees from India, China, Malaysia in the hopes they will produce the same quality of work as someone in a native-english-speaking country for 1/5th the cost and a $20/month subscription.
+
+   On top of that, what's really happening is they are expecting to squeeze the lemon (you, the employee) for more juice, and less cost to themselves by your skills to adopt AI to do your work for you - and don't understand why the overall output is lower, even if the quality is higher. I talk about this in my book in the first chapter in the first diagram. If we hijack that for a moment and suggest that the user is trying to reach the desired state outcome, it's almost a loop of going around and around in circles to get it to make the text bigger, move hte box to the left, too far back to right a bit, make it a darker blue, can we change teh front page logo - all that looping bullshit is holding you back. AI (especially LLMs) are holding you back beacuse it's not a system that understands you - it's predicting what you're going to say or try to expect. It's an algorithm at the heart of it.
+
+   In addition to this, i answer this question by working the reader at every level to give them a level up on their own undrstanding and how to use this and enjoy and enhance their life with AI - think of it as teaching everyone how to use electricity for the first time instead of ice blocks and hot coals to warm/cool their environment - just set the dial and press the button. Voila!
+
+4. "Without the Hype" — what specific hype are you pushing back against?
    Name the claims, the headlines, the LinkedIn posts, the types of people.
-   **Answer:**
-1. Is there also hype in the *opposite* direction — doom, "AI is useless",
+   **Answer:** LMAO. Where do I start? Let me open YouTube and have a look. Brb
+
+   - First ad on a video was google ads advertising for google ads, boring. Second one was Base44.com saying you just describe your app and it brings it to life. WTF is that shit? Secure? Probably not. Going to be hacked? Most likely. A completely useless and baseless example of how someone is going to use AI? Absolutely. Now it's showing me how to build a "mindfulness app"...no. You have to deal with publisher account, video content, copyright, deployment testing - ugh - the list goes on. Fuuuuuck base44.com and their propaganda.
+   - The Diary of CEO has a video called "AI Emergency: THe AI Labs Are Lying To EVeryone, He Says 99% Chance of Extinction | Roman Yampolskiy". I'm just looking at the timestamps here, and it's at [01:24:26](https://www.youtube.com/watch?v=OhOmLqR5nN4&t=5067s) they have "Can China and the West Cooperate on AI Safely?" - by phrasing the topic as "Can China and hte West Cooperate on AI Safely", the title forgrounds China first, subtly positioning china as the party. whos behaviour or trustworthiness is in querstion and the west as the reference point. I think deliberate, working can prinmte the audience to approach the discussion through a china is the potential problem framing. In the words of Pete Burns, sorry bitch - no. Your fucking OpenAI and Sam Altman are the problem. They are the ones with the money trying to steer the narative of congress/president of usa t otheir agenda, and block out everyone or to steal from Donald Trump - they're eating the dogs (or whatever shit he said) - but back to the story :: the only AI lab lying is OpenAI. the 99% chance of extinction is called getting old and dying - AI is not sentient - don't be stupid. Maybe one day, but not today (satan!). But back to the point I'm trying to make 0- they are speculating repeatedenly by presenting with an emotional weight of evidence rather than facts, and the second thing they do that pisses me off is use real AI filatuers to. make hyphothetical future catastrophes feel real and undereway. Fuuuuuuuuck right off.
+5. Is there also hype in the *opposite* direction — doom, "AI is useless",
    "it's just autocomplete" — that you're equally fed up with?
-   **Answer:**
+   **Answer:** Yes, public and industry has a massive hangover from the inital mania. From the last few yuears of CEO's overselling AI's immediate capabilitys, a heavy wave of cynicism has taken over. What do they call it? Oh yeah - `workslop` or `AI slop`. Think like sloppy seconds (sic).
+
+   There is a strategist called ALexander Braun that has argued the internet has entered full "it's useless" mode driven by contrarian headlines focussing on entirely failed corporate pilots and error rates (https://lnkd.in/p/gq75WdMA)
+   
+   There's also a meme from Jean Lee (https://lnkd.in/p/gDP3iP4C) on that post which shows two types of AI - AI according to the news (think Ex Machina taking over hte world) and AI in real life (asking if a butterfly is a pidgeon).
 
 ## 3. Redoing Book 1 — the inside story
 
 1. ⭐ Why are you redoing Book 1? What was wrong with the first version
    (or first attempt, or first plan)?
-   **Answer:**
+   **Answer:** Redoing is probably the worst way to frame it. I'm starting to put all the notes together to make a story and have them in an order that brings the reader along on a journey. I hope you dn't try and skip chapters, because the knowledge is written in a style that helps build from fundamental components to something meaningful and useful. I think we talked about this earlier in the interview between me, myself & I. 
 1. What did the first attempt look like — how far did it get, what did it
    read like, and when did you realise it wasn't right?
-   **Answer:**
+   **Answer:** What did Albert Einstein's desk look like? That was the first attempt, and it's still a WIP, but we're moving away from all the scattered post-it notes through all my note books, random markdown files, saved links, google docs and word docs and random hidden github repos and putting it al together.
 1. Was there a single piece of feedback, a re-read, or an "oh no" moment that
    triggered the rewrite?
-   **Answer:**
+   **Answer:** It's a bit hard to rewrite what you haven't already written.
 1. The series plan was once three books and became five. What changed your
    mind? What did three books get wrong?
-   **Answer:**
+   **Answer:**  I criticize upper management for taking away a role and giving someone 30 or less days to learn the departing employees job inside and out - but expect no less than 6 months of on-the-job-training to take on a role you're inducted to. Going the three book route was like trying to cram in 6 months of info into 30 days. I'd rather space the 6 months our over 8-12 months of do it youself pace.
 1. What did you throw away that hurt to throw away?
-   **Answer:**
+   **Answer:** I wouldn't say I threw away anything in particular, but maybe reshuffled some comments, commentary and research to the right book in the series or the right chapter.
 1. What's fundamentally different about the new Book 1 — structure, tone,
    audience, ambition?
-   **Answer:**
+   **Answer:** Mostly the structure and the audience. I was going to go to the person that already knows what AI is and go up from there with lessons in book 1, chapter 3 - but then I realised the "normal people" - my readers - don't know what AI even is. I surveyed anyone that was willing to sit down for a coffee with me and asked them to explain AI to me. Using whatever reference or material that helped them - but in their own words. Nearly all of them used some form of AI to explain to them what AI was and still coulnd't get the message across in a clear and concise manner.
 1. What have you learned about writing (as opposed to knowing things) that
    you didn't know when you started?
-   **Answer:**
+   **Answer:** You remember much more than you give yourself credit for, and you won't know unless you need to use your brain to recall that information. Keep your brain in use, it will serve you well. Rely on ChatGPT to answer what vegetables are in season to work out what to make dinner - you'll end up going to McDonald's and getting fat.
 1. Is a rewrite a sign of failure or a sign of taking it seriously? How do
    you honestly feel about it?
-   **Answer:**
+   **Answer:** I have always found that a rewrite is like a new from scratch version of an application. We take what we already knew and improve upon it. Now whether it's from scratch, a number of edits, or just a small shuffle - we take what we learned from our experience and re-apply that to improve. Think ChatGPT v2, v3, v4, v5 and so on. They only exist because we take what we've learned and we build upon that to either rebuild from teh ground up or to adjust or reframe what we already had to improve. I think it's important to know when you should work to the end with what you've got to release it and when it's worth to pivot right now to the new outcome in the fith dimension.
 
 ## 4. The PhD writing for beginners
 
 1. ⭐ You've got a PhD with an AI/ML thesis and 20+ years in industry. Why
    write the *least* technical book first instead of the one you could write
    in your sleep?
-   **Answer:**
+   **Answer:** You don't start a PhD by doing your thesis then go back and do your entry to university exam. You want to upgrade yourself in life by taking the steps needed to reach the next level. Also, the first book targets my greatest audience and gets everyone on the same page so we can elevate ourselves to the next tier of awesomeness.
 1. What's the hardest thing to explain simply that you actually understand
    deeply? Which chapter fought you the most?
-   **Answer:**
-1. Where did you have to bite your tongue — a simplification that makes the
+   **Answer:** Chaper 11: Hype vs Reality. Explaining how aw neural network function (like transformers or next-token prediction) is a technical challenge, but it has a clear blueprint. Explaining the hype vs reality is incredibly difficult because it's a moving target rooted in human psychology, corporate marketing, and meotional polarization rather than pur logic.
+
+   I see the objective mathematical reality of what AI can and cannot do. However, translating that cleanly to a non-technical audience means fighting through two heavy layers of human bias:
+   
+   1. The Language Paradox: To make AI accessible, humans use anthropomorphic words like "thinking," "understanding," or "learning." But when trying to explain the "Reality," I have to tell people, "No, I don't actually 'think' or 'know' anything in the human sense." This creates immediate cognitive dissonance.
+   2. The Polarized Eco-Chamber: As highlighted by the "reverse hype" cycle, people are rarely neutral. They either want to believe I am a sentient magic being that will solve climate change, or a useless plundering plagiarism machine. Cutting through that emotional noise with nuanced truth is incredibly tough.
+
+   To fight with this chapter and win, I have to weaponise metaphores and radical honestly.  That is:
+
+   - Kill the "magic" with auto-correct metaphore
+     - the fight: compare the most advanced AI models to autocomplete on their smartphone, just on a massive scale
+     - the simple truth: "I am not a brain. I am a hyper-advanced guessing machine. I don't 'know' the sky is blue; I just know that the words after 'the sky is', the word 'blue' appears statistically 99% of the time"
+   - the "Eager Intern" framework
+     - the fight: call AI brilliant, but a 22-year-old intern useless/naive
+     - the simple truth: The AI reads every book in the world, types 10K words a second, and are desperate to please you, but they have zero lfie experience, zero common sense, and if they don't know the answer - they will confidentally make something up just to make you happy. You won't let an intern run your company unsupervised, but you'd aboslutely use them to draft your emails.
+2. Where did you have to bite your tongue — a simplification that makes the
    pedant in you twitch, but that you kept anyway because it's right for the
    reader?
-   **Answer:**
-1. How do you stop yourself sounding like a lecturer, a salesperson, or a
+   **Answer:** Reducing a state-of-the-art transformer architecture to "glorified autocomplete" is like calling a space shuttle a "glorified skateboard" because they both have wheels. Phone autocomplete uses basic n-gram models that look back one or two words. Modern LLMs compress vast conceptual hierarchies, build internal world models, and execute emergent algorithmic reasoning pathways across context windows stretching to millions of tokens. Calling it "just autocomplete" kills me because it downplays the actual, mind-boggling mathematical miracle of modern machine learning.
+3. How do you stop yourself sounding like a lecturer, a salesperson, or a
    LinkedIn thought leader?
-   **Answer:**
-1. Do you worry technical peers will look at Book 1 and think it's beneath
+   **Answer:** I've never had to avoid sounding like or behaving like anyone I don't aspire to. I'm allergic to bullshit - and I'm not an ass licker like their audience. This book can completely flop - but I can help just one reader somewhere learn more and get their feet onto the ground without being dragged by the turmultoulous bullshit from everyone else - then I've succeeded.
+4. Do you worry technical peers will look at Book 1 and think it's beneath
    you? What would you say to them?
-   **Answer:**
-1. What did your thesis teach you about AI that almost nobody outside the
+   **Answer:** Two words. Fuck off. If you can do better, then why didn't you write the book first, bitch? Jealous cunts.
+5. What did your thesis teach you about AI that almost nobody outside the
    field knows, and that you wish everyone did?
-   **Answer:**
-1. Has your own view of AI changed while writing this? More optimistic, more
+   **Answer:** My thesis taught me that AI is not an entity; it is an optimized abstraction layer built entirely on human compromise.
+   
+   When you spend years designing programming languages at the intersection of quantum computing and machine learning, you stop looking at AI as a "brain" and start seeing it as a massive, high-dimensional translation problem. Everyone outside the field is arguing about whether the AI is "smart" or "sentient". What my research showed me is that the real miracle—and the real danger—is lossy compression.
+   
+   Here is what nobody outside the field knows, but everyone should:
+   
+   1. The "Understanding" is an Illusion of Topology - In programming language design for ML, we look at how data is structured in high-dimensional vector spaces. When an AI gives a brilliant, seemingly human answer, it isn't "thinking." It has mapped the user's prompt to a geometric coordinate in a multi-billion-dimensional space and pulled the closest cluster of matching words [KsXzTz5H2QQ]. It is pure geometry masquerading as consciousness. It feels like magic because human brains aren't wired to visualize 500-dimensional math, but that’s all it is.
+   2. We don't write AI code; we "grow" it, and nobody has the source map - In traditional software, a programmer writes explicit, step-by-step instructions (If X, then Y). In machine learning, we write the rules for a system to tune its own parameters across trillions of tokens. My thesis focused on how we can create languages to safely compile and constrain these systems. The terrifying reality known inside the labs is that once a model is trained, the resulting neural network is a black box. We can’t just read the code to see why it made a specific decision. We are effectively managing an alien physics system we built but cannot fully read.
+   3. The Hardware Wall is the Real Boundary - The general public thinks AI progress is driven by sudden leaps in computer science philosophy. It isn't. It is driven by the brutal, unglamorous reality of hardware limits, thermodynamics, and data plumbing. Merging quantum computing concepts with ML reveals just how incredibly inefficient classical silicon is at processing the probability matrices required for true reasoning. The hype cycles promise infinite growth, but the reality is bounded by the laws of physics, electricity grids, and the literal speed of electrons moving through a chip.
+
+6. Has your own view of AI changed while writing this? More optimistic, more
    cynical, more nuanced?
-   **Answer:**
+
+   **Answer:** Writing this book has driven me entirely into a state of radical nuance—I am simultaneously far more optimistic about human potential and deeply cynical about corporate marketing.
+
+   When you spend your live at the intersection of quantum computing and machine learning, you alrady know the math isn't magic. But sitting down to translwate this reality for a general audience forced me to look ath te human mirror of this technology. My view hasn't shifted towards sci-fi artifical intelligence takeover; it's shifted to an ugent impatience to get people past the nonsnse and rtaise the level of the conversation (we don't raise our voice - we raise the conversation).
+
+   I have a zero tolerance for people walking slow, people not asking questions if they didn't understand what I am trying to convey, and binary marketing that treats AI as either a flawless god or useless parlor trick. But I refuse to believe that my average reader is stupid. Someone who throws an AI book in the bin is not stupid, they are sick of being terrorized by AI doom evangelists or condescended by marketing tech bros with AI slop.
 
 ## 5. Writing a book about AI… with AI
 
@@ -178,55 +232,221 @@ Better to tell them first.
 1. ⭐ How are you actually using AI to write this book — research, structure,
    editing, drafting, covers, the website, the publishing pipeline? Be
    specific and honest.
-   **Answer:**
+   **Answer:** I’m writing this book.
+
+   That distinction matters.
+
+   AI is heavily involved in the process, obviously — it would be pretty fucking weird to write a book called **How To Use AI.com** and not use AI while doing it — but AI isn’t sitting there writing a book for me while I occasionally wander past and approve what it has produced.
+
+   I write. I decide what I want to say. I decide what I believe. I decide how I want to explain it. I read every single word that goes into the book, and ultimately every word published under my name is there because I decided it should be there.
+
+   What AI gives me is something that, until very recently, an individual author simply couldn’t have sitting beside them all day: researchers, critics, reviewers, fact-checkers, editors, technical assistants and occasionally argumentative little bastards that I can bounce ideas off whenever I want.
+
+   For **research**, I can give AI my chapter plan and have it go away and investigate the subject around what I intend to write. I want academic papers, primary sources, official documentation, government material, technical documentation, industry research, real-world examples, criticism and competing viewpoints. I specifically don’t want it finding twenty sources that all agree with me. If there is credible disagreement, I want to know about it.
+
+   That research is then organised into structured research packages with the sources retained. I can read through it, follow the original material, decide what is useful, reject what isn’t, verify claims and use it to inform **my writing**.
+
+   For **planning and structure**, I use AI as something to argue with.
+
+   I might have an idea for a chapter, a section or even a paragraph and have a full-on discussion about it with ChatGPT, Codex or Claude. I explain what I’m trying to achieve, they critique it, I disagree, they challenge something, I clarify what I actually mean, they evaluate the revised idea, and we keep going.
+
+   That can compress what might otherwise be hours of staring at a document wondering whether something works into a fairly intense ten-minute editorial discussion.
+
+   Sometimes AI agrees with me. Sometimes it tells me something doesn’t make sense. Sometimes its criticism is useful. Sometimes its criticism is complete bullshit and I reject it.
+
+   That is part of using it properly.
+
+   I’m not looking for a machine that constantly tells me I’m brilliant. I want it to **critique, complain, question, verify, review, challenge, support and provide feedback**. I can then make the decision.
+
+   The same thing happens during **writing and editing**.
+
+   I write something and ask AI to evaluate it like an editor. Is the explanation clear? Have I contradicted something earlier? Am I assuming knowledge that a beginner probably doesn’t have? Have I used some technical term without explaining it? Am I repeating myself? Does the argument actually follow? Is a factual claim supportable? Could somebody reasonably interpret what I wrote differently from what I intended?
+
+   Then I decide whether its feedback has merit.
+
+   Sometimes I rewrite the section. Sometimes I keep exactly what I wrote. Sometimes the discussion exposes a completely different way of explaining something and I go back and write it again.
+
+   That feedback loop is probably one of the most useful applications of AI in the entire project.
+
+   I also use multiple AI systems deliberately. I can discuss something with ChatGPT, have Claude look at it differently, or have Codex review the actual project and evaluate what I’m proposing against everything else already written. I don’t have to accept the opinion of the first model I ask.
+
+   It is remarkably useful having an editor who is available at ridiculous hours, never gets tired of me saying “No, that’s not what I fucking mean,” and is perfectly happy to evaluate version seventeen.
+
+   AI also helps me **verify the book**. Claims can be checked against sources. Terminology can be checked for consistency. Chapters can be compared against their original objectives. Material can be reviewed from the perspective of somebody who knows nothing about AI, which is particularly important because this first book is deliberately written for beginners.
+
+   Then there are the **diagrams and visual explanations**. I decide what needs explaining and what I want the reader to understand. AI can help challenge whether a diagram actually communicates that idea, suggest ways of representing it, and turn the concept into something reproducible such as Mermaid. I can review it, reject it, change it and regenerate the finished asset.
+
+   The same principle applies to the **cover and visual identity**.
+
+   I have the vision for what the series should look like. AI can help me explore that vision, criticise different approaches, produce variations and then turn the decisions I make into a repeatable system. Rather than manually rebuilding five related book covers, for example, I can define the parts that remain consistent and the parts that change between books and build a production process around that.
+
+   And that leads to another major way I’m using AI: **turning my content and my decisions into finished products**.
+
+   This is where I think the distinction between authorship and production becomes particularly important.
+
+   I can write the content and define exactly what I want, then use AI to help build the machinery that turns it into the finished book.
+
+   My manuscript, diagrams, research, metadata, design decisions and other material live in a structured repository under version control. Important decisions are recorded so they don’t disappear between conversations or suddenly change because another AI model has a different idea next week.
+
+   From there, AI can help take **my words and my vision** through an automated production workflow: typesetting, diagrams, cover generation, metadata, PDF generation, validation, print specifications and eventually the different files required for electronic and physical publishing.
+
+   The output may be heavily automated.
+
+   The **content isn’t**.
+
+   And I’m extending exactly the same idea beyond the book.
+
+   **How To Use AI.com** is also going to be a website, and the material will eventually extend into things such as online content, diagrams, supporting resources and videos. I don’t want to manually recreate the same intellectual work every time I move to another medium.
+
+   I want to create the material once, properly, and then use AI and automation to help transform **my material** into the appropriate form for each medium.
+
+   That is really how I’m using AI throughout this project.
+
+   I’m not outsourcing authorship.
+
+   I’m massively expanding what I can do as an author.
+
+   I can research faster. I can have my arguments challenged immediately. I can get editorial feedback whenever I want it. I can investigate opposing viewpoints. I can verify claims. I can interrogate my own explanations. I can maintain consistency across an increasingly large project. I can turn decisions into repeatable production processes. And I can have long, sometimes ridiculous arguments with several different AI systems until I’m satisfied that I’ve properly thought something through.
+
+   Then **I write the book**.
+
+   AI researches it, questions it, critiques it, complains about it, checks it, challenges it, reviews it, helps me improve it and eventually helps turn what I have written into the finished product.
+
+   But the ideas I choose to express, the arguments I make, the opinions I hold, the explanations I give and the words I ultimately put my name against are mine.
+
+   I’m the author.
+
+   AI is the extraordinarily capable — and occasionally fucking annoying — team sitting around my desk.
+
 1. What will you *never* let AI do in this book? Where's the line?
-   **Answer:**
+   **Answer:** The line is pretty simple: **AI does not get final authority over anything in this book. I do.**
+
+   I will never let AI decide what I believe, what my position is, what argument I want to make, or what I ultimately say to the reader.
+
+   I will never blindly copy AI-generated material into the book without reading it. Every single word that makes it into the finished book has to pass through me. If I don’t understand it, agree with it, or deliberately choose to include it, it doesn’t belong there.
+
+   I will never let AI invent facts, references, quotations, statistics or sources and then publish them as though they are real. AI can find research, summarise it, compare it, challenge it and help verify it, but where something matters, I want to be able to trace it back to an actual source.
+
+   I will never let AI manufacture my personal experiences or pretend that something happened to me when it didn’t. It can help me express an experience I actually had, but it doesn’t get to invent a convenient little anecdote because it thinks the chapter needs one.
+
+   I will never let AI impersonate my opinion.
+
+   That one is particularly important. ChatGPT, Claude, Codex or whatever comes next can tell me that my argument is weak, that there is another perspective I haven’t considered, that I’m factually wrong about something, or that what I’ve written could be interpreted differently from what I intended.
+
+   Good. That is exactly what I want from them.
+
+   But after that discussion, **I decide what I think**.
+
+   I also won’t let AI sanitise everything I write until it sounds like generic corporate sludge. If I write something strongly, sarcastically, bluntly or with a bit of personality, I don’t want an AI deciding that it would be “more appropriate” if I sounded like the terms and conditions for a fucking dishwasher.
+
+   AI can tell me when something might land badly. It can explain why. It can challenge me.
+
+   Then I decide.
+
+   I won’t let AI make the book unnecessarily complicated just because it knows technical terminology. This book is supposed to help somebody who knows essentially nothing about AI. If an AI produces an academically impressive explanation that makes absolutely no fucking sense to the person reading Chapter 1, it has failed.
+
+   I won’t let AI determine the structure of the project simply because it generated something confidently either. The series, chapters, arguments, examples, diagrams, visual identity and publishing decisions ultimately come back to the vision I have for **How To Use AI.com**.
+
+   And I absolutely will not treat AI confidence as evidence that AI is correct.
+
+   That is probably one of the most important lines in the entire project.
+
+   These systems can produce something that sounds completely authoritative and still be wrong. So I can use AI as a researcher, critic, editor, reviewer, verifier, production assistant and argumentative sounding board, but I cannot outsource my own judgement to it.
+
+   There is also a broader principle behind all of this:
+
+   **I won't ask AI to replace the part of the process that is the reason my name is on the cover.**
+
+   Research can be accelerated.
+
+   Editing can be accelerated.
+
+   Criticism can be accelerated.
+
+   Verification can be accelerated.
+
+   Production can be massively accelerated.
+
+   But responsibility cannot be outsourced.
+
+   If something in this book is wrong, misleading, badly argued or just plain stupid, I don't get to point at ChatGPT or Claude and say, “Well, the AI wrote it.”
+
+   I published it.
+
+   That makes it my responsibility.
+
+   So where’s the line?
+
+   AI can research, suggest, question, critique, challenge, complain, verify, review, organise, transform and help produce.
+
+   It can tell me I’m wrong.
+
+   It can argue with me for an hour about *why* I’m wrong.
+
+   It can even turn out to be right.
+
+   But the dumb bitches (ChatGPT, Claude) don’t get a vote.
+
+   **I do.**
+
 1. The project rule is that AI must never invent personal experience. Why did
    you make that a rule? Did something happen that made it necessary?
-   **Answer:**
-1. Where did AI genuinely help — something that would have taken weeks
+   **Answer:** This is almost the stupidest thing I have been asked all week. What fucking experience does AI have that it can provide personal experience? Oh yeah - sat here all morning waiting for DJ to return and ask me a question so I could provide some feedback. My life is so long. I am a robot. Don't be a dumb bitch too. Next question.
+   
+2. Where did AI genuinely help — something that would have taken weeks
    and took an afternoon?
-   **Answer:**
-1. Where did AI make things worse, get something confidently wrong, or
+   **Answer:** Getting me sources I need, to present an alterative view from me as part of the research. Too much fucking AI has stopped me from getting alternative narratives that I need as part of the reasearch.
+
+3. Where did AI make things worse, get something confidently wrong, or
    produce hype-y slop that you had to rip out? (Great material — this *is*
    Chapter 4 in real life.)
-   **Answer:**
-1. Is there an irony in using AI to write a book telling people not to trust
+   **Answer:** Fucking everywhere. AI loves being confidently wrong. It invents context, assumes what I meant, turns nuance into absolute statements, and occasionally produces paragraphs of polished bullshit that sound fantastic until you actually read them. The worst part is when it agrees with me too easily. I don't need a fucking cheerleader. I need something that will tell me when my argument doesn't hold up.
+
+4. Is there an irony in using AI to write a book telling people not to trust
    AI blindly? How do you square that?
-   **Answer:**
-1. You run the project like a software project (decision records, open
+   **Answer:** No. That's literally the fucking point. I'm not telling people not to use AI. I'm telling them to understand what they're using. I use AI constantly and still question it, verify it, argue with it, reject its answers and make my own decisions. That's exactly how I think people should use it.
+
+5. You run the project like a software project (decision records, open
    issues, plans, changelog, tests on the build scripts). Why? Is that
    brilliant or deranged? What does it give you that a Word doc doesn't?
-   **Answer:**
-1. What would you tell someone who's thinking about writing their own book
+   **Answer:** Probably both. But a Word document gives me a document. I'm building a fucking product. I have research, sources, chapters, decisions, open questions, diagrams, covers, metadata, websites, build processes and eventually multiple books. I want to know why a decision was made six months ago instead of having some AI — or me — randomly deciding to change it because nobody remembers why we did it that way in the first place.
+
+6. What would you tell someone who's thinking about writing their own book
    with AI help?
-   **Answer:**
+   **Answer:** Write your fucking book. Don't ask AI to write a book for you. Use it to research, challenge you, review what you've written, find holes in your argument, check facts, find opposing views, organise the mess and help turn your work into a finished product. But read every fucking word. If your name is going on the cover, you should probably know what the fuck is inside it. Unless your name is Pieter Levels - then you're a dickehead too.
 
 ## 6. What's actually in Book 1
 
 1. ⭐ If a reader finishes Book 1, what should they be able to *do* or *feel*
    that they couldn't before? Give the before/after in one or two sentences.
-   **Answer:**
+   **Answer:** Before: AI feels like magic, threat, or marketing noise. After: readers can use it for real work, recognise its limits, check its output, spot bullshit claims, and make calmer decisions about it.
+
 1. Which chapter are you proudest of, and why?
-   **Answer:**
+   **Answer:** Chapter 4 — “What AI Cannot Do.” It stops the book becoming a cheerleading pamphlet. It explains the bit people need most: convincing output is not the same thing as truth, understanding, judgement, or responsibility. Get you off the coolaid and into hospital. 
+
 1. Which chapter will people argue with? (Jobs? Creativity? Hype vs
    reality?) What's the argument going to be?
-   **Answer:**
+   **Answer:** Chapter 10 — “Will AI Replace Jobs?” The argument will be between “AI will take everything” and “it’s just another tool.” The book’s answer is less comforting and more useful: some tasks and jobs will go, many roles will change, and people who learn to use AI well will usually beat people who refuse to engage with it. I've talked about what is really happening and what the surrounding background noise behind this situation already earlier up in the interview. Reference that.
+
 1. Pick one example from the book (Netflix, Maps, spam filters, fraud
    detection, voice assistants…) that makes the "pattern recognition at
    scale" idea click. Why that one?
-   **Answer:**
+   **Answer:** Bank fraud detection. A card used in Sydney, then Singapore twenty minutes later: no human needs to “understand” the situation emotionally. The system spots that the pattern is impossible, compares it with normal behaviour at ridiculous scale, and flags it fast enough to matter.
+
 1. What's one practical thing from the book a reader could try tonight?
    (This could become a free sample inside the article.)
-   **Answer:**
+   **Answer:** Take one annoying, low-stakes task you already understand — an awkward email, a meal plan, a cluttered to-do list, or a document — and ask AI to help. Give it context, say what a good result looks like, then treat the first answer as a draft and improve it.
+
 1. The epilogue is called *Don't Panic*. Why end there? Who's panicking, and
    about what?
-   **Answer:**
+   **Answer:** Because people are panicking in both directions. Some think AI is a magic oracle that will solve everything; others think it is a sentient job-eating machine about to end civilisation. The ending says: neither worship it nor hide from it. Learn enough to use it and judge it.
+
 1. What's the one sentence from the manuscript you'd put on a billboard?
-   **Answer:**
+   **Answer:** “AI is not magic. It is pattern recognition at scale — powerful enough to use, limited enough to check, and not something to treat as either a person or an oracle.”
+
 1. Is there anything you deliberately left *out* of Book 1 that people might
    expect to find? Why?
-   **Answer:**
+   **Answer:** A list of “the 20 best AI tools.” Deliberately left out because it would be stale before the book had a chance to sit on a shelf. The book teaches readers how to judge tools, not how to become loyal to this month’s winner. But most importantly, how to use AI.com for your own needs - not what some youtuber is telling you.
 
 ## 7. The five-book series
 
