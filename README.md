@@ -76,9 +76,11 @@ The `takeaway` frontmatter field renders the publication’s standard Takeaway b
 Put an MP3 beside the article with the same basename (`src/content/articles/my-article.mp3`, gitignored), then from the `dev` branch:
 
 ```bash
-scripts/publish-article-audio.sh my-article --dry-run   # preview season/episode, tags, R2 key
-scripts/publish-article-audio.sh my-article             # tag, upload, update frontmatter, commit, push dev
+npm run audio:dry-run -- my-article   # preview season/episode, tags, R2 key — changes nothing
+npm run audio:publish -- my-article   # tag, upload, update frontmatter, commit, push dev
 ```
+
+(The `--` passes the slug through npm. Calling `scripts/publish-article-audio.sh` directly works too; `--help` lists the options.)
 
 Seasons are publish years (2026 = season 01). The episode number is the next free one in that season, taken from both R2 and the local articles. The script rewrites the ID3 tags from scratch without re-encoding, embeds artwork, and uploads to `s3://usefulstash/blog-articles/audio/season-SS/episode-EEE/<slug>-sSSeEEE.mp3`. It then writes `duration`, `series`, `episode`, `audio` and `podcast` into the frontmatter. Any article with `audio` + `episode` + `podcast` shows the player and appears in `/podcast.xml`. The main `/rss.xml` never carries enclosures. Placeholders (series name, album artist, publisher, artwork) sit at the top of the script.
 
