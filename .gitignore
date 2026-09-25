@@ -30,6 +30,13 @@ youtube-cover.png
 
 # Article podcast audio lives in R2 (scripts/publish-article-audio.sh), not in the repo
 src/content/articles/*.mp3
+src/content/articles/*.intro.*
+!src/content/articles/*.intro.md
+!src/content/articles/*.intro.mdx
+
+# Podcast intro/outro voice + licensed music (licences don't allow redistributing the raw files)
+podcast-audio/*
+!podcast-audio/README.md
 
 # Personal test renders
 /output/
