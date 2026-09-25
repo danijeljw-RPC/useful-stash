@@ -4,7 +4,7 @@ export const podcast = {
     'Practical guides, technical experiments, tools, and conversations about building, fixing, and understanding useful things.',
   author: 'DJ Wynyard',
   ownerName: 'RePass Cloud',
-  ownerEmail: 'hello@usefulstash.com',
+  ownerEmail: 'hello@repasscloud.com',
   language: 'en-AU',
   explicit: false,
   category: 'Technology',
