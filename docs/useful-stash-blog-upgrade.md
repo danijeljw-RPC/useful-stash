@@ -321,7 +321,7 @@ export const podcast = {
     "Practical guides, technical experiments, tools, and conversations about building, fixing, and understanding useful things.",
   author: "DJ Wynyard",
   ownerName: "RePass Cloud",
-  ownerEmail: "hello@usefulstash.com",
+  ownerEmail: "hello@repasscloud.com",
   language: "en-AU",
   explicit: false,
   category: "Technology",
@@ -750,7 +750,7 @@ The architecture and defaults are now resolved:
 - Podcast description: the proposed editable copy in `src/config/podcast.ts` above.
 - Public podcast author: `DJ Wynyard`.
 - Administrative owner: `RePass Cloud`.
-- Verification email: `hello@usefulstash.com`.
+- Verification email: `hello@repasscloud.com`.
 - Channel and episode explicit default: `false`, with a per-episode boolean override.
 - Apple category: `Technology`.
 - Podcast and videocast use the same square artwork.
