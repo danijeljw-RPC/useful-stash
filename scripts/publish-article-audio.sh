@@ -54,9 +54,9 @@ PUBLISHER="${PUBLISHER:-RePass Cloud}"              # TPUB
 COPYRIGHT_HOLDER="${COPYRIGHT_HOLDER:-RePass Cloud}" # TCOP -> "© <year> <holder>"
 LANGUAGE="${LANGUAGE:-eng}"                         # TLAN, ISO 639-2
 ENCODED_BY="${ENCODED_BY:-Useful Stash}"            # TENC
-# Square artwork, 1400–3000px, JPG or PNG. The placeholder falls back to the 1024px favicon until it exists.
-ARTWORK="${ARTWORK:-public/images/podcast/useful-stash-podcast-placeholder.png}"
-ARTWORK_FALLBACK="public/favicon-1024x1024.png"
+# Square artwork, JPG or PNG. Same file the podcast feed uses; it's shrunk to EMBED_ARTWORK_SIZE before embedding.
+ARTWORK="${ARTWORK:-public/images/podcast/useful-stash-podcast.jpg}"
+EMBED_ARTWORK_SIZE="${EMBED_ARTWORK_SIZE:-1400}"   # px; keeps the MP3 ~350 KB heavier instead of several MB
 
 # -----------------------------------------------------------------------------
 
@@ -202,22 +202,28 @@ ARTICLE_URL="$SITE_URL/stash/$SLUG/"
 # ID3 tags
 # -----------------------------------------------------------------------------
 
-if [[ ! -f "$ARTWORK" ]]; then
-    echo "Warning: artwork '$ARTWORK' not found — using $ARTWORK_FALLBACK (TODO: add real 3000x3000 podcast art)." >&2
-    ARTWORK="$ARTWORK_FALLBACK"
-fi
-[[ -f "$ARTWORK" ]] || die "No artwork file available."
+[[ -f "$ARTWORK" ]] || die "Artwork not found: $ARTWORK"
+IFS=x read -r art_w art_h < <(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x "$ARTWORK")
+[[ "$art_w" =~ ^[0-9]+$ && "$art_h" =~ ^[0-9]+$ ]] || die "Could not read artwork dimensions: $ARTWORK"
+[[ "$art_w" == "$art_h" ]] || die "Artwork must be square (got ${art_w}x${art_h})."
+(( art_w >= 1400 )) || echo "Warning: artwork is ${art_w}px; Apple Podcasts wants 1400–3000px." >&2
 
 COMMENT="$DESCRIPTION  $ARTICLE_URL"
 
 TAGGED="$(mktemp -t "article-audio.XXXXXX").mp3"
-trap 'rm -f "$TAGGED"' EXIT
+EMBED_ART="$(mktemp -t "article-audio-cover.XXXXXX").jpg"
+trap 'rm -f "$TAGGED" "$EMBED_ART"' EXIT
+
+embed_size=$(( art_w < EMBED_ARTWORK_SIZE ? art_w : EMBED_ARTWORK_SIZE ))
+ffmpeg -hide_banner -loglevel error -y -i "$ARTWORK" \
+    -vf "scale=$embed_size:$embed_size:flags=lanczos" -q:v 3 "$EMBED_ART" \
+    || die "Could not prepare artwork for embedding."
 
 info "Tagging $MP3"
 # -map_metadata -1 drops whatever tags came in, so the result is exactly this list.
 # ID3v2.3 is the most widely supported; ffmpeg writes `date` as TYER (year) + TDAT (day/month).
 ffmpeg -hide_banner -loglevel error -y \
-    -i "$MP3" -i "$ARTWORK" \
+    -i "$MP3" -i "$EMBED_ART" \
     -map 0:a:0 -map 1:v:0 -map_metadata -1 -map_chapters -1 \
     -c:a copy -c:v copy \
     -id3v2_version 3 -write_id3v1 1 \
@@ -258,7 +264,7 @@ cat <<EOF
   Album:        $SERIES   (album artist: $ALBUM_ARTIST)
   Season/Ep:    disc $SEASON / track $EPISODE   (s${SS}e$EEE, $EPISODE_TYPE)
   Released:     $RELEASE_DATE
-  Artwork:      $ARTWORK
+  Artwork:      $ARTWORK (${art_w}px, embedded at ${embed_size}px)
   Duration:     $DURATION   ($BYTES bytes)
   GUID:         $GUID
   Upload to:    s3://$R2_BUCKET/$R2_KEY
@@ -297,7 +303,7 @@ remote_bytes="$(r2 s3api head-object --bucket "$R2_BUCKET" --key "$R2_KEY" --que
 
 info "Updating $ARTICLE"
 UPDATE_JSON="$(mktemp -t "article-audio-update.XXXXXX")"
-trap 'rm -f "$TAGGED" "$UPDATE_JSON"' EXIT
+trap 'rm -f "$TAGGED" "$EMBED_ART" "$UPDATE_JSON"' EXIT
 jq -n \
     --arg duration "$DURATION" --arg series "$SERIES" --argjson episode "$EPISODE" \
     --arg url "$AUDIO_URL" --argjson bytes "$BYTES" \
