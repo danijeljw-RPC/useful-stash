@@ -17,6 +17,7 @@
 #   3. upload it to R2:  s3://usefulstash/blog-articles/audio/season-SS/episode-EEE/<slug>-sSSeEEE.mp3
 #   4. write duration / series / episode / audio / podcast into the article frontmatter
 #   5. commit the article and push to dev
+#   6. delete the local MP3 (R2 now holds the identical, tagged file)
 #
 # Re-running for the same article is safe: it reuses the article's episode number
 # and GUID, re-tags, and overwrites the same R2 object.
@@ -30,6 +31,7 @@
 #   --dry-run            tag a temp copy and print the plan; no upload, no file or git changes
 #   --no-push            commit but do not push
 #   --no-git             do not commit or push
+#   --keep-local         keep the local MP3 after a successful upload
 #   -h, --help
 
 set -euo pipefail
@@ -65,7 +67,7 @@ info() { echo "==> $*"; }
 
 usage() { sed -n '2,/^set -euo/p' "$0" | sed -e '/^set -euo/d' -e 's/^# \{0,1\}//'; }
 
-SEASON="" EPISODE="" EPISODE_TYPE="full" DRY_RUN=0 DO_GIT=1 DO_PUSH=1 TARGET=""
+SEASON="" EPISODE="" EPISODE_TYPE="full" DRY_RUN=0 DO_GIT=1 DO_PUSH=1 KEEP_LOCAL=0 TARGET=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --season) SEASON="$2"; shift 2 ;;
@@ -76,6 +78,7 @@ while [[ $# -gt 0 ]]; do
         --dry-run) DRY_RUN=1; shift ;;
         --no-push) DO_PUSH=0; shift ;;
         --no-git) DO_GIT=0; DO_PUSH=0; shift ;;
+        --keep-local) KEEP_LOCAL=1; shift ;;
         -h|--help) usage; exit 0 ;;
         -*) die "Unknown option: $1 (see --help)" ;;
         *) [[ -z "$TARGET" ]] || die "Only one article at a time."; TARGET="$1"; shift ;;
@@ -118,8 +121,14 @@ SLUG="${SLUG%.md}"; SLUG="${SLUG%.mdx}"
 MP3="$ARTICLES_DIR/$SLUG.mp3"
 ARTICLE="$ARTICLES_DIR/$SLUG.md"
 [[ -f "$ARTICLE" ]] || ARTICLE="$ARTICLES_DIR/$SLUG.mdx"
-[[ -f "$MP3" ]] || die "Missing audio: $MP3"
 [[ -f "$ARTICLE" ]] || die "Missing article: $ARTICLES_DIR/$SLUG.md"
+if [[ ! -f "$MP3" ]]; then
+    published="$(node "$HELPER" read "$ARTICLE" | jq -r '.audio.url // empty')"
+    [[ -n "$published" ]] || die "Missing audio: $MP3"
+    die "Missing audio: $MP3
+       Already published (the local copy is removed after upload). To re-tag it, download it back first:
+       aws --profile $R2_AWS_PROFILE --endpoint-url $R2_ENDPOINT_URL s3 cp s3://$R2_BUCKET${published#https://media.usefulstash.com} $MP3"
+fi
 
 if [[ $DO_GIT -eq 1 && $DRY_RUN -eq 0 ]]; then
     current_branch="$(git rev-parse --abbrev-ref HEAD)"
@@ -326,6 +335,12 @@ if [[ $DO_GIT -eq 1 ]]; then
         info "Pushing to origin/$GIT_BRANCH"
         git push origin "$GIT_BRANCH"
     fi
+fi
+
+# Only reached after the upload size check, frontmatter write and git steps all succeeded.
+if [[ $KEEP_LOCAL -eq 0 ]]; then
+    rm -f -- "$MP3"
+    info "Removed local $MP3 (published copy is on R2; pass --keep-local to keep it)"
 fi
 
 info "Done: $TITLE is S${SS}E$EEE → https://media.usefulstash.com$AUDIO_URL"
