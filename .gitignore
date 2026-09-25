@@ -35,3 +35,9 @@ src/content/articles/*.mp3
 /output/
 docs/domain-notes.txt
 turnstile.env
+
+# Claude Code scratch worktrees
+.claude/worktrees/
+
+# Podcast cover master (kept locally, not in git)
+docs/useful-stash-podcast-placeholder.png
