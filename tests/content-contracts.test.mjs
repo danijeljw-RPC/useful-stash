@@ -4,6 +4,7 @@ import test from 'node:test';
 import { articleSchema, authorSchema, projectSchema } from '../src/schemas/content.ts';
 import {
   assertContentIntegrity,
+  isArticleRoutable,
   isArticleVisible,
   isProjectVisible,
   sortArticles,
@@ -97,6 +98,9 @@ test('publishable selectors exclude fixtures, drafts, and noindex content in pro
   assert.equal(isArticleVisible({ ...validArticle, fixture: true }, true), false);
   assert.equal(isArticleVisible({ ...validArticle, fixture: true }, false), true);
   assert.equal(isArticleVisible({ ...validArticle, draft: true }, true), false);
+  assert.equal(isArticleVisible({ ...validArticle, draft: true }, false), true);
+  assert.equal(isArticleRoutable({ ...validArticle, draft: true }, true), false);
+  assert.equal(isArticleRoutable({ ...validArticle, draft: true }, false), true);
   assert.equal(isArticleVisible({ ...validArticle, seo: { canonical: null, noindex: true } }, true), false);
   assert.equal(isProjectVisible({ draft: true }, true), false);
   assert.equal(isProjectVisible({ draft: true }, false), true);
