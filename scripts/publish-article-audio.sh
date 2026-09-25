@@ -17,8 +17,8 @@
 #   3. upload it to R2:  s3://usefulstash/blog-articles/audio/season-SS/episode-EEE/sSSeEEE-<slug>.mp3
 #      (removing an older <slug>-sSSeEEE.mp3 copy) and purge its URL from Cloudflare's cache
 #   4. write duration / series / episode / audio / podcast into the article frontmatter
-#   5. commit the article and push to dev
-#   6. delete the local MP3 (R2 now holds the identical, tagged file)
+#   5. delete the local MP3 (R2 now holds the identical, tagged file)
+#   6. commit the article (if its frontmatter changed) and push to dev
 #
 # Re-running for the same article is safe: it reuses the article's episode number
 # and GUID, re-tags, and overwrites the same R2 object (renaming it if it has the old name).
@@ -548,23 +548,29 @@ node "$HELPER" write "$ARTICLE" "$UPDATE_JSON"
 node "$HELPER" validate "$ARTICLE" || die "Updated frontmatter does not pass the article schema."
 
 # -----------------------------------------------------------------------------
-# Git
+# Local cleanup, then git
 # -----------------------------------------------------------------------------
 
-if [[ $DO_GIT -eq 1 ]]; then
-    info "Committing"
-    git add -- "$ARTICLE"
-    git commit -m "Add podcast audio for $SLUG (S${SS}E$EEE)" -- "$ARTICLE"
-    if [[ $DO_PUSH -eq 1 ]]; then
-        info "Pushing to origin/$GIT_BRANCH"
-        git push origin "$GIT_BRANCH"
-    fi
-fi
-
-# Only reached after the upload size check, frontmatter write and git steps all succeeded.
+# R2 has the verified file and the frontmatter points at it, so the local MP3 is no longer needed.
+# (It's gitignored, so removing it doesn't touch the commit below.)
 if [[ $KEEP_LOCAL -eq 0 ]]; then
     rm -f -- "$MP3" ${EPISODE_VOICE:+"$EPISODE_VOICE"}
     info "Removed local $MP3${EPISODE_VOICE:+ and $EPISODE_VOICE} (published copy is on R2; pass --keep-local to keep it)"
+fi
+
+if [[ $DO_GIT -eq 1 ]]; then
+    git add -- "$ARTICLE"
+    if git diff --cached --quiet -- "$ARTICLE"; then
+        # Re-publishing with identical frontmatter: nothing to commit (git commit would fail and stop the script).
+        info "$ARTICLE is unchanged — nothing to commit"
+    else
+        info "Committing"
+        git commit -m "Add podcast audio for $SLUG (S${SS}E$EEE)" -- "$ARTICLE"
+        if [[ $DO_PUSH -eq 1 ]]; then
+            info "Pushing to origin/$GIT_BRANCH"
+            git push origin "$GIT_BRANCH"
+        fi
+    fi
 fi
 
 info "Done: $TITLE is S${SS}E$EEE → https://media.usefulstash.com$AUDIO_URL"
