@@ -121,7 +121,7 @@ It writes SVG first and then PNG when `rsvg-convert`, ImageMagick, or Inkscape i
 - Static-assets serving with trailing-slash handling and branded `404.html` fallback.
 - Custom Domain declaration for the exact hostname `usefulstash.com`.
 - Current compatibility date and Workers observability configuration.
-- GitHub Actions validation only; it does not deploy production.
+- GitHub Actions validation and `dev` → `main` promotion; it does not deploy production.
 - Canonical URLs, sitemap, RSS, robots.txt, social metadata, and branded share image.
 
 `wrangler.jsonc` declares `usefulstash.com` as a Custom Domain. The Worker is the origin. Do not add `usefulstash.com/*` and do not manually create a CNAME for this binding.
@@ -142,4 +142,8 @@ No Cloudflare account ID, zone ID, API token, or secret belongs in this reposito
 
 ## Validation workflow
 
-The GitHub workflow at `.github/workflows/validate.yml` runs `npm ci`, `npm run check`, `npm run build`, and `npm test` for pull requests and pushes to `main`. Production deployment remains solely with Cloudflare Workers Builds.
+All work happens on `dev` or on branches cut from `dev`; nobody commits to `main` directly.
+
+The GitHub workflow at `.github/workflows/validate.yml` runs `npm ci`, `npm run check`, `npm run build`, and `npm test` for pushes to `dev` and pull requests into `dev`. When a push to `dev` passes, the workflow opens (or reuses) a `dev` → `main` pull request and merges it. Nothing runs in GitHub Actions for `main`; production deployment remains solely with Cloudflare Workers Builds, which deploys every push to `main`.
+
+This needs **Settings → Actions → General → Allow GitHub Actions to create and approve pull requests** enabled, and **Automatically delete head branches** left off so `dev` survives each merge.
