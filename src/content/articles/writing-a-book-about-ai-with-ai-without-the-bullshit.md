@@ -16,6 +16,20 @@ heroImageAlt: Preview cover of AI for Normal People, Book 1 of the How To Use AI
 seo:
   canonical: null
   noindex: false
+duration: "18:23"
+series: Useful Stash
+episode: 1
+audio:
+  url: /blog-articles/audio/season-01/episode-001/writing-a-book-about-ai-with-ai-without-the-bullshit-s01e001.mp3
+  mimeType: audio/mpeg
+  bytes: 14436239
+podcast:
+  guid: urn:uuid:01a0d660-9066-7e2b-881b-ae4a09e36ec3
+  season: 1
+  episodeType: full
+  explicit: false
+  spotify: null
+  applePodcasts: null
 ---
 
 I have spent years sitting in rooms full of intelligent people, listening to them explain artificial intelligence badly.
