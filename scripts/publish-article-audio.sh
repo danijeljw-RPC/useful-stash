@@ -14,17 +14,18 @@
 #   1. work out the season (publish year: 2026 = 01, 2027 = 02, ...) and the next
 #      free episode number in that season (from R2 *and* the local articles)
 #   2. rewrite the MP3's ID3 tags from scratch (no re-encode) and embed artwork
-#   3. upload it to R2:  s3://usefulstash/blog-articles/audio/season-SS/episode-EEE/<slug>-sSSeEEE.mp3
+#   3. upload it to R2:  s3://usefulstash/blog-articles/audio/season-SS/episode-EEE/sSSeEEE-<slug>.mp3
+#      (removing an older <slug>-sSSeEEE.mp3 copy) and purge its URL from Cloudflare's cache
 #   4. write duration / series / episode / audio / podcast into the article frontmatter
 #   5. commit the article and push to dev
 #   6. delete the local MP3 (R2 now holds the identical, tagged file)
 #
 # Re-running for the same article is safe: it reuses the article's episode number
-# and GUID, re-tags, and overwrites the same R2 object.
+# and GUID, re-tags, and overwrites the same R2 object (renaming it if it has the old name).
 #
 # Intro / outro: if podcast-audio/ has the voice + music files (see podcast-audio/README.md),
 # the article audio is wrapped as  [music + intro voice] [article] [music + outro voice],
-# the music ducks under the voice, and the whole episode is normalised to -16 LUFS.
+# the music drops under the voice, and the whole episode is normalised to -16 LUFS.
 # An optional per-episode line ("Season 1, episode 3: ...") can sit next to the article
 # as <slug>.intro.mp3 (or .wav/.m4a/.flac) and plays straight after the intro voice.
 # The finished MP3 is tagged PRODUCED=..., so re-running never adds a second intro.
@@ -78,20 +79,17 @@ OUTRO_MUSIC_START="${OUTRO_MUSIC_START:-$MUSIC_START}"
 INTRO_FADE_IN="${INTRO_FADE_IN:-0.3}"               # s; short, so the sting hits straight away
 INTRO_VOICE_DELAY="${INTRO_VOICE_DELAY:-2.0}"       # s of music before the intro voice
 EPISODE_INTRO_GAP="${EPISODE_INTRO_GAP:-0.6}"       # s between the intro voice and <slug>.intro.*
-INTRO_TAIL="${INTRO_TAIL:-2.5}"                     # s of music after the intro voice ...
-INTRO_FADE_OUT="${INTRO_FADE_OUT:-1.5}"             #   ... the last this-many of which fade out
-GAP_AFTER_INTRO="${GAP_AFTER_INTRO:-0.4}"           # s of silence before the article
-GAP_BEFORE_OUTRO="${GAP_BEFORE_OUTRO:-1.2}"         # s of silence after the article
-OUTRO_FADE_IN="${OUTRO_FADE_IN:-1.5}"
-OUTRO_VOICE_DELAY="${OUTRO_VOICE_DELAY:-1.5}"       # s of music before the outro voice
-OUTRO_TAIL="${OUTRO_TAIL:-4.0}"                     # s of music after the outro voice ...
-OUTRO_FADE_OUT="${OUTRO_FADE_OUT:-4.0}"             #   ... fading out over this long
+INTRO_TAIL="${INTRO_TAIL:-0.8}"                     # s of ducked music after the intro voice, fading out into the article
+GAP_AFTER_INTRO="${GAP_AFTER_INTRO:-0}"             # s of silence before the article
+GAP_BEFORE_OUTRO="${GAP_BEFORE_OUTRO:-0}"           # s of silence after the article
+OUTRO_FADE_IN="${OUTRO_FADE_IN:-0.8}"               # s; ducked music fades in straight after the article ...
+OUTRO_VOICE_DELAY="${OUTRO_VOICE_DELAY:-0.8}"       #   ... and the outro voice starts this long after it
+OUTRO_TAIL="${OUTRO_TAIL:-4.0}"                     # s of music after the outro voice (back up to full) ...
+OUTRO_FADE_OUT="${OUTRO_FADE_OUT:-3.0}"             #   ... the last this-many of which fade out
 VOICE_LUFS="${VOICE_LUFS:--16}"                     # voice clips + article are matched to this before mixing
 MUSIC_LUFS="${MUSIC_LUFS:--22}"                     # music level when nobody is talking
-DUCK_THRESHOLD="${DUCK_THRESHOLD:-0.02}"            # sidechain ducking of the music under the voice
-DUCK_RATIO="${DUCK_RATIO:-8}"
-DUCK_ATTACK="${DUCK_ATTACK:-80}"                    # ms
-DUCK_RELEASE="${DUCK_RELEASE:-700}"                 # ms
+DUCK_DB="${DUCK_DB:--10}"                           # dB the music drops by under the voice
+DUCK_RAMP="${DUCK_RAMP:-0.4}"                       # s the music takes to drop (intro) / come back up (outro)
 TARGET_LUFS="${TARGET_LUFS:--16}"                   # final episode loudness (Apple/Spotify spoken word)
 TARGET_TP="${TARGET_TP:--1.5}"                      # dBTP; a little under -1 to leave room for MP3 encoding
 MP3_BITRATE="${MP3_BITRATE:-128k}"
@@ -226,7 +224,8 @@ if [[ -z "$EPISODE" && -n "$EXISTING_EPISODE" && "${EXISTING_SEASON:-}" == "$SEA
 fi
 if [[ -z "$EPISODE" ]]; then
     # Already uploaded under some episode number? Reuse it.
-    EPISODE="$(grep -E "/episode-[0-9]{3}/$SLUG-s[0-9]{2}e[0-9]{3}\.mp3$" <<<"$R2_KEYS" | sed -E 's#.*/episode-([0-9]{3})/.*#\1#' | head -1 || true)"
+    # (either naming: sXXeYYY-<slug>.mp3, or the older <slug>-sXXeYYY.mp3)
+    EPISODE="$(grep -E "/episode-[0-9]{3}/(s[0-9]{2}e[0-9]{3}-$SLUG|$SLUG-s[0-9]{2}e[0-9]{3})\.mp3$" <<<"$R2_KEYS" | sed -E 's#.*/episode-([0-9]{3})/.*#\1#' | head -1 || true)"
 fi
 if [[ -z "$EPISODE" ]]; then
     max_r2="$(grep -oE 'episode-[0-9]{3}/' <<<"$R2_KEYS" | grep -oE '[0-9]{3}' | sort -n | tail -1 || true)"
@@ -240,11 +239,14 @@ EEE="$(printf '%03d' "$EPISODE")"
 # Guard against two articles claiming the same episode.
 clash="$(node "$HELPER" used-episodes "$ARTICLES_DIR" "$SEASON" | awk -v e="$EPISODE" -v s="$SLUG" '$1 == e && $2 != s {print $2}')"
 [[ -z "$clash" ]] || die "Season $SEASON episode $EPISODE is already used by '$clash'."
-r2_clash="$(grep -E "/episode-$EEE/" <<<"$R2_KEYS" | grep -vE "/$SLUG-s${SS}e$EEE\.mp3$" | head -1 || true)"
+r2_clash="$(grep -E "/episode-$EEE/" <<<"$R2_KEYS" | grep -vE "/(s${SS}e$EEE-$SLUG|$SLUG-s${SS}e$EEE)\.mp3$" | head -1 || true)"
 [[ -z "$r2_clash" ]] || die "R2 already has another file in episode-$EEE: $r2_clash"
 
-FILENAME="$SLUG-s${SS}e$EEE.mp3"
+FILENAME="s${SS}e$EEE-$SLUG.mp3"
 R2_KEY="$R2_PREFIX/season-$SS/episode-$EEE/$FILENAME"
+# Published before the episode code moved to the front of the filename? Removed after the new upload is verified.
+OLD_R2_KEY="$R2_PREFIX/season-$SS/episode-$EEE/$SLUG-s${SS}e$EEE.mp3"
+grep -qxF "$OLD_R2_KEY" <<<"$R2_KEYS" || OLD_R2_KEY=""
 AUDIO_URL="/$R2_KEY"
 GUID="${EXISTING_GUID:-$(node "$HELPER" uuid7)}"
 ARTICLE_URL="$SITE_URL/stash/$SLUG/"
@@ -281,23 +283,33 @@ silence() { echo "anullsrc=r=44100:cl=stereo,atrim=0:$1,$FMT"; }
 # Strip leading/trailing silence (TTS exports usually pad both ends) so the timings above are exact.
 TRIM="silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse"
 
-# build_segment <out.wav> <voice> <music> <music-start> <fade-in> <voice-delay> <tail> <fade-out>
-# Music (looped if short) with the voice laid over it after <voice-delay>. The music ducks
-# under the voice, runs <tail> seconds past it, and fades out over the last <fade-out>.
+# build_segment <intro|outro> <out.wav> <voice> <music> <music-start> <fade-in> <voice-delay> <tail> <fade-out>
+# Music (looped if short) with the voice laid over it after <voice-delay>, <tail> seconds of music
+# after the voice, and a fade over the last <fade-out>. The music sits DUCK_DB down under the voice:
+#   intro: full level, drops just before the voice, stays down and fades out into the article
+#   outro: fades in already ducked, comes back up after the voice, then fades out
 build_segment() {
-    local out="$1" voice="$2" music="$3" music_start="$4" fade_in="$5" delay="$6" tail="$7" fade_out="$8"
-    local voice_gain music_gain len
+    local kind="$1" out="$2" voice="$3" music="$4" music_start="$5" fade_in="$6" delay="$7" tail="$8" fade_out="$9"
+    local voice_gain music_gain voice_len len duck from to envelope
     voice_gain="$(gain_to "$VOICE_LUFS" "$voice")"
     music_gain="$(gain_to "$MUSIC_LUFS" "$music")"
-    len="$(calc "$delay + $(duration_of "$voice") + $tail")"
+    voice_len="$(duration_of "$voice")"
+    len="$(calc "$delay + $voice_len + $tail")"
+    duck="$(calc "10 ^ ($DUCK_DB / 20)")"
+    if [[ "$kind" == intro ]]; then
+        from="$(calc "$delay - $DUCK_RAMP")" to="$delay"
+        envelope="if(lt(t,$from),1,if(lt(t,$to),1-(1-$duck)*(t-$from)/$DUCK_RAMP,$duck))"
+    else
+        from="$(calc "$delay + $voice_len")" to="$(calc "$delay + $voice_len + $DUCK_RAMP")"
+        envelope="if(lt(t,$from),$duck,if(lt(t,$to),$duck+(1-$duck)*(t-$from)/$DUCK_RAMP,1))"
+    fi
     ffmpeg -hide_banner -loglevel error -y \
         -stream_loop -1 -ss "$music_start" -i "$music" -i "$voice" \
         -filter_complex "
-            [0:a]$FMT,volume=${music_gain}dB,atrim=0:$len,asetpts=PTS-STARTPTS,
+            [0:a]$FMT,volume=${music_gain}dB,atrim=0:$len,asetpts=PTS-STARTPTS,volume='$envelope':eval=frame,
                  afade=t=in:d=$fade_in,afade=t=out:st=$(calc "$len - $fade_out"):d=${fade_out}[music];
-            [1:a]$FMT,volume=${voice_gain}dB,adelay=delays=$(awk -v d="$delay" 'BEGIN { printf "%d", d * 1000 }'):all=1,apad,asplit[voice][key];
-            [music][key]sidechaincompress=threshold=$DUCK_THRESHOLD:ratio=$DUCK_RATIO:attack=$DUCK_ATTACK:release=${DUCK_RELEASE}[ducked];
-            [ducked][voice]amix=inputs=2:duration=first:normalize=0[out]" \
+            [1:a]$FMT,volume=${voice_gain}dB,adelay=delays=$(awk -v d="$delay" 'BEGIN { printf "%d", d * 1000 }'):all=1[voice];
+            [music][voice]amix=inputs=2:duration=first:normalize=0[out]" \
         -map "[out]" -c:a pcm_f32le "$out" \
         || die "Could not build $(basename "$out")."
 }
@@ -347,10 +359,12 @@ if [[ $DO_INTRO -eq 1 || $DO_OUTRO -eq 1 ]]; then
             ffmpeg -hide_banner -loglevel error -y -i "${INTRO_VOICE:-$EPISODE_VOICE}" -af "$FMT,$TRIM" -c:a pcm_f32le "$intro_voice" \
                 || die "Could not read the intro voice."
         fi
-        build_segment "$WORK/intro.wav" "$intro_voice" "$INTRO_MUSIC" "$MUSIC_START" \
-            "$INTRO_FADE_IN" "$INTRO_VOICE_DELAY" "$INTRO_TAIL" "$INTRO_FADE_OUT"
+        build_segment intro "$WORK/intro.wav" "$intro_voice" "$INTRO_MUSIC" "$MUSIC_START" \
+            "$INTRO_FADE_IN" "$INTRO_VOICE_DELAY" "$INTRO_TAIL" "$INTRO_TAIL"
         inputs+=(-i "$WORK/intro.wav"); graph+="[$n:a]${FMT}[p$n];"; parts+=("[p$n]"); n=$((n + 1))
-        graph+="$(silence "$GAP_AFTER_INTRO")[gap_in];"; parts+=("[gap_in]")
+        if awk "BEGIN { exit !($GAP_AFTER_INTRO > 0) }"; then
+            graph+="$(silence "$GAP_AFTER_INTRO")[gap_in];"; parts+=("[gap_in]")
+        fi
     fi
 
     article_gain="$(gain_to "$VOICE_LUFS" "$MP3")"
@@ -360,9 +374,11 @@ if [[ $DO_INTRO -eq 1 || $DO_OUTRO -eq 1 ]]; then
         info "Building outro"
         ffmpeg -hide_banner -loglevel error -y -i "$OUTRO_VOICE" -af "$FMT,$TRIM" -c:a pcm_f32le "$WORK/outro-voice.wav" \
             || die "Could not read the outro voice."
-        build_segment "$WORK/outro.wav" "$WORK/outro-voice.wav" "$OUTRO_MUSIC" "$OUTRO_MUSIC_START" \
+        build_segment outro "$WORK/outro.wav" "$WORK/outro-voice.wav" "$OUTRO_MUSIC" "$OUTRO_MUSIC_START" \
             "$OUTRO_FADE_IN" "$OUTRO_VOICE_DELAY" "$OUTRO_TAIL" "$OUTRO_FADE_OUT"
-        graph+="$(silence "$GAP_BEFORE_OUTRO")[gap_out];"; parts+=("[gap_out]")
+        if awk "BEGIN { exit !($GAP_BEFORE_OUTRO > 0) }"; then
+            graph+="$(silence "$GAP_BEFORE_OUTRO")[gap_out];"; parts+=("[gap_out]")
+        fi
         inputs+=(-i "$WORK/outro.wav"); graph+="[$n:a]${FMT}[p$n];"; parts+=("[p$n]"); n=$((n + 1))
     fi
 
@@ -455,7 +471,8 @@ cat <<EOF
   GUID:         $GUID
   Upload to:    s3://$R2_BUCKET/$R2_KEY
   Public URL:   https://media.usefulstash.com$AUDIO_URL
-
+${OLD_R2_KEY:+  Replaces:     s3://$R2_BUCKET/$OLD_R2_KEY (removed after upload)
+}
 EOF
 
 if [[ $DRY_RUN -eq 1 ]]; then
@@ -485,6 +502,34 @@ r2 s3 cp "$MP3" "s3://$R2_BUCKET/$R2_KEY" \
 
 remote_bytes="$(r2 s3api head-object --bucket "$R2_BUCKET" --key "$R2_KEY" --query ContentLength --output text)"
 [[ "$remote_bytes" == "$BYTES" ]] || die "Uploaded size $remote_bytes does not match local $BYTES."
+
+if [[ -n "$OLD_R2_KEY" ]]; then
+    info "Removing the old-named copy s3://$R2_BUCKET/$OLD_R2_KEY"
+    r2 s3 rm "s3://$R2_BUCKET/$OLD_R2_KEY" || die "Could not remove the old-named copy $OLD_R2_KEY (the new file is uploaded)."
+fi
+
+# Purge the CDN copy so a re-publish is served straight away (media.usefulstash.com caches for a day).
+# Done after the upload, not before: purging first would let the old file be re-cached mid-upload.
+purge_urls=("https://media.usefulstash.com$AUDIO_URL")
+[[ -n "$OLD_R2_KEY" ]] && purge_urls+=("https://media.usefulstash.com/$OLD_R2_KEY")
+if [[ -z "${CLOUDFLARE_ZONE_ID_USEFULSTASH:-}" || -z "${CLOUDFLARE_CACHE_PURGE_API_TOKEN_USEFULSTASH:-}" ]]; then
+    echo "Warning: CLOUDFLARE_ZONE_ID_USEFULSTASH / CLOUDFLARE_CACHE_PURGE_API_TOKEN_USEFULSTASH not set — purge these in the Cloudflare dashboard:" >&2
+    printf '         %s\n' "${purge_urls[@]}" >&2
+else
+    info "Purging the Cloudflare cache"
+    purge_response="$(curl -sS -X POST \
+        "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID_USEFULSTASH/purge_cache" \
+        -H "Authorization: Bearer $CLOUDFLARE_CACHE_PURGE_API_TOKEN_USEFULSTASH" \
+        -H "Content-Type: application/json" \
+        --data "$(jq -n '{files: $ARGS.positional}' --args "${purge_urls[@]}")" || true)"
+    if [[ "$(jq -r '.success // false' <<<"$purge_response" 2>/dev/null)" == true ]]; then
+        printf '    purged %s\n' "${purge_urls[@]}"
+    else
+        echo "Warning: Cloudflare cache purge failed — purge these in the dashboard:" >&2
+        printf '         %s\n' "${purge_urls[@]}" >&2
+        jq -r '.errors[]? | "         \(.code): \(.message)"' <<<"$purge_response" >&2 2>/dev/null || echo "         $purge_response" >&2
+    fi
+fi
 
 # -----------------------------------------------------------------------------
 # Frontmatter

@@ -21,20 +21,20 @@ It plays 0.6 s after `intro-voice`, over the same music, and is deleted with the
 ## What the episode sounds like
 
 ```
-0.0s   music in (0.3 s fade)
-2.0s   intro voice (+ episode line), music ducks underneath
-+2.5s  music swells back, fades out over the last 1.5 s
-+0.4s  silence
+0.0s   music in (0.3 s fade), full level
+1.6s   music drops 10 dB over 0.4 s
+2.0s   intro voice (+ episode line), music stays down
++0.8s  music (still down) fades out, straight into ...
        article narration
-+1.2s  silence
-       music fades in over 1.5 s
-+1.5s  outro voice, music ducks
-+4.0s  music fades out
+       music fades in over 0.8 s, already 10 dB down
++0.8s  outro voice
++0.4s  music comes back up to full
++4.0s  of music after the voice, fading out over the last 3 s
 ```
 
 The whole episode is then normalised to -16 LUFS / -1.5 dBTP and encoded as 128 kbps MP3.
 Every timing and level is an env var at the top of the script (`INTRO_VOICE_DELAY`, `MUSIC_LUFS`,
-`MUSIC_START`, `OUTRO_TAIL`, ...). For example, to make the music quieter and skip its first 8 seconds:
+`MUSIC_START`, `DUCK_DB`, `OUTRO_TAIL`, ...). For example, to make the music quieter and skip its first 8 seconds:
 
 ```sh
 MUSIC_LUFS=-25 MUSIC_START=8 npm run audio:dry-run -- my-article
@@ -42,3 +42,31 @@ MUSIC_LUFS=-25 MUSIC_START=8 npm run audio:dry-run -- my-article
 
 `--dry-run` writes a preview you can listen to at `output/<file>.mp3`. `--no-intro` / `--no-outro` skip either part.
 The finished MP3 is tagged `PRODUCED=intro+outro`, so re-publishing a file downloaded from R2 only re-tags it.
+After a verified upload the script purges the file's `media.usefulstash.com` URL from Cloudflare's cache
+(needs `CLOUDFLARE_ZONE_ID_USEFULSTASH` and `CLOUDFLARE_CACHE_PURGE_API_TOKEN_USEFULSTASH` exported; without them it prints the URL to purge by hand).
+
+## Generating the voice files with `say` (macOS)
+
+The current intro/outro voice files come from macOS text-to-speech. Run this from the repo root to regenerate them.
+The voice has to be installed first (System Settings → Accessibility → Spoken Content → System Voice → Manage Voices).
+
+```bash
+VOICE="Lee (Premium)"
+VOICE_RATE="115"
+VOICE_INTRO_TEXT="This is Useful Stash. Real tools. Real fixes. No fluff."
+VOICE_OUTRO_TEXT="That was Useful Stash. The full article and links are at usefulstash dot com. Thanks for listening."
+INTRO_AIFF="podcast-audio/intro-voice.aiff"
+OUTRO_AIFF="podcast-audio/outro-voice.aiff"
+
+say \
+  -v "$VOICE" \
+  -r "$VOICE_RATE" \
+  -o "$INTRO_AIFF" \
+  "$VOICE_INTRO_TEXT"
+
+say \
+  -v "$VOICE" \
+  -r "$VOICE_RATE" \
+  -o "$OUTRO_AIFF" \
+  "$VOICE_OUTRO_TEXT"
+```
