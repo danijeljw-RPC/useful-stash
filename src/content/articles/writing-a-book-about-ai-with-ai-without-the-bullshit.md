@@ -16,13 +16,13 @@ heroImageAlt: Preview cover of AI for Normal People, Book 1 of the How To Use AI
 seo:
   canonical: null
   noindex: false
-duration: "18:46"
+duration: "18:42"
 series: Useful Stash
 episode: 1
 audio:
   url: /blog-articles/audio/season-01/episode-001/writing-a-book-about-ai-with-ai-without-the-bullshit-s01e001.mp3
   mimeType: audio/mpeg
-  bytes: 18370969
+  bytes: 18307021
 podcast:
   guid: urn:uuid:01a0d660-9066-7e2b-881b-ae4a09e36ec3
   season: 1
