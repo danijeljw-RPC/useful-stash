@@ -35,6 +35,8 @@ const videoSchema = z.object({
   }
 });
 
+const duration = z.string().regex(/^(?:\d+:[0-5]\d|\d+:[0-5]\d:[0-5]\d)$/, 'Use "mm:ss" or "h:mm:ss".');
+
 const podcastSchema = z.object({
   guid: z.string().regex(/^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i),
   season: z.number().int().positive(),
@@ -67,11 +69,16 @@ export const articleSchema = z.object({
   audio: enclosureSchema.optional(),
   video: videoSchema.optional(),
   transcript: mediaUrl.optional(),
+  duration: duration.optional(),
+  series: z.string().trim().min(1).optional(),
   episode: z.number().int().positive().optional(),
   podcast: podcastSchema.optional(),
 }).strict().superRefine((value, context) => {
   if (Boolean(value.heroImage) !== (value.heroImageAlt !== undefined)) {
     context.addIssue({ code: 'custom', message: 'Hero image and alternative text are required together.' });
+  }
+  if (value.duration && !value.audio) {
+    context.addIssue({ code: 'custom', message: 'Duration describes the podcast audio, so audio is required with it.' });
   }
   if (Boolean(value.episode) !== Boolean(value.podcast)) {
     context.addIssue({ code: 'custom', message: 'Episode number and podcast metadata are required together.' });

@@ -1,19 +1,120 @@
 ---
-interface Props { label: string; src: string; mimeType: 'audio/mpeg' }
-const { label, src, mimeType } = Astro.props;
+interface Props { label: string; src: string; mimeType: 'audio/mpeg'; duration?: string; bytes?: number; downloadName?: string }
+const { label, src, mimeType, duration, bytes, downloadName } = Astro.props;
 const headingId = `audio-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const size = bytes ? `${(bytes / 1_000_000).toFixed(1)} MB` : undefined;
+const fileName = downloadName ?? src.split('/').pop();
 ---
 
-<section class="audio-player" aria-labelledby={headingId}>
+<section class="audio-player" aria-labelledby={headingId} data-audio-player>
   <h2 id={headingId}>{label}</h2>
-  <audio controls preload="metadata">
+  <div class="audio-player__controls" hidden data-controls>
+    <button type="button" class="audio-player__toggle" aria-label="Play" data-toggle>
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" /></svg>
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg>
+    </button>
+    <input class="audio-player__seek" type="range" min="0" max="0" step="1" value="0" aria-label="Seek" data-seek />
+    <span class="audio-player__time" data-time>0:00{duration && ` / ${duration}`}</span>
+    <button type="button" class="audio-player__rate" aria-label="Playback speed" data-rate>1×</button>
+  </div>
+  <audio controls preload="metadata" data-audio>
     <source src={src} type={mimeType} />
     <a href={src}>Open the audio file</a>
   </audio>
+  <p class="audio-player__meta">
+    <a href={src} download={fileName} rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4h2v9.2l3.3-3.3 1.4 1.4L12 17l-5.7-5.7 1.4-1.4 3.3 3.3zM5 18h14v2H5z" /></svg>
+      Download MP3
+    </a>
+    {(duration || size) && <span>{[duration, size].filter(Boolean).join(' · ')}</span>}
+  </p>
 </section>
+
+<script>
+  const format = (seconds: number) => {
+    const s = Math.max(0, Math.floor(seconds));
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const pad = (n: number) => String(n).padStart(2, '0');
+    return h ? `${h}:${pad(m)}:${pad(s % 60)}` : `${m}:${pad(s % 60)}`;
+  };
+  const rates = [1, 1.25, 1.5, 1.75, 2, 0.75];
+
+  document.querySelectorAll<HTMLElement>('[data-audio-player]').forEach((root) => {
+    const audio = root.querySelector<HTMLAudioElement>('[data-audio]');
+    const controls = root.querySelector<HTMLElement>('[data-controls]');
+    const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]');
+    const seek = root.querySelector<HTMLInputElement>('[data-seek]');
+    const time = root.querySelector<HTMLElement>('[data-time]');
+    const rate = root.querySelector<HTMLButtonElement>('[data-rate]');
+    if (!audio || !controls || !toggle || !seek || !time || !rate) return;
+
+    // Progressive enhancement: native controls without JS, custom controls with it.
+    audio.controls = false;
+    controls.hidden = false;
+
+    const render = () => {
+      const total = Number.isFinite(audio.duration) ? audio.duration : 0;
+      seek.max = String(Math.floor(total));
+      if (document.activeElement !== seek) seek.value = String(Math.floor(audio.currentTime));
+      seek.style.setProperty('--progress', total ? `${(audio.currentTime / total) * 100}%` : '0%');
+      time.textContent = total ? `${format(audio.currentTime)} / ${format(total)}` : time.textContent;
+    };
+    const setPlaying = (playing: boolean) => {
+      root.classList.toggle('is-playing', playing);
+      toggle.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+    };
+
+    toggle.addEventListener('click', () => { if (audio.paused) void audio.play(); else audio.pause(); });
+    seek.addEventListener('input', () => { audio.currentTime = Number(seek.value); render(); });
+    rate.addEventListener('click', () => {
+      const next = rates[(rates.indexOf(audio.playbackRate) + 1) % rates.length] ?? 1;
+      audio.playbackRate = next;
+      rate.textContent = `${next}×`;
+    });
+    audio.addEventListener('play', () => {
+      document.querySelectorAll<HTMLAudioElement>('[data-audio]').forEach((other) => { if (other !== audio) other.pause(); });
+      setPlaying(true);
+    });
+    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('ended', () => setPlaying(false));
+    audio.addEventListener('timeupdate', render);
+    audio.addEventListener('loadedmetadata', render);
+    audio.addEventListener('durationchange', render);
+  });
+</script>
 
 <style>
   .audio-player h2 { margin: 0 0 .65rem; font-size: 1rem; }
   audio { width: 100%; }
+  audio:not([controls]) { display: none; }
+  .audio-player__controls { display: flex; align-items: center; gap: .85rem; }
+  .audio-player__controls[hidden] { display: none; }
+  .audio-player__toggle {
+    display: grid; flex: none; place-items: center; width: 3.25rem; height: 3.25rem; padding: 0;
+    border: 0; border-radius: 50%; background: var(--color-accent); color: var(--carbon, #111); cursor: pointer;
+  }
+  .audio-player__toggle:focus-visible, .audio-player__rate:focus-visible, .audio-player__seek:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+  .audio-player__toggle svg { width: 1.5rem; height: 1.5rem; fill: currentColor; }
+  .audio-player .icon-pause, .audio-player.is-playing .icon-play { display: none; }
+  .audio-player.is-playing .icon-pause { display: block; }
+  .audio-player__seek {
+    --progress: 0%;
+    flex: 1; min-width: 0; height: .35rem; margin: 0; appearance: none; cursor: pointer; border-radius: 1rem;
+    background: linear-gradient(to right, var(--color-accent) var(--progress), var(--color-border) var(--progress));
+  }
+  .audio-player__seek::-webkit-slider-thumb { width: 1rem; height: 1rem; appearance: none; border-radius: 50%; background: var(--color-text); }
+  .audio-player__seek::-moz-range-thumb { width: 1rem; height: 1rem; border: 0; border-radius: 50%; background: var(--color-text); }
+  .audio-player__time { flex: none; color: var(--color-muted); font: .78rem var(--font-mono); font-variant-numeric: tabular-nums; }
+  .audio-player__rate {
+    flex: none; min-width: 3rem; padding: .3rem .5rem; border: 1px solid var(--color-border); background: transparent;
+    color: var(--color-text); font: .75rem var(--font-mono); cursor: pointer;
+  }
+  .audio-player__meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.25rem; margin: .85rem 0 0; color: var(--color-muted); font: .78rem var(--font-mono); }
+  .audio-player__meta a { display: inline-flex; align-items: center; gap: .35rem; }
+  .audio-player__meta svg { width: 1rem; height: 1rem; fill: currentColor; }
+  @media (max-width: 30rem) {
+    .audio-player__controls { flex-wrap: wrap; }
+    .audio-player__seek { flex-basis: calc(100% - 4.25rem); }
+  }
 </style>
-

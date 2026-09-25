@@ -8,7 +8,7 @@ export const podcast = {
   language: 'en-AU',
   explicit: false,
   category: 'Technology',
-  artwork: '/images/podcast/useful-stash-podcast-placeholder.png',
+  artwork: '/images/podcast/useful-stash-podcast.jpg',
 } as const;
 
 export const videocast = {

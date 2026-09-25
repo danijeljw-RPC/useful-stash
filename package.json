@@ -1,6 +1,6 @@
 {
   "name": "useful-stash",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,9 @@
     "check": "astro check",
     "test": "node --test tests/*.test.mjs",
     "deploy": "npm run build && wrangler deploy",
-    "postbuild": "node scripts/write-scheduled-entry.mjs"
+    "postbuild": "node scripts/write-scheduled-entry.mjs",
+    "audio:dry-run": "scripts/publish-article-audio.sh --dry-run",
+    "audio:publish": "scripts/publish-article-audio.sh"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.2",
@@ -24,7 +26,8 @@
     "@astrojs/check": "^0.9.10",
     "@cloudflare/workers-types": "^5.20260917.1",
     "typescript": "^6.0.3",
-    "wrangler": "^4.133.0"
+    "wrangler": "^4.133.0",
+    "yaml": "^2.9.1"
   },
   "engines": {
     "node": ">=22.12.0"

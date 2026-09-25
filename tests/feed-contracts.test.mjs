@@ -19,6 +19,7 @@ const episode = {
   audio: { url: 'https://media.usefulstash.com/podcast.mp3', mimeType: 'audio/mpeg', bytes: 20 },
   video: { youtube: null, hosted: 'https://media.usefulstash.com/video.mp4', mimeType: 'video/mp4', bytes: 30, spotify: null },
   transcript: 'https://media.usefulstash.com/captions.vtt',
+  duration: '50:49', series: 'Useful Stash',
   podcast: { guid: 'urn:uuid:019d0000-0000-7000-8000-000000000001', season: 1, episodeType: 'full', explicit: false, spotify: null, applePodcasts: null },
 };
 
@@ -39,9 +40,16 @@ test('podcast feed uses only podcast audio and preserves episode metadata', () =
   assert.equal(item.enclosure['@_length'], '20');
   assert.equal(item['itunes:season'], 1);
   assert.equal(item['itunes:episode'], 2);
+  assert.equal(item['itunes:duration'], '50:49');
   assert.equal(item.guid['#text'], episode.podcast.guid);
   assert.equal(xml.includes('narration.mp3'), false);
   assert.match(xml, /podcast:transcript/);
+});
+
+test('site feed never carries podcast audio even when an article has an episode', () => {
+  const xml = serializeSiteFeed([episode], []);
+  assert.equal(xml.includes('<enclosure'), false);
+  assert.equal(xml.includes('podcast.mp3'), false);
 });
 
 test('videocast feed uses video enclosure and a video-specific stable GUID', () => {

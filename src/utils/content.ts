@@ -8,13 +8,12 @@ export function isProductionBuild(): boolean {
 }
 
 export function isArticleVisible(data: ArticleData, production = isProductionBuild()): boolean {
-  if (data.draft || data.seo.noindex) return false;
-  return !(production && data.fixture);
+  if (data.seo.noindex) return false;
+  return !(production && (data.draft || data.fixture));
 }
 
 export function isArticleRoutable(data: ArticleData, production = isProductionBuild()): boolean {
-  if (data.draft) return false;
-  return !(production && data.fixture);
+  return !(production && (data.draft || data.fixture));
 }
 
 export function isProjectVisible(data: Pick<ProjectData, 'draft'>, production = isProductionBuild()): boolean {
