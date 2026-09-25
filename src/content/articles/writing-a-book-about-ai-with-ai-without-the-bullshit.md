@@ -3,7 +3,7 @@ title: Writing a book about AI, with AI, without the bullshit
 slug: writing-a-book-about-ai-with-ai-without-the-bullshit
 description: Why I'm writing AI for Normal People, the first book in the five-part How To Use AI.com series — what set it off, how I'm using AI to make it, and why AI doesn't get a vote.
 publishedAt: 2026-09-25
-draft: true
+draft: false
 authors:
   - dj
 tags:
