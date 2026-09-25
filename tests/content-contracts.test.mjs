@@ -34,6 +34,23 @@ test('article schema accepts a complete ordinary article and nullable platform l
   }).success, true);
 });
 
+test('article schema accepts podcast audio with duration, series and episode', () => {
+  const withAudio = {
+    ...validArticle,
+    duration: '50:49',
+    series: 'Useful Stash',
+    episode: 1,
+    audio: { url: '/blog-articles/audio/season-01/episode-001/a-useful-article-s01e001.mp3', mimeType: 'audio/mpeg', bytes: 54402989 },
+    podcast: { guid: 'urn:uuid:019d0000-0000-7000-8000-000000000001', season: 1, episodeType: 'full', explicit: false, spotify: null, applePodcasts: null },
+  };
+  const result = articleSchema.safeParse(withAudio);
+  assert.equal(result.success, true);
+  assert.equal(result.data.audio.url, 'https://media.usefulstash.com/blog-articles/audio/season-01/episode-001/a-useful-article-s01e001.mp3');
+  assert.equal(articleSchema.safeParse({ ...withAudio, duration: '50:9' }).success, false);
+  assert.equal(articleSchema.safeParse({ ...withAudio, duration: '1:02:03' }).success, true);
+  assert.equal(articleSchema.safeParse({ ...validArticle, duration: '10:00' }).success, false);
+});
+
 test('author schema accepts a local portrait and reusable profile details', () => {
   const result = authorSchema.safeParse({
     name: 'DJ Wynyard',

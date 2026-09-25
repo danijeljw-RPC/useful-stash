@@ -27,6 +27,7 @@ export function serializePodcastFeed(values: ArticleData[]): string {
 <guid isPermaLink="false">${escapeXml(item.podcast.guid)}</guid>
 <description>${cdata(item.description)}</description><pubDate>${item.publishedAt.toUTCString()}</pubDate>
 <enclosure url="${escapeXml(item.audio.url)}" length="${item.audio.bytes}" type="${item.audio.mimeType}" />
+<itunes:title>${escapeXml(item.title)}</itunes:title>${item.duration ? `<itunes:duration>${item.duration}</itunes:duration>` : ''}
 <itunes:season>${item.podcast.season}</itunes:season><itunes:episode>${item.episode}</itunes:episode>
 <itunes:episodeType>${item.podcast.episodeType}</itunes:episodeType><itunes:explicit>${item.podcast.explicit}</itunes:explicit>
 ${item.transcript ? `<podcast:transcript url="${escapeXml(item.transcript)}" type="text/vtt" />` : ''}

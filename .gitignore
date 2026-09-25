@@ -28,6 +28,9 @@ Thumbs.db
 youtube-cover.svg
 youtube-cover.png
 
+# Article podcast audio lives in R2 (scripts/publish-article-audio.sh), not in the repo
+src/content/articles/*.mp3
+
 # Personal test renders
 /output/
 docs/domain-notes.txt
