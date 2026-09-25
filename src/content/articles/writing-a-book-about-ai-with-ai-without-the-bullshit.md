@@ -20,7 +20,7 @@ duration: "18:42"
 series: Useful Stash
 episode: 1
 audio:
-  url: /blog-articles/audio/season-01/episode-001/writing-a-book-about-ai-with-ai-without-the-bullshit-s01e001.mp3
+  url: /blog-articles/audio/season-01/episode-001/s01e001-writing-a-book-about-ai-with-ai-without-the-bullshit.mp3
   mimeType: audio/mpeg
   bytes: 18307021
 podcast:
