@@ -3,8 +3,8 @@
 #
 # Drop an MP3 next to the article with the same basename:
 #
-#   src/content/articles/my-article.md
-#   src/content/articles/my-article.mp3     (gitignored — never committed)
+#   src/content/articles/2026-09-25-my-article.md
+#   src/content/articles/2026-09-25-my-article.mp3     (gitignored — never committed)
 #
 # then run, from the dev branch:
 #
@@ -27,7 +27,7 @@
 # the article audio is wrapped as  [music + intro voice] [article] [music + outro voice],
 # the music drops under the voice, and the whole episode is normalised to -16 LUFS.
 # An optional per-episode line ("Season 1, episode 3: ...") can sit next to the article
-# as <slug>.intro.mp3 (or .wav/.m4a/.flac) and plays straight after the intro voice.
+# as <YYYY-MM-DD>-<slug>.intro.mp3 (or .wav/.m4a/.flac) and plays straight after the intro voice.
 # The finished MP3 is tagged PRODUCED=..., so re-running never adds a second intro.
 #
 # Options:
@@ -156,12 +156,16 @@ if [[ -z "$TARGET" ]]; then
     TARGET="${candidates[0]}"
 fi
 
-SLUG="$(basename "${TARGET%.mp3}")"
-SLUG="${SLUG%.md}"; SLUG="${SLUG%.mdx}"
-MP3="$ARTICLES_DIR/$SLUG.mp3"
-ARTICLE="$ARTICLES_DIR/$SLUG.md"
-[[ -f "$ARTICLE" ]] || ARTICLE="$ARTICLES_DIR/$SLUG.mdx"
-[[ -f "$ARTICLE" ]] || die "Missing article: $ARTICLES_DIR/$SLUG.md"
+# Articles are named <publishedAt>-<slug>.md; accept either that basename or just the slug.
+NAME="$(basename "${TARGET%.mp3}")"
+NAME="${NAME%.md}"; NAME="${NAME%.mdx}"
+ARTICLE=""
+for candidate in "$ARTICLES_DIR/$NAME".md "$ARTICLES_DIR/$NAME".mdx "$ARTICLES_DIR"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"$NAME".md "$ARTICLES_DIR"/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-"$NAME".mdx; do
+    [[ -f "$candidate" ]] && { ARTICLE="$candidate"; break; }
+done
+[[ -n "$ARTICLE" ]] || die "Missing article: $ARTICLES_DIR/YYYY-MM-DD-$NAME.md"
+BASE="$(basename "${ARTICLE%.*}")"
+MP3="$ARTICLES_DIR/$BASE.mp3"
 if [[ ! -f "$MP3" ]]; then
     published="$(node "$HELPER" read "$ARTICLE" | jq -r '.audio.url // empty')"
     [[ -n "$published" ]] || die "Missing audio: $MP3"
@@ -181,11 +185,12 @@ field() { jq -r "$1 // empty" <<<"$META"; }
 TITLE="$(field .title)"
 DESCRIPTION="$(field .description)"
 PUBLISHED_AT="$(field .publishedAt)"
-FM_SLUG="$(field .slug)"
-[[ "$FM_SLUG" == "$SLUG" ]] || die "Frontmatter slug '$FM_SLUG' does not match filename '$SLUG'."
+SLUG="$(field .slug)"
+[[ -n "$SLUG" ]] || die "Article has no frontmatter slug: $ARTICLE"
 [[ "$PUBLISHED_AT" =~ ^([0-9]{4})-[0-9]{2}-[0-9]{2} ]] || die "publishedAt must be YYYY-MM-DD (got '$PUBLISHED_AT')."
 RELEASE_DATE="${PUBLISHED_AT:0:10}"
 RELEASE_YEAR="${BASH_REMATCH[1]}"
+[[ "$BASE" == "$RELEASE_DATE-$SLUG" ]] || die "Filename '$BASE' should be '$RELEASE_DATE-$SLUG' (publishedAt + slug)."
 
 # Artist = the article's authors, by display name.
 ARTISTS=()
@@ -316,7 +321,7 @@ build_segment() {
 
 SOURCE_AUDIO="$MP3"
 PRODUCED="$(ffprobe -v error -show_entries format_tags=PRODUCED -of default=nw=1:nk=1 "$MP3" || true)"
-EPISODE_VOICE="$(find_audio "$ARTICLES_DIR/$SLUG.intro" || true)"
+EPISODE_VOICE="$(find_audio "$ARTICLES_DIR/$BASE.intro" || true)"
 INTRO_VOICE="" OUTRO_VOICE="" INTRO_MUSIC="" OUTRO_MUSIC=""
 
 if [[ -n "$PRODUCED" ]]; then
@@ -326,7 +331,7 @@ fi
 if [[ $DO_INTRO -eq 1 ]]; then
     INTRO_VOICE="$(find_audio "$PODCAST_AUDIO_DIR/intro-voice" || true)"
     if [[ -z "$INTRO_VOICE$EPISODE_VOICE" ]]; then
-        info "No $PODCAST_AUDIO_DIR/intro-voice.* or $ARTICLES_DIR/$SLUG.intro.* — skipping the intro"
+        info "No $PODCAST_AUDIO_DIR/intro-voice.* or $ARTICLES_DIR/$BASE.intro.* — skipping the intro"
         DO_INTRO=0
     else
         INTRO_MUSIC="$(find_audio "$PODCAST_AUDIO_DIR/music")" || die "Found an intro voice but no $PODCAST_AUDIO_DIR/music.*"
