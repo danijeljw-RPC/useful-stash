@@ -50,11 +50,12 @@ wrangler.jsonc       Cloudflare Workers static-assets configuration
 
 ## Writing content
 
-Create a Markdown or MDX file in `src/content/articles/`. The filename becomes the clean URL under `/stash/`.
+Create a Markdown or MDX file in `src/content/articles/` named `<publishedAt>-<slug>.md` (e.g. `2026-09-18-a-useful-title.md`) so files sort by date. The frontmatter `slug` sets the clean URL under `/stash/`; the date prefix never appears in the URL.
 
 ```yaml
 ---
 title: A useful title
+slug: a-useful-title
 description: A concise summary for listings and search results.
 publishedAt: 2026-09-18
 updatedAt: 2026-09-20 # optional
@@ -73,14 +74,14 @@ The `takeaway` frontmatter field renders the publication’s standard Takeaway b
 
 ## Article podcast audio
 
-Put an MP3 beside the article with the same basename (`src/content/articles/my-article.mp3`, gitignored), then from the `dev` branch:
+Put an MP3 beside the article with the same basename (`src/content/articles/2026-09-18-my-article.mp3`, gitignored), then from the `dev` branch:
 
 ```bash
 npm run audio:dry-run -- my-article   # preview season/episode, tags, R2 key — changes nothing
 npm run audio:publish -- my-article   # tag, upload, update frontmatter, commit, push dev
 ```
 
-(The `--` passes the slug through npm. Calling `scripts/publish-article-audio.sh` directly works too; `--help` lists the options.)
+(The `--` passes the slug through npm; the dated basename works too. Calling `scripts/publish-article-audio.sh` directly works too; `--help` lists the options.)
 
 Seasons are publish years (2026 = season 01). The episode number is the next free one in that season, taken from both R2 and the local articles. The script rewrites the ID3 tags from scratch without re-encoding, embeds artwork, and uploads to `s3://usefulstash/blog-articles/audio/season-SS/episode-EEE/<slug>-sSSeEEE.mp3`. It then writes `duration`, `series`, `episode`, `audio` and `podcast` into the frontmatter. Any article with `audio` + `episode` + `podcast` shows the player and appears in `/podcast.xml`. The main `/rss.xml` never carries enclosures. Placeholders (series name, album artist, publisher, artwork) sit at the top of the script.
 
