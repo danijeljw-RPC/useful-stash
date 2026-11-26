@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">When Customer Service Stops Listening</title>
+  <desc id="desc">A declined beer cashback claim, answered with an offer for a Hugo Spritz promotion. Being right is not the same as being helpful.</desc>
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F3F1EC" stop-opacity="0.10"/>
+      <stop offset="0.5" stop-color="#F3F1EC" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#F3F1EC" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0D0F12"/>
+  <circle cx="1162" cy="324" r="232" fill="none" stroke="#15181D" stroke-width="24"/>
+  <circle cx="1162" cy="324" r="208" fill="none" stroke="#1D2127" stroke-width="24"/>
+
+  <!-- Brand label -->
+  <text x="80" y="90" font-family="Courier New, monospace" font-size="24" font-weight="700" letter-spacing="2"><tspan fill="#FF6B35">[+]</tspan><tspan fill="#F3F1EC" dx="9">USEFUL</tspan><tspan fill="#FF6B35">/</tspan><tspan fill="#F3F1EC">STASH</tspan></text>
+  <text x="80" y="128" font-family="Courier New, monospace" font-size="18" font-weight="700" letter-spacing="2" fill="#969CA6">[ CUSTOMER EXPERIENCE ]</text>
+  <path d="M80 166h92" stroke="#FF6B35" stroke-width="6"/>
+
+  <!-- Headline -->
+  <text x="74" y="270" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">When customer</text>
+  <text x="74" y="350" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">service stops</text>
+  <text x="74" y="430" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#FF6B35">listening.</text>
+  <text x="80" y="506" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">Being right and being helpful</text>
+  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">are not the same thing.</text>
+  <text x="80" y="588" font-family="Courier New, monospace" font-size="17" letter-spacing="1" fill="#5E646E">EATCLUB · ASAHI CASHBACK · HUGO SPRITZ</text>
+
+  <!-- Beer bottle (generic, unbranded) -->
+  <g transform="translate(700 150)">
+    <rect x="44" y="0" width="32" height="14" rx="3" fill="#969CA6"/>
+    <path d="M48 14h24v70c0 18 28 30 28 62v232c0 10-8 18-18 18H38c-10 0-18-8-18-18V146c0-32 28-44 28-62z" fill="#3A2A1C" stroke="#5C4430" stroke-width="2"/>
+    <path d="M34 150c4-14 10-20 14-26" stroke="#F3F1EC" stroke-opacity="0.25" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <rect x="20" y="200" width="80" height="110" fill="#E7E4DD"/>
+    <rect x="20" y="200" width="80" height="10" fill="#B8BBC2"/>
+    <rect x="20" y="300" width="80" height="10" fill="#B8BBC2"/>
+    <text x="60" y="246" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" letter-spacing="1" fill="#1D2127">BEER</text>
+    <text x="60" y="272" text-anchor="middle" font-family="Courier New, monospace" font-size="11" font-weight="700" fill="#1D2127">CASHBACK</text>
+    <!-- Declined stamp -->
+    <g transform="rotate(-14 60 260)">
+      <rect x="-8" y="236" width="136" height="44" rx="4" fill="none" stroke="#FF6B35" stroke-width="4"/>
+      <text x="60" y="267" text-anchor="middle" font-family="Courier New, monospace" font-size="22" font-weight="700" letter-spacing="2" fill="#FF6B35">DECLINED</text>
+    </g>
+  </g>
+
+  <!-- Speech bubble: the reply -->
+  <g transform="translate(840 112)">
+    <rect x="0" y="0" width="300" height="92" rx="14" fill="#1D2127" stroke="#2A2F37" stroke-width="2"/>
+    <path d="M118 92l-22 26 4-26z" fill="#1D2127" stroke="#2A2F37" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M100 90h18" stroke="#1D2127" stroke-width="4"/>
+    <text x="22" y="38" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#F3F1EC">Sorry, not eligible.</text>
+    <text x="22" y="68" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#FF6B35">Try our spritz offer?</text>
+  </g>
+
+  <!-- Spritz glass (generic) -->
+  <g transform="translate(900 270)">
+    <ellipse cx="100" cy="8" rx="78" ry="12" fill="none" stroke="#969CA6" stroke-width="3"/>
+    <path d="M22 8c0 70 30 118 78 118s78-48 78-118" fill="url(#glass)" stroke="#969CA6" stroke-width="3"/>
+    <path d="M30 44c6 48 34 74 70 74s64-26 70-74z" fill="#C9E27A" fill-opacity="0.55"/>
+    <circle cx="70" cy="80" r="5" fill="#F3F1EC" fill-opacity="0.5"/>
+    <circle cx="120" cy="66" r="4" fill="#F3F1EC" fill-opacity="0.5"/>
+    <circle cx="96" cy="98" r="3" fill="#F3F1EC" fill-opacity="0.5"/>
+    <path d="M118 30c18-18 40-18 52-6-14 10-34 14-52 6z" fill="#4F9A5A"/>
+    <circle cx="66" cy="44" r="18" fill="#E8EE9A" stroke="#B9C25A" stroke-width="3"/>
+    <path d="M66 26v36M48 44h36" stroke="#B9C25A" stroke-width="2"/>
+    <path d="M100 126v104" stroke="#969CA6" stroke-width="4"/>
+    <ellipse cx="100" cy="234" rx="52" ry="9" fill="none" stroke="#969CA6" stroke-width="4"/>
+  </g>
+</svg>

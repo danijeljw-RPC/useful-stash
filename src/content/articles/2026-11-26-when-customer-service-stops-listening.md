@@ -15,8 +15,8 @@ tags:
   - Business Processes
 takeaway: Being technically correct does not mean you are delivering good customer service. Understanding customer intent is just as important as applying business policy.
 fixture: false
-heroImage: /social-card.png
-heroImageAlt: Useful Stash title card
+heroImage: /images/articles/when-customer-service-stops-listening.png
+heroImageAlt: A beer bottle stamped "declined" beside a spritz glass and a support reply offering another promotion
 seo:
   canonical: null
   noindex: false
