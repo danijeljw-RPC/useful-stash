@@ -1,7 +1,7 @@
 # Book 1 Launch Article — Editor's Notes
 
 > Internal working document, not built by Astro. Companion to
-> `src/content/articles/writing-a-book-about-ai-with-ai-without-the-bullshit.md`,
+> `src/content/articles/2026-09-25-writing-a-book-about-ai-with-ai-without-the-bullshit.md`,
 > drafted from `docs/book-01-launch-article-questionnaire.md`.
 
 The article is `draft: true`. Flip it to `false` when you're happy.

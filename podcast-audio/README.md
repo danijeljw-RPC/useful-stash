@@ -14,7 +14,7 @@ royalty-free music licences generally forbid redistributing the raw file, and th
 Any of `.wav .flac .aiff .aif .m4a .mp3 .ogg` works; WAV/FLAC is best (the episode is re-encoded once at the end).
 Record the voice files **dry**: no music, no leading/trailing silence, no reverb. The script does the timing and levels.
 
-Optional per-episode line: put `<slug>.intro.mp3` (or `.wav`/`.m4a`/…) next to the article in
+Optional per-episode line: put `<YYYY-MM-DD>-<slug>.intro.mp3` (same basename as the article) (or `.wav`/`.m4a`/…) next to the article in
 `src/content/articles/`, e.g. *"Season one, episode three. Writing a book about AI, with AI."*
 It plays 0.6 s after `intro-voice`, over the same music, and is deleted with the article MP3 after publishing.
 
