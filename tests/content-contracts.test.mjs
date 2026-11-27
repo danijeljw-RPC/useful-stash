@@ -26,6 +26,8 @@ const validArticle = {
 
 test('article schema accepts a complete ordinary article and nullable platform links', () => {
   assert.equal(articleSchema.safeParse(validArticle).success, true);
+  assert.equal(articleSchema.safeParse({ ...validArticle, socialImage: '/images/articles/card.png' }).success, true);
+  assert.equal(articleSchema.safeParse({ ...validArticle, socialImage: 'card.png' }).success, false);
   assert.equal(authorSchema.safeParse({
     name: 'DJ Wynyard', slug: 'dj', role: 'Author and creator', bio: null, avatar: null,
     avatarAlt: 'DJ Wynyard', website: 'https://usefulstash.com',

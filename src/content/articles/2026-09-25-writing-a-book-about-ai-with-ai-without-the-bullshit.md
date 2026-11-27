@@ -12,7 +12,7 @@ tags:
   - How To Use AI.com
 takeaway: AI is not magic. It is pattern recognition at scale — powerful enough to use, limited enough to check, and not something to treat as either a person or an oracle.
 heroImage: /images/articles/ai-for-normal-people-cover.png
-heroImageAlt: Preview cover of AI for Normal People, Book 1 of the How To Use AI.com series, marked "preview publication only" with the illustration still pending.
+heroImageAlt: Cover of AI for Normal People, Understanding Artificial Intelligence Without the Hype, Book 1 of 5 in the How To Use AI.com series by Danijel-James Wynyard-McClay, with an engraved octopus illustration and a "No technical skills required" badge.
 seo:
   canonical: null
   noindex: false

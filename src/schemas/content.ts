@@ -64,6 +64,7 @@ export const articleSchema = z.object({
   takeaway: z.string().trim().min(1).optional(),
   heroImage: z.string().startsWith('/').optional(),
   heroImageAlt: z.string().optional(),
+  socialImage: z.string().startsWith('/').optional(),
   seo: seoSchema,
   articleAudio: enclosureSchema.optional(),
   audio: enclosureSchema.optional(),

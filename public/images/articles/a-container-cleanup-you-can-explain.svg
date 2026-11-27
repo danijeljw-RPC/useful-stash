@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">A container cleanup you can explain</title>
+  <desc id="desc">A multi-stage Docker build: the build stage holds the SDK and source, and only the published app is copied into the final stage.</desc>
+  <rect width="1200" height="630" fill="#0D0F12"/>
+  <circle cx="1162" cy="324" r="232" fill="none" stroke="#15181D" stroke-width="24"/>
+  <circle cx="1162" cy="324" r="208" fill="none" stroke="#1D2127" stroke-width="24"/>
+
+  <!-- Brand label -->
+  <text x="80" y="90" font-family="Courier New, monospace" font-size="24" font-weight="700" letter-spacing="2"><tspan fill="#FF6B35">[+]</tspan><tspan fill="#F3F1EC" dx="9">USEFUL</tspan><tspan fill="#FF6B35">/</tspan><tspan fill="#F3F1EC">STASH</tspan></text>
+  <text x="80" y="128" font-family="Courier New, monospace" font-size="18" font-weight="700" letter-spacing="2" fill="#969CA6">[ DOCKER ]</text>
+  <path d="M80 166h92" stroke="#FF6B35" stroke-width="6"/>
+
+  <!-- Headline -->
+  <text x="74" y="270" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">A container</text>
+  <text x="74" y="350" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">cleanup you</text>
+  <text x="74" y="430" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#FF6B35">can explain.</text>
+  <text x="80" y="506" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">Build in one stage.</text>
+  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">Copy only what runs.</text>
+  <text x="80" y="590" font-family="Courier New, monospace" font-size="15" letter-spacing="1" fill="#5E646E">INDEPENDENT GUIDE · NOT AFFILIATED</text>
+
+  <!-- Multi-stage build: only the published output crosses -->
+  <g transform="translate(660 140)">
+    <g transform="translate(0 0)">
+    <rect width="200" height="240" rx="12" fill="#1D2127" stroke="#969CA6" stroke-width="2"/>
+    <text x="20" y="34" font-family="Courier New, monospace" font-size="14" font-weight="700" letter-spacing="2" fill="#969CA6">AS build</text>
+    <path d="M20 46h160" stroke="#2A2F37" stroke-width="2"/>
+    <text x="20" y="70" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#969CA6">sdk</text><text x="20" y="100" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#969CA6">src/</text><text x="20" y="130" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#969CA6">obj/</text><text x="20" y="160" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#969CA6">package cache</text><text x="20" y="190" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#969CA6">test output</text><text x="20" y="220" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#F3F1EC">/app/publish</text>
+  </g>
+    <g transform="translate(268 50)">
+    <rect width="200" height="150" rx="12" fill="#1D2127" stroke="#FF6B35" stroke-width="2"/>
+    <text x="20" y="34" font-family="Courier New, monospace" font-size="14" font-weight="700" letter-spacing="2" fill="#FF6B35">final</text>
+    <path d="M20 46h160" stroke="#2A2F37" stroke-width="2"/>
+    <text x="20" y="70" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#969CA6">runtime</text><text x="20" y="100" font-family="Courier New, monospace" font-size="15" font-weight="700" fill="#FF6B35">/app</text>
+  </g>
+    <path d="M200 205c34 0 34-60 68-60" fill="none" stroke="#FF6B35" stroke-width="3"/>
+    <path d="M258 137l12 8-12 8" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linejoin="round"/>
+    <text x="0" y="290" font-family="Courier New, monospace" font-size="16" font-weight="700" fill="#F3F1EC">COPY <tspan fill="#FF6B35">--from=build</tspan> /app/publish .</text>
+    <text x="0" y="318" font-family="Courier New, monospace" font-size="14" letter-spacing="1" fill="#5E646E">ONE EXPLICIT COPY · EASY TO REVIEW</text>
+  </g>
+  <!-- Official logo (Simple Icons, CC0), for editorial identification -->
+  <g transform="translate(660 548)"><rect width="176" height="48" rx="10" fill="#F3F1EC"/><path transform="translate(18 9) scale(1.2500)" d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z" fill="#2496ED"/><text x="60" y="32" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#1D63ED">Docker</text></g>
+</svg>

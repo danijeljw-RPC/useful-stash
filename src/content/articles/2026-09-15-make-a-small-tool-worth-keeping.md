@@ -12,8 +12,8 @@ tags:
   - Workflow
 takeaway: A useful tool is not finished when it runs once; it is finished when the next person can run it safely.
 fixture: true
-heroImage: /social-card.png
-heroImageAlt: Useful Stash title card
+heroImage: /images/articles/make-a-small-tool-worth-keeping.png
+heroImageAlt: Useful Stash card reading "Make a small tool worth keeping", with a ticked checklist — write down the real job, preview before changing, a useful --help, safe defaults, one copyable example, say partial failure plainly — and the GNU Bash logo.
 seo:
   canonical: null
   noindex: false

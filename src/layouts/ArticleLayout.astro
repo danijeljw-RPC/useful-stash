@@ -9,16 +9,17 @@ import BaseLayout from './BaseLayout.astro';
 
 interface Props { article: CollectionEntry<'articles'>; authors: CollectionEntry<'authors'>[] }
 const { article, authors } = Astro.props;
-const { title, description, slug, publishedAt, updatedAt, tags, takeaway, fixture, heroImage, heroImageAlt, seo, episode, podcast } = article.data;
+const { title, description, slug, publishedAt, updatedAt, tags, takeaway, fixture, heroImage, heroImageAlt, socialImage, seo, episode, podcast } = article.data;
+const shareImage = socialImage ?? heroImage;
 const canonical = seo.canonical ?? new URL(`/stash/${slug}/`, Astro.site).href;
 const dateFormat = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const jsonLd = [
-  buildBlogPosting({ title, description, slug, publishedAt, updatedAt, heroImage, authors: authors.map(({ data }) => data), canonical }),
+  buildBlogPosting({ title, description, slug, publishedAt, updatedAt, heroImage: shareImage, authors: authors.map(({ data }) => data), canonical }),
   buildBreadcrumbs([{ name: 'Home', path: '/' }, { name: 'Stash', path: '/stash/' }, { name: title, path: `/stash/${slug}/` }]),
 ];
 ---
 
-<BaseLayout title={title} description={description} image={heroImage} type="article" noindex={fixture || seo.noindex} canonical={canonical} publishedAt={publishedAt} updatedAt={updatedAt} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} image={shareImage} type="article" noindex={fixture || seo.noindex} canonical={canonical} publishedAt={publishedAt} updatedAt={updatedAt} jsonLd={jsonLd}>
   <article>
     <header class="article-header container">
       <div class="article-header__tags">{tags.map((tag) => <ContentTag value={tag} />)}</div>
@@ -51,7 +52,7 @@ const jsonLd = [
   .article-header__episode { margin: .6rem 0 0; color: var(--color-accent); font-weight: 750; }
   .article-header__dates { display: flex; flex-wrap: wrap; gap: .55rem 1.5rem; margin-top: 2rem; color: var(--color-muted); font: .76rem var(--font-mono); }
   .article-hero { margin-bottom: clamp(2.5rem, 7vw, 5rem); }
-  .article-hero img { width: 100%; max-height: 42rem; object-fit: cover; border: 1px solid var(--color-border); }
+  .article-hero img { width: 100%; max-height: 42rem; object-fit: cover; object-position: top; border: 1px solid var(--color-border); }
   .article-body { padding-bottom: clamp(5rem, 10vw, 8rem); }
   .article-next { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--color-border); }
   .article-next p { margin: 0 0 .45rem; }

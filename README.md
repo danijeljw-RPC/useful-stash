@@ -68,6 +68,8 @@ fixture: false
 ---
 ```
 
+`heroImage` (with `heroImageAlt`) is shown at the top of the article and used for social sharing. Add an optional `socialImage` when the share card should differ from the hero, e.g. `socialImage: /images/articles/<slug>.png` (1200×630).
+
 Store clean tag values without decorative brackets. `ContentTag.astro` renders `Docker` as `[ DOCKER ]`. Set `draft: true` to keep an entry out of generated pages and RSS. The three initial articles are deliberately marked `fixture: true` and display “Sample article.”
 
 The `takeaway` frontmatter field renders the publication’s standard Takeaway block after the article body. The component can also be used directly where slotted content is more appropriate.

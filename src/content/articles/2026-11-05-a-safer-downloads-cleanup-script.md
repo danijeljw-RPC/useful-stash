@@ -2,8 +2,8 @@
 title: "Make a small tool worth keeping: a safer Downloads cleanup script"
 slug: a-safer-downloads-cleanup-script
 description: Turn a one-off Bash script into a tool your future self can trust, with preview by default, no-clobber moves, honest help and a test harness. Downloadable and tested on macOS and Linux.
-publishedAt: 2026-11-27
-draft: true
+publishedAt: 2026-11-05
+draft: false
 authors:
   - dj
 tags:
@@ -11,8 +11,8 @@ tags:
   - Workflow
   - Bash
 takeaway: A useful tool isn't finished when it runs once; it's finished when the next person can run it safely.
-heroImage: /social-card.png
-heroImageAlt: Useful Stash title card
+heroImage: /images/articles/a-safer-downloads-cleanup-script.png
+heroImageAlt: Useful Stash card reading "Make a small tool worth keeping", with a terminal previewing a Downloads cleanup that skips a conflict and moves nothing, and the GNU Bash, macOS and Linux logos.
 seo:
   canonical: null
   noindex: false
