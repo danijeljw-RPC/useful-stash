@@ -2,8 +2,8 @@
 title: Ask AI for a decision, not a performance
 slug: better-ai-decisions-not-better-performances
 description: Getting useful answers from AI isn't about elaborate prompts or fictional expertise. It's about defining the decision, providing relevant evidence and understanding the limitations of the answer.
-publishedAt: 2026-11-27
-draft: true
+publishedAt: 2026-10-22
+draft: false
 authors:
   - dj
 tags:
@@ -14,6 +14,7 @@ tags:
 takeaway: Give AI a decision to help you make, not an opportunity to impress you.
 heroImage: /images/articles/confidence-versus-correctness.png
 heroImageAlt: A four-quadrant chart from AI for Normal People titled "Apparent Confidence Is Not Correctness", with correct-to-incorrect on one axis and uncertain-sounding to confident-sounding on the other. An answer can sound confident and still be wrong.
+socialImage: /images/articles/better-ai-decisions-not-better-performances.png
 seo:
   canonical: null
   noindex: false

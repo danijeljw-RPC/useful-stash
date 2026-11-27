@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">A container cleanup you can explain: smaller .NET Docker images</title>
+  <desc id="desc">A .NET 10 Docker image cut from 1.35 GB to 370 MB with one build stage and one explicit copy.</desc>
+  <rect width="1200" height="630" fill="#0D0F12"/>
+  <circle cx="1162" cy="324" r="232" fill="none" stroke="#15181D" stroke-width="24"/>
+  <circle cx="1162" cy="324" r="208" fill="none" stroke="#1D2127" stroke-width="24"/>
+
+  <!-- Brand label -->
+  <text x="80" y="90" font-family="Courier New, monospace" font-size="24" font-weight="700" letter-spacing="2"><tspan fill="#FF6B35">[+]</tspan><tspan fill="#F3F1EC" dx="9">USEFUL</tspan><tspan fill="#FF6B35">/</tspan><tspan fill="#F3F1EC">STASH</tspan></text>
+  <text x="80" y="128" font-family="Courier New, monospace" font-size="18" font-weight="700" letter-spacing="2" fill="#969CA6">[ DOCKER ] [ .NET ]</text>
+  <path d="M80 166h92" stroke="#FF6B35" stroke-width="6"/>
+
+  <!-- Headline -->
+  <text x="74" y="270" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">A container</text>
+  <text x="74" y="350" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">cleanup you</text>
+  <text x="74" y="430" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#FF6B35">can explain.</text>
+  <text x="80" y="506" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">1.35 GB to 370 MB: one build</text>
+  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">stage, one explicit copy.</text>
+  <text x="80" y="590" font-family="Courier New, monospace" font-size="15" letter-spacing="1" fill="#5E646E">INDEPENDENT GUIDE · NOT AFFILIATED</text>
+
+  <!-- Image size comparison (measured in the article) -->
+  <g transform="translate(720 0)">
+    <path d="M0 470h400" stroke="#2A2F37" stroke-width="2"/>
+    <rect x="40" y="170" width="120" height="300" rx="6" fill="#1D2127" stroke="#2A2F37" stroke-width="2"/>
+    <g fill="#2A2F37"><rect x="56" y="188" width="88" height="16" rx="3"/><rect x="56" y="214" width="88" height="16" rx="3"/><rect x="56" y="240" width="88" height="16" rx="3"/><rect x="56" y="266" width="88" height="16" rx="3"/><rect x="56" y="292" width="88" height="16" rx="3"/><rect x="56" y="318" width="88" height="16" rx="3"/><rect x="56" y="344" width="88" height="16" rx="3"/><rect x="56" y="370" width="88" height="16" rx="3"/><rect x="56" y="396" width="88" height="16" rx="3"/><rect x="56" y="422" width="88" height="16" rx="3"/><rect x="56" y="448" width="88" height="16" rx="3"/></g>
+    <text x="100" y="154" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#969CA6">1.35 GB</text>
+    <text x="100" y="500" text-anchor="middle" font-family="Courier New, monospace" font-size="15" font-weight="700" letter-spacing="2" fill="#5E646E">BEFORE</text>
+
+    <rect x="240" y="388" width="120" height="82" rx="6" fill="#FF6B35"/>
+    <g fill="#0D0F12" fill-opacity="0.25"><rect x="256" y="402" width="88" height="16" rx="3"/><rect x="256" y="428" width="88" height="16" rx="3"/><rect x="256" y="454" width="88" height="16" rx="3"/></g>
+    <text x="300" y="372" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800" fill="#F3F1EC">370 MB</text>
+    <text x="300" y="500" text-anchor="middle" font-family="Courier New, monospace" font-size="15" font-weight="700" letter-spacing="2" fill="#FF6B35">AFTER</text>
+
+    <path d="M176 230c30-20 46-10 52 30" fill="none" stroke="#FF6B35" stroke-width="3" stroke-dasharray="6 6"/>
+    <path d="M220 252l8 12 8-14" fill="none" stroke="#FF6B35" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="232" y="150" width="136" height="40" rx="8" fill="#1D2127" stroke="#2A2F37" stroke-width="2"/>
+    <text x="300" y="177" text-anchor="middle" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#FF6B35">−72.6%</text>
+  </g>
+  <!-- Official logos (Simple Icons, CC0), for editorial identification -->
+  <g transform="translate(720 548)"><rect width="176" height="48" rx="10" fill="#F3F1EC"/><path transform="translate(18 9) scale(1.2500)" d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z" fill="#2496ED"/><text x="60" y="32" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#1D63ED">Docker</text></g>
+  <g transform="translate(912 548)"><rect width="176" height="48" rx="10" fill="#F3F1EC"/><rect x="14" y="8" width="32" height="32" rx="6" fill="#512BD4"/><path transform="translate(18 12) scale(1.0000)" d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.829 0 0 1-.869.829.868.829 0 0 1-.868-.83.868.829 0 0 1 .868-.828.868.829 0 0 1 .869.829Z" fill="#F3F1EC"/><text x="60" y="32" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#512BD4">.NET 10</text></g>
+</svg>

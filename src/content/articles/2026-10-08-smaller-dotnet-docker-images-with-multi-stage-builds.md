@@ -2,16 +2,16 @@
 title: "A container cleanup you can explain: smaller .NET Docker images"
 slug: smaller-dotnet-docker-images-with-multi-stage-builds
 description: Cut a .NET 10 Docker image from 1.35 GB to 370 MB with one build stage and one explicit copy, measured, smoke-tested and readable in review.
-publishedAt: 2026-11-27
-draft: true
+publishedAt: 2026-10-08
+draft: false
 authors:
   - dj
 tags:
   - Docker
   - .NET
 takeaway: Copy what the application needs to run, not what it needed to build.
-heroImage: /social-card.png
-heroImageAlt: Useful Stash title card
+heroImage: /images/articles/smaller-dotnet-docker-images-with-multi-stage-builds.png
+heroImageAlt: Useful Stash card reading "A container cleanup you can explain", with a bar chart showing a .NET Docker image shrinking from 1.35 GB to 370 MB, and the Docker and .NET logos.
 seo:
   canonical: null
   noindex: false
