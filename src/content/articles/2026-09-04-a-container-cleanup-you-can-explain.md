@@ -9,7 +9,7 @@ authors:
 tags:
   - Docker
 takeaway: The clearest small image contains only the runtime and the artefacts required to run the application.
-fixture: true
+fixture: false
 heroImage: /images/articles/a-container-cleanup-you-can-explain.png
 heroImageAlt: Useful Stash card reading "A container cleanup you can explain", showing a multi-stage Docker build where only /app/publish is copied from the build stage into the final image, with the Docker logo.
 seo:

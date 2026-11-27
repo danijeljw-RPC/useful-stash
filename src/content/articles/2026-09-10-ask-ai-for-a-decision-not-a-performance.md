@@ -10,7 +10,7 @@ tags:
   - AI
   - Workflow
 takeaway: Give the model the decision, the constraints, and the evidence it can inspect; skip the theatrical role-play.
-fixture: true
+fixture: false
 heroImage: /images/articles/ask-ai-for-a-decision-not-a-performance.png
 heroImageAlt: Useful Stash card reading "Ask AI for a decision, not a performance", with a struck-out "comprehensive analysis" prompt replaced by one stating the decision, constraints and evidence, and labels separating verified from inferred.
 seo:

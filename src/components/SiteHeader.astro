@@ -42,7 +42,6 @@ const links = [
 </header>
 
 <script>
-  const header = document.getElementById('site-header');
   const toggle = document.getElementById('nav-toggle');
   const nav = document.getElementById('site-nav');
 
@@ -62,18 +61,6 @@ const links = [
   nav?.addEventListener('click', (event) => {
     if ((event.target as HTMLElement).tagName === 'A') setOpen(false);
   });
-
-  let lastScrolled = false;
-  const updateScrolled = () => {
-    const scrolled = window.scrollY > 12;
-    if (scrolled !== lastScrolled) {
-      header?.classList.toggle('site-header--scrolled', scrolled);
-      lastScrolled = scrolled;
-    }
-  };
-
-  updateScrolled();
-  window.addEventListener('scroll', updateScrolled, { passive: true });
 </script>
 
 <style>
@@ -83,7 +70,6 @@ const links = [
     z-index: 40;
     border-bottom: 1px solid var(--color-border);
     background: var(--color-bg);
-    transition: min-height 0.15s ease;
   }
 
   .site-header__inner {
@@ -91,11 +77,6 @@ const links = [
     grid-template-columns: 1fr auto auto;
     align-items: center;
     gap: clamp(0.8rem, 3vw, 2rem);
-    min-height: 5rem;
-    transition: min-height 0.15s ease;
-  }
-
-  .site-header--scrolled .site-header__inner {
     min-height: 3.5rem;
   }
 
