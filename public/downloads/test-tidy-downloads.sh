@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 DJ Wynyard
+# https://usefulstash.com/downloads/LICENSE-tidy-downloads.txt
 set -euo pipefail
 script=$(cd -- "$(dirname -- "$0")" && pwd)/tidy-downloads.sh
 work=$(mktemp -d)

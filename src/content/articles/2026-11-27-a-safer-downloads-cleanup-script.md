@@ -99,6 +99,9 @@ It's short enough to read in one go, which is part of the point.
 
 ```bash
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 DJ Wynyard
+# https://usefulstash.com/downloads/LICENSE-tidy-downloads.txt
 set -u
 mode=preview
 if [[ ${1-} == --help ]]; then
@@ -182,6 +185,9 @@ A tool you can't test is a tool you'll be scared to change. The [test harness](/
 
 ```bash
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 DJ Wynyard
+# https://usefulstash.com/downloads/LICENSE-tidy-downloads.txt
 set -euo pipefail
 script=$(cd -- "$(dirname -- "$0")" && pwd)/tidy-downloads.sh
 work=$(mktemp -d)
@@ -241,6 +247,7 @@ It's equally worth knowing when *not* to keep a script. If the job really is one
 
 - **Script:** [/downloads/tidy-downloads.sh](/downloads/tidy-downloads.sh)
 - **Tests:** [/downloads/test-tidy-downloads.sh](/downloads/test-tidy-downloads.sh) — save it in the same folder as the script.
+- **Licence:** [MIT](/downloads/LICENSE-tidy-downloads.txt). Copy it, change it, put it in your dotfiles; just keep the copyright notice.
 - **Run it:** `chmod +x tidy-downloads.sh`, then `./tidy-downloads.sh --preview ~/Downloads`. Read the output. Then, and only then, `--apply`.
 
 A useful tool isn't finished when it runs once. It's finished when the next person can run it safely — and the next person is usually you.

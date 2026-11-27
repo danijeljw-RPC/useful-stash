@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 DJ Wynyard
+# https://usefulstash.com/downloads/LICENSE-tidy-downloads.txt
 set -u
 mode=preview
 if [[ ${1-} == --help ]]; then
