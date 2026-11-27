@@ -112,7 +112,7 @@ case ${1-} in --preview|--apply) mode=${1#--}; shift;; esac
 if [[ $# != 1 || ! -d $1 || $1 == -* ]]; then
   printf '%s\n' 'Invalid directory; see --help.' >&2; exit 2
 fi
-cd -P -- "$1" || exit 2
+CDPATH= cd -P -- "$1" || exit 2
 [[ $PWD != / ]] || exit 2
 shopt -s nullglob
 status=0
@@ -148,7 +148,7 @@ exit "$status"
 
 **Arguments are checked before anything happens.** Exactly one directory, it must exist, and it can't start with `-` (so a typo'd flag isn't mistaken for a folder). Invalid input exits with status 2, which is different from "ran, but skipped something" (status 1). Scripts that call this one can tell those apart.
 
-**`cd -P` resolves the real directory first.** The script works relative to where it actually is, then double-checks it isn't the filesystem root. Everything after that uses `./`-prefixed paths, so a file named `-rf` is just a file.
+**`cd -P` resolves the real directory first.** The script works relative to where it actually is, then double-checks it isn't the filesystem root. The `CDPATH=` in front matters more than it looks: if you've exported `CDPATH` in your shell profile, a plain `cd input` can silently land in a *different* `input` folder somewhere on that search path, and the script would tidy the wrong directory. Clearing it for that one command means a relative path only ever means "relative to where you are". Everything after that uses `./`-prefixed paths, so a file named `-rf` is just a file.
 
 **`shopt -s nullglob`** means an empty folder produces an empty loop, not a literal `./*` file that doesn't exist.
 
@@ -189,6 +189,8 @@ A tool you can't test is a tool you'll be scared to change. The [test harness](/
 # Copyright (c) 2026 DJ Wynyard
 # https://usefulstash.com/downloads/LICENSE-tidy-downloads.txt
 set -euo pipefail
+# Bash 3.2 (macOS) ignores failed [[ ]] under set -e, so assert explicitly.
+fail() { printf 'FAIL at line %s\n' "$1" >&2; exit 1; }
 script=$(cd -- "$(dirname -- "$0")" && pwd)/tidy-downloads.sh
 work=$(mktemp -d)
 trap 'rm -rf -- "$work"' EXIT
@@ -198,17 +200,21 @@ printf original > "$d/a PDF.PDF"
 touch "$d/photo.png" "$d/active.crdownload" "$d/.hidden.pdf" "$d/unknown.bin"
 ln -s 'a PDF.PDF' "$d/link.pdf"
 "$script" "$d"
-[[ ! -e $d/Documents && -f "$d/a PDF.PDF" ]]
+[[ ! -e $d/Documents && -f "$d/a PDF.PDF" ]] || fail "$LINENO"
 "$script" --apply "$d"
-[[ -f "$d/Documents/a PDF.PDF" && -f $d/Images/photo.png && -f $d/active.crdownload && -L $d/link.pdf && -f $d/.hidden.pdf && -f $d/unknown.bin ]]
+[[ -f "$d/Documents/a PDF.PDF" && -f $d/Images/photo.png && -f $d/active.crdownload && -L $d/link.pdf && -f $d/.hidden.pdf && -f $d/unknown.bin ]] || fail "$LINENO"
 "$script" --apply "$d"
 printf collision > "$d/a PDF.PDF"
-if "$script" --apply "$d"; then exit 1; else [[ $? == 1 ]]; fi
-[[ $(cat "$d/Documents/a PDF.PDF") == original && $(cat "$d/a PDF.PDF") == collision ]]
+if "$script" --apply "$d"; then exit 1; else [[ $? == 1 ]] || fail "$LINENO"; fi
+[[ $(cat "$d/Documents/a PDF.PDF") == original && $(cat "$d/a PDF.PDF") == collision ]] || fail "$LINENO"
 ln -s "$work" "$d/Archives"
 touch "$d/a.zip"
-if "$script" --apply "$d"; then exit 1; else [[ $? == 1 ]]; fi
-[[ -f $d/a.zip && ! -e $work/a.zip ]]
+if "$script" --apply "$d"; then exit 1; else [[ $? == 1 ]] || fail "$LINENO"; fi
+[[ -f $d/a.zip && ! -e $work/a.zip ]] || fail "$LINENO"
+mkdir -p "$work/cwd/input" "$work/cdpath/input"
+touch "$work/cwd/input/mine.pdf" "$work/cdpath/input/other.pdf"
+(cd "$work/cwd" && CDPATH=$work/cdpath "$script" --apply input >/dev/null)
+[[ -f $work/cwd/input/Documents/mine.pdf && -f $work/cdpath/input/other.pdf && ! -e $work/cdpath/input/Documents ]] || fail "$LINENO"
 printf 'PASS\n'
 ```
 
@@ -221,6 +227,9 @@ In order, it checks that:
 3. **A second run is harmless.**
 4. **A name collision is refused**, exits with status 1, and *both* files keep their original contents.
 5. **A symlinked category folder is refused**, and nothing escapes the target directory.
+6. **An exported `CDPATH` can't redirect it** — a relative directory tidies the folder you meant, not a same-named one elsewhere.
+
+Notice the `|| fail "$LINENO"` on every check. That isn't decoration. The Bash 3.2 that macOS ships doesn't stop a `set -e` script when a bare `[[ … ]]` test fails, so without it every assertion would quietly pass on a Mac. A test harness that can't fail is worse than none, because it tells you everything is fine.
 
 It passes on Linux with GNU Bash 5.2.37 and on macOS with the system Bash 3.2.57. What it doesn't cover: permission failures, interruption mid-run, real iCloud placeholders and concurrent changes. Those are the limits, and they're written down.
 

@@ -12,7 +12,7 @@ case ${1-} in --preview|--apply) mode=${1#--}; shift;; esac
 if [[ $# != 1 || ! -d $1 || $1 == -* ]]; then
   printf '%s\n' 'Invalid directory; see --help.' >&2; exit 2
 fi
-cd -P -- "$1" || exit 2
+CDPATH= cd -P -- "$1" || exit 2
 [[ $PWD != / ]] || exit 2
 shopt -s nullglob
 status=0
