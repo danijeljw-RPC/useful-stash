@@ -6,12 +6,9 @@ import test from 'node:test';
 const root = new URL('..', import.meta.url).pathname;
 const dist = join(root, 'dist', 'client');
 
-const fixtureMarkers = [
-  'a-container-cleanup-you-can-explain',
-  'ask-ai-for-a-decision-not-a-performance',
-  'make-a-small-tool-worth-keeping',
-  'Sample article',
-];
+// Strings that only fixture content uses. The three original sample
+// articles have been published, so their slugs are no longer listed here.
+const fixtureMarkers = ['Sample article'];
 
 async function walk(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -50,14 +47,11 @@ test('dynamic admin and API routes run the Worker before static 404 handling', a
   assert.deepEqual(config.assets.run_worker_first, ['/admin/*', '/api/*']);
 });
 
-test('the sitemap never lists an admin, API, or fixture-slug URL', async () => {
+test('the sitemap never lists an admin or API URL', async () => {
   const sitemapFiles = (await walk(dist)).filter((path) => path.endsWith('.xml'));
   for (const file of sitemapFiles) {
     const content = await readFile(file, 'utf8');
     assert.doesNotMatch(content, /<loc>[^<]*\/admin\//, `${file} must not list an admin URL`);
     assert.doesNotMatch(content, /<loc>[^<]*\/api\//, `${file} must not list an API URL`);
-    for (const marker of fixtureMarkers.slice(0, 3)) {
-      assert.doesNotMatch(content, new RegExp(`<loc>[^<]*${marker}`), `${file} must not list fixture slug "${marker}"`);
-    }
   }
 });

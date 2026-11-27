@@ -35,32 +35,40 @@ test('homepage exposes the brand proposition and useful navigation', async () =>
   assert.match(html, /aria-label="Switch to light theme"/);
 });
 
-test('production build excludes every fixture article route, per the fixture contract', async () => {
-  // All current sample articles are `fixture: true` and must never be
-  // routable, visible, or discoverable once `npm run build` runs in
-  // production mode (see docs/useful-stash-blog-upgrade.md, "What
-  // `fixture` means"). There is intentionally no non-fixture article yet;
-  // once a real article is published, add a positive-path test here that
-  // reads its built page and asserts JSON-LD/takeaway/metadata.
-  const fixtureSlugs = [
-    'a-container-cleanup-you-can-explain',
-    'ask-ai-for-a-decision-not-a-performance',
-    'make-a-small-tool-worth-keeping',
-  ];
+// The original sample articles were promoted from `fixture: true` to
+// published articles; they must now be routable and discoverable.
+const publishedArticles = [
+  { slug: 'a-container-cleanup-you-can-explain', title: 'A container cleanup you can explain' },
+  { slug: 'ask-ai-for-a-decision-not-a-performance', title: 'Ask AI for a decision, not a performance' },
+  { slug: 'make-a-small-tool-worth-keeping', title: 'Make a small tool worth keeping' },
+];
 
-  for (const slug of fixtureSlugs) {
-    await assert.rejects(() => access(join(dist, 'stash', slug, 'index.html')));
+test('published articles build a full page with heading, JSON-LD, and takeaway', async () => {
+  for (const { slug, title } of publishedArticles) {
+    const html = await readBuilt(join('stash', slug, 'index.html'));
+
+    assert.match(html, new RegExp(`<h1[^>]*>${title}`), `${slug} must render its title as the h1`);
+    assert.match(html, /<script type="application\/ld\+json"/, `${slug} must emit JSON-LD`);
+    assert.match(html, /takeaway/, `${slug} must render its takeaway`);
   }
 });
 
-test('RSS excludes fixture articles and drafts from the canonical feed', async () => {
+test('RSS lists published articles and excludes drafts from the canonical feed', async () => {
   const xml = await readBuilt('rss.xml');
 
   assert.match(xml, /<title>Useful Stash<\/title>/);
-  assert.doesNotMatch(xml, /make-a-small-tool-worth-keeping/);
-  assert.doesNotMatch(xml, /a-container-cleanup-you-can-explain/);
-  assert.doesNotMatch(xml, /ask-ai-for-a-decision-not-a-performance/);
+  for (const { slug } of publishedArticles) {
+    assert.match(xml, new RegExp(`<link>https://usefulstash\\.com/stash/${slug}/</link>`), `RSS must list ${slug}`);
+  }
   assert.doesNotMatch(xml, /draft/);
+});
+
+test('sitemap lists published articles', async () => {
+  const xml = await readBuilt(join('sitemaps', 'pages-1.xml'));
+
+  for (const { slug } of publishedArticles) {
+    assert.match(xml, new RegExp(`<loc>https://usefulstash\\.com/stash/${slug}/</loc>`), `sitemap must list ${slug}`);
+  }
 });
 
 test('DJ author page publishes the full profile and reusable author sections', async () => {
