@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Ask AI for a decision, not a performance</title>
+  <desc id="desc">A vague 'comprehensive analysis' prompt struck out, replaced by a prompt that states the decision, constraints and evidence, and separates verified from inferred.</desc>
+  <rect width="1200" height="630" fill="#0D0F12"/>
+  <circle cx="1162" cy="324" r="232" fill="none" stroke="#15181D" stroke-width="24"/>
+  <circle cx="1162" cy="324" r="208" fill="none" stroke="#1D2127" stroke-width="24"/>
+
+  <!-- Brand label -->
+  <text x="80" y="90" font-family="Courier New, monospace" font-size="24" font-weight="700" letter-spacing="2"><tspan fill="#FF6B35">[+]</tspan><tspan fill="#F3F1EC" dx="9">USEFUL</tspan><tspan fill="#FF6B35">/</tspan><tspan fill="#F3F1EC">STASH</tspan></text>
+  <text x="80" y="128" font-family="Courier New, monospace" font-size="18" font-weight="700" letter-spacing="2" fill="#969CA6">[ AI ] [ WORKFLOW ]</text>
+  <path d="M80 166h92" stroke="#FF6B35" stroke-width="6"/>
+
+  <!-- Headline -->
+  <text x="74" y="270" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">Ask AI for a</text>
+  <text x="74" y="350" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#F3F1EC">decision, not a</text>
+  <text x="74" y="430" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800" letter-spacing="-4" fill="#FF6B35">performance.</text>
+  <text x="80" y="506" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">State the decision, the</text>
+  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#969CA6">constraints and the evidence.</text>
+  <text x="80" y="590" font-family="Courier New, monospace" font-size="15" letter-spacing="1" fill="#5E646E">PRACTICAL AI LITERACY</text>
+
+  <!-- The performance prompt, struck out -->
+  <g transform="translate(672 92)">
+    <rect width="430" height="52" rx="10" fill="none" stroke="#2A2F37" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="22" y="33" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#969CA6">“Give me a comprehensive analysis…”</text>
+    <path d="M16 27h340" stroke="#FF6B35" stroke-width="2.5"/>
+  </g>
+  <!-- The decision prompt -->
+  <g transform="translate(672 168)">
+    <rect width="430" height="290" rx="14" fill="#1D2127" stroke="#2A2F37" stroke-width="2"/>
+    <text x="24" y="44" font-family="Courier New, monospace" font-size="14" font-weight="700" letter-spacing="2" fill="#969CA6">ASK FOR A DECISION</text>
+    <path d="M24 60h382" stroke="#2A2F37" stroke-width="2"/>
+    <text x="24" y="94" font-family="Courier New, monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#FF6B35">DECISION</text><text x="24" y="116" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#F3F1EC">Which backup approach for one Mac?</text><text x="24" y="146" font-family="Courier New, monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#FF6B35">CONSTRAINTS</text><text x="24" y="168" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#F3F1EC">Reliable restores, low maintenance</text><text x="24" y="198" font-family="Courier New, monospace" font-size="13" font-weight="700" letter-spacing="2" fill="#FF6B35">EVIDENCE</text><text x="24" y="220" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#F3F1EC">Both setups, what I restore, budget</text>
+    <g transform="translate(24 248)">
+      <rect width="116" height="28" rx="14" fill="#F3F1EC"/>
+      <text x="58" y="19" text-anchor="middle" font-family="Courier New, monospace" font-size="13" font-weight="700" fill="#0D0F12">VERIFIED</text>
+      <rect x="128" width="116" height="28" rx="14" fill="none" stroke="#FF6B35" stroke-width="2"/>
+      <text x="186" y="19" text-anchor="middle" font-family="Courier New, monospace" font-size="13" font-weight="700" fill="#FF6B35">INFERRED</text>
+    </g>
+  </g>
+  <text x="672" y="500" font-family="Courier New, monospace" font-size="14" letter-spacing="1" fill="#5E646E">SKIP THE ROLE-PLAY · KEEP THE EVIDENCE</text>
+</svg>
